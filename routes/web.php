@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Akun\RoleController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\KategoriController;
@@ -35,5 +36,9 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("pengaturan")->group(function () {
         Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+    });
+
+    Route::prefix("akun")->group(function () {
+        Route::resource("role", RoleController::class);
     });
 });
