@@ -59,6 +59,8 @@
 
     @include('pages.layouts.partials.js.style_js')
 
+    @yield('js')
+
 </body>
 
 </html>

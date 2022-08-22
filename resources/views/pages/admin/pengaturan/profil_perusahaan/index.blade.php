@@ -28,13 +28,14 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>
-                            Upload Gambar
+                            <i class="fa fa-upload"></i> Upload Gambar
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="profil_foto"> Foto </label>
-                            <img src="{{ url('/gambar/upload-gambar.jpg') }}" class="img-fluid mb-3">
+                            <img src="{{ url('/gambar/upload-gambar.jpg') }}" class="img-fluid mb-3 gambar-preview"
+                                id="tampilGambar">
                             <input type="file" class="form-control" name="profil_foto" id="profil_foto"
                                 onchange="previewImage()">
                         </div>
@@ -93,5 +94,25 @@
             </div>
         </div>
     </form>
+
+@endsection
+
+@section('js')
+
+    <script type="text/javascript">
+        function previewImage() {
+            const image = document.querySelector("#profil_foto");
+            const imgPreview = document.querySelector(".gambar-preview");
+            imgPreview.style.display = "block";
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
+        }
+    </script>
 
 @endsection
