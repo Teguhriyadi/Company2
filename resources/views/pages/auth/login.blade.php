@@ -2,103 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/modules/bootstrap-social/bootstrap-social.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/style.css">
-    <link rel="stylesheet" href="{{ url('/template') }}/dist/assets/css/components.css">
-    <!-- Start GA -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-94034622-3');
-    </script>
-    <!-- /END GA -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div
-                        class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="login-brand">
-                            <img src="{{ url('/template/dist') }}/assets/img/stisla-fill.svg" alt="logo"
-                                width="100" class="shadow-light rounded-circle">
+    <!-- component -->
+    <!-- This is an example component -->
+    <div class="font-sans">
+        <div class="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+            <div class="relative sm:max-w-sm w-full">
+                <div class="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6"></div>
+                <div class="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6"></div>
+                <div class="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
+                    <label for="" class="block mt-3 text-sm text-gray-700 text-center font-semibold">
+                        Login
+                    </label>
+                    <form method="#" action="#" class="mt-10">
+
+                        <div>
+                            <input type="email" placeholder="Correo electronico"
+                                class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
                         </div>
 
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h4>Login</h4>
-                            </div>
-
-                            <div class="card-body">
-                                <form method="POST" action="#" class="needs-validation" novalidate="">
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email"
-                                            tabindex="1" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Please fill in your email
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="auth-forgot-password.html" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password"
-                                            tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            please fill in your password
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div>
+                        <div class="mt-7">
+                            <input type="password" placeholder="Contraseña"
+                                class="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0">
                         </div>
-                        <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
+
+                        <div class="mt-7">
+                            <button
+                                class="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
+                                Login
+                            </button>
                         </div>
-                        <div class="simple-footer">
-                            Copyright &copy; Stisla 2018
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-        </section>
+        </div>
+
     </div>
 
-    <script src="{{ url('/template/dist/') }}assets/modules/jquery.min.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/modules/popper.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/modules/tooltip.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/modules/bootstrap/js/bootstrap.min.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/modules/moment.min.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/js/stisla.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/js/scripts.js"></script>
-    <script src="{{ url('/template/dist/') }}assets/js/custom.js"></script>
 </body>
 
 </html>

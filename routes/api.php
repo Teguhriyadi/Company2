@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\CarouselController;
+use App\Http\Controllers\API\JasaController;
+use App\Http\Controllers\API\KategoriController;
+use App\Http\Controllers\API\PesanController;
+use App\Http\Controllers\API\ProfilPerusahaanController;
+use App\Http\Controllers\API\TeamController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +23,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
+Route::resource('kategori', KategoriController::class);
+Route::resource('carousel', CarouselController::class);
+Route::resource('team', TeamController::class);
+Route::resource('pesan', PesanController::class);
+Route::resource('jasa', JasaController::class);
