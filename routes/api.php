@@ -28,5 +28,5 @@ Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
 Route::resource('team', TeamController::class);
-Route::resource('pesan', PesanController::class);
+Route::post('pesan', [PesanController::class, "store"]);
 Route::resource('jasa', JasaController::class);
