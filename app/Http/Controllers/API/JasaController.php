@@ -21,7 +21,7 @@ class JasaController extends Controller
                     "jasa_nama" => $d->jasa_nama,
                     "jasa_deskripsi" => $d->jasa_deskripsi,
                     "jasa_gambar" => $d->jasa_gambar,
-                    "id_kategori" => $d->getJasa->kategori_nama
+                    "id_kategori" => $d->getKategori->kategori_nama
                 ];
             }
         }
