@@ -39,6 +39,8 @@ Route::prefix("admin")->group(function () {
     });
 
     Route::prefix("akun")->group(function () {
+        Route::get("/role/edit", [RoleController::class, "edit"]);
+        Route::put("/edit/simpan", [RoleController::class, "update"]);
         Route::resource("role", RoleController::class);
     });
 });

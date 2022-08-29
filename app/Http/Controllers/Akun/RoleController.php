@@ -40,7 +40,7 @@ class RoleController extends Controller
 
     public function update(Request $request)
     {
-        Role::where("id", $request->id)->update([
+        Role::where("id", decrypt($request->id))->update([
             "role_nama" => $request->role_nama
         ]);
 

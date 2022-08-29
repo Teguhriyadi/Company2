@@ -1,14 +1,20 @@
-<script src="{{ url('/template') }}/dist/assets/modules/jquery.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/popper.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/tooltip.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/moment.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/js/stisla.js"></script>
-<script src="{{ url('/template') }}/dist/assets/js/scripts.js"></script>
-<script src="{{ url('/template') }}/dist/assets/js/custom.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/datatables/datatables.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js">
-</script>
-<script src="{{ url('/template') }}/dist/assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
-<script src="{{ url('/template') }}/dist/assets/js/page/modules-datatables.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{{ url('/tema') }}/vendor/jquery/jquery.min.js"></script>
+<script src="{{ url('/tema') }}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{ url('/tema') }}/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{ url('/tema') }}/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+<script src="{{ url('/tema') }}/vendor/chart.js/Chart.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{ url('/tema') }}/js/demo/chart-area-demo.js"></script>
+<script src="{{ url('/tema') }}/js/demo/chart-pie-demo.js"></script>
+<script src="{{ url('/tema') }}/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ url('/tema') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<script src="{{ url('/tema') }}/js/demo/datatables-demo.js"></script>
