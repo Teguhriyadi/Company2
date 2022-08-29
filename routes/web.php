@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Akun\RoleController;
+use App\Http\Controllers\Akun\UserController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\KategoriController;
@@ -39,6 +40,11 @@ Route::prefix("admin")->group(function () {
     });
 
     Route::prefix("akun")->group(function () {
+
+        Route::get("/users/edit", [UserController::class, "edit"]);
+        Route::put("/users/simpan", [UserController::class, "update"]);
+        Route::resource("users", UserController::class);
+
         Route::get("/role/edit", [RoleController::class, "edit"]);
         Route::put("/edit/simpan", [RoleController::class, "update"]);
         Route::resource("role", RoleController::class);

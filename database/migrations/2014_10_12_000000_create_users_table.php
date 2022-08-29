@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer("id_role");
             $table->integer("created_by");
             $table->string("foto");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }
