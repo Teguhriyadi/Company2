@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Footer;
+use App\Models\Master\Footer;
 
 class ApiFooterController extends Controller
 {

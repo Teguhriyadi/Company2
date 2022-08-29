@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('footer', function (Blueprint $table) {
             $table->id();
+            $table->string("icon");
+            $table->string("deskripsi_footer");
             $table->timestamps();
         });
     }
