@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Controllers\Request;
 use App\Models\Master\Layanan;
 
 class ApiLayananController extends Controller
@@ -11,7 +12,7 @@ class ApiLayananController extends Controller
     {
         $layanan = Layanan::all();
         if (empty($layanan)) {
-            return response()->json([["message" => "Data Kosong"]]);
+            return response()->json(["message" => "Data Kosong", 'layanan' => $layanan, 'code' => 404]);
         } else {
             return response()->json(['message' => 'Success', 'layanan' => $layanan, 'code' => 200]);
         }
