@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Layanan;
+use App\Models\Master\Layanan;
 
 class ApiLayananController extends Controller
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\TentangKami;
+use App\Models\Master\TentangKami;
 
 class ApiTentangKamiController extends Controller
 {

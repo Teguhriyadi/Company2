@@ -8,6 +8,12 @@ use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\WorkController;
 use App\Http\Controllers\Master\PartnerController;
+use App\Http\Controllers\ApiContactController;
+use App\Http\Controllers\ApiFooterController;
+use App\Http\Controllers\ApiLayananController;
+use App\Http\Controllers\ApiProdukController;
+use App\Http\Controllers\ApiTentangKamiController;
+use App\Http\Controllers\ApiCarouselController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +40,75 @@ Route::post('pesan', [PesanController::class, "store"]);
 Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);
 Route::resource('work', WorkController::class);
+
+
+
+
+Route::prefix('contacts')->group(function () {
+    Route::controller(ApiContactController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
+
+
+
+Route::prefix('layanan')->group(function () {
+    Route::controller(ApiLayananController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
+
+
+Route::prefix('produk')->group(function () {
+    Route::controller(ApiProdukController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
+
+
+
+Route::prefix('tentang')->group(function () {
+    Route::controller(ApiTentangKamiController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
+
+
+
+Route::prefix('footer')->group(function () {
+    Route::controller(ApiFooterController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
+
+
+
+Route::prefix('carousel')->group(function () {
+    Route::controller(ApiCarouselController::class)->group(function () {
+        Route::get('', 'index');
+        Route::get('/{id}', 'detail');
+        Route::post('', 'store');
+        Route::put('/{id}', 'update');
+        Route::delete('/{id}', 'destroy');
+    });
+});
