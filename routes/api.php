@@ -8,12 +8,12 @@ use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\WorkController;
 use App\Http\Controllers\Master\PartnerController;
-use App\Http\Controllers\ApiContactController;
-use App\Http\Controllers\ApiFooterController;
-use App\Http\Controllers\ApiLayananController;
-use App\Http\Controllers\ApiProdukController;
-use App\Http\Controllers\ApiTentangKamiController;
-use App\Http\Controllers\ApiCarouselController;
+use App\Http\Controllers\API\ApiContactController;
+use App\Http\Controllers\API\ApiFooterController;
+use App\Http\Controllers\API\ApiLayananController;
+use App\Http\Controllers\API\ApiProdukController;
+use App\Http\Controllers\API\ApiTentangKamiController;
+// use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

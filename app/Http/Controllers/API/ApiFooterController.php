@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Controllers\Request;
 use App\Models\Master\Footer;
 
 class ApiFooterController extends Controller
