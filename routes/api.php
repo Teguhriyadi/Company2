@@ -7,7 +7,7 @@ use App\Http\Controllers\API\PesanController;
 use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\WorkController;
-use App\Http\Controllers\Master\PartnerController;
+use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\ApiContactController;
 use App\Http\Controllers\API\ApiFooterController;
 use App\Http\Controllers\API\ApiLayananController;

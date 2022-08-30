@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("team_nama", 100);
             $table->string("team_jabatan", 50);
+            $table->string("team_foto");
             $table->integer("team_status");
             $table->timestamps();
         });

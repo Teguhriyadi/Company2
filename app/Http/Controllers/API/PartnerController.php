@@ -10,7 +10,7 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        $partner = Partner::orderBy("created_at", "DESC")->paginate(6);
+        $partner = Partner::orderBy("created_at", "DESC")->paginate(4);
 
         if ($partner->count() < 1) {
             $data = "Data Tidak Ada";

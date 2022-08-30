@@ -20,6 +20,7 @@ class TeamController extends Controller
                 $data[] = [
                     "team_nama" => $d->team_nama,
                     "team_jabatan" => $d->team_jabatan,
+                    "team_foto" => $d->team_foto,
                     "team_status" => $d->team_status
                 ];
             }
