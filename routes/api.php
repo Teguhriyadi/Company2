@@ -13,6 +13,7 @@ use App\Http\Controllers\API\ApiFooterController;
 use App\Http\Controllers\API\ApiLayananController;
 use App\Http\Controllers\API\ApiProdukController;
 use App\Http\Controllers\API\ApiTentangKamiController;
+use App\Http\Controllers\API\TargetController;
 // use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,7 @@ Route::post('pesan', [PesanController::class, "store"]);
 Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);
 Route::resource('work', WorkController::class);
-
-
-
+Route::resource('target', TargetController::class);
 
 Route::prefix('contacts')->group(function () {
     Route::controller(ApiContactController::class)->group(function () {
