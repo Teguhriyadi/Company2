@@ -39,6 +39,9 @@
                 <a class="collapse-item" href="{{ url('/admin/master/services') }}">
                     Jasa
                 </a>
+                <a class="collapse-item" href="{{ url('/admin/master/client') }}">
+                    Client
+                </a>
             </div>
         </div>
     </li>
