@@ -24,7 +24,20 @@
     <div class="sidebar-heading">
         Interface
     </div>
-
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturan"
+            aria-expanded="true" aria-controls="pengaturan">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+        <div id="pengaturan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
+                    Profil Perusahaan
+                </a>
+            </div>
+        </div>
+    </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
