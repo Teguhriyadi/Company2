@@ -6,6 +6,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
+use App\Http\Controllers\Pengaturan\PesanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,7 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("pengaturan")->group(function () {
         Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+        Route::resource("pesan", PesanController::class);
     });
 
     Route::prefix("akun")->group(function () {
