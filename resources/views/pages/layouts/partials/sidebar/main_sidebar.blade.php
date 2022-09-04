@@ -33,6 +33,9 @@
         </a>
         <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{ url('/admin/master/kategori') }}">
+                    Kategori
+                </a>
                 <a class="collapse-item" href="{{ url('/admin/master/services') }}">
                     Jasa
                 </a>
