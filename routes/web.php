@@ -7,6 +7,7 @@ use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
+use App\Http\Controllers\Pengaturan\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,9 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("pengaturan")->group(function () {
         Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+        Route::get("/team/edit", [TeamController::class, "edit"]);
+        Route::get("/team/simpan", [TeamController::class, "update"]);
+        Route::resource("team", TeamController::class);
         Route::resource("pesan", PesanController::class);
     });
 

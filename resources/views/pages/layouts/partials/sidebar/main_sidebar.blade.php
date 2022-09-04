@@ -35,6 +35,9 @@
                 <a class="collapse-item" href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
                     Profil Perusahaan
                 </a>
+                <a class="collapse-item" href="{{ url('/admin/pengaturan/team') }}">
+                    Team
+                </a>
                 <a class="collapse-item" href="{{ url('/admin/pengaturan/pesan') }}">
                     Pesan
                 </a>
