@@ -38,6 +38,9 @@
                 <a class="collapse-item" href="{{ url('/admin/pengaturan/team') }}">
                     Team
                 </a>
+                <a class="collapse-item" href="{{ url('/admin/pengaturan/testimonial') }}">
+                    Testimonial
+                </a>
                 <a class="collapse-item" href="{{ url('/admin/pengaturan/pesan') }}">
                     Pesan
                 </a>
