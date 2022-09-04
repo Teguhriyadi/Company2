@@ -5,6 +5,7 @@ use App\Http\Controllers\Akun\UserController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\KategoriController;
+use App\Http\Controllers\Master\ServicesController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\TeamController;
@@ -36,6 +37,9 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("master")->group(function () {
         Route::resource("kategori", KategoriController::class);
+        Route::get("/services/edit", [ServicesController::class, "edit"]);
+        Route::put("/services/simpan", [ServicesController::class, "update"]);
+        Route::resource("services", ServicesController::class);
     });
 
     Route::prefix("pengaturan")->group(function () {
