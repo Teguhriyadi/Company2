@@ -10,12 +10,12 @@ class ProfilPerusahaanController extends Controller
 {
     public function index()
     {
-        $profil = ProfilPerusahaan::get();
+        $profil = ProfilPerusahaan::first();
 
         if (empty($profil)) {
             return response()->json([["message" => "Data Tidak Ada"]]);
         } else {
-            return response()->json(["status" => 1, "message" => $profil]);
+            return response()->json([$profil]);
         }
     }
 }

@@ -6,11 +6,7 @@
           </div>
 
           <div class="row">
-            <div
-              class="col-lg-4 col-md-6"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" v-for="profil in profils" :key="profil.id">
               <div class="contact-about">
                 <h3>Net2.</h3>
                 <p>
