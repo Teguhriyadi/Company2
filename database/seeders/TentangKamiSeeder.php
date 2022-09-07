@@ -17,7 +17,7 @@ class TentangKamiSeeder extends Seeder
     {
         TentangKami::create([
             'judul' => 'Spesialisasi Kami',
-            'foto' => 'http://127.0.0.1:1234/assets/meeting.png',
+            'foto' => 'http://127.0.0.1:8000/assets/meeting.png',
             // 'foto' => 'http://propertiku.proyek.ti.polindra.ac.id/storage/app/public/image/3Tc2rfQy4o4DVPYw2VLAwro33xntV2ycNSRLiiSK.png',
             'deskripsi' => 'Jaring adalah perusahaan IT yang bergerak di bidang jasa penyedia sistem aplikasi, Pengembangan software house, E-Ticketing, Pencatatan Transaksi Digital, Penyedia Mesin TAP EDC/Bus Validator yang sudah bekerja sama dengan Bank-Bank Besar. Dengan mengedepankan integritas, kami akan selalu memberikan jasa terbaik di setiap pekerjaan yang kami lakukan. Jaring selalu bersemangat dalam menciptakan berdasarkan kebutuhan klien dengan komitmen yang tinggi dan kami juga bisa menjadi solusi bagi perusahaan penerbit uang/uang digital yang ingin mengembangkan dan menambahkan transaksi dari seluruh jaringan retail yang bekerjasama dengan kami.',
         ]);

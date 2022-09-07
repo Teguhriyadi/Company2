@@ -14,7 +14,7 @@ use App\Http\Controllers\API\ApiLayananController;
 use App\Http\Controllers\API\ApiProdukController;
 use App\Http\Controllers\API\ApiTentangKamiController;
 use App\Http\Controllers\API\TargetController;
-// use App\Http\Controllers\API\ApiCarouselController;
+use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -102,7 +102,7 @@ Route::prefix('footer')->group(function () {
 
 
 
-Route::prefix('carousel')->group(function () {
+Route::prefix('carousel1')->group(function () {
     Route::controller(ApiCarouselController::class)->group(function () {
         Route::get('', 'index');
         Route::get('/{id}', 'detail');
