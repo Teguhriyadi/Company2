@@ -1,8 +1,12 @@
 <template>
     <header id="header" class="fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
-        <div class="logo">
-          <h1><a href="index.html">JLDW</a></h1>
+        <div class="logo" v-for="profil in profils" :key="profil.id">
+            <h1>
+                <a href="index.html">
+                    {{ profil.profil_nama }}
+                </a>
+            </h1>
         </div>
 
         <nav id="navbar" class="navbar">
@@ -51,6 +55,24 @@
 
 <script>
     export default {
-        name: "HeaderComponents"
+        name: "HeaderComponents",
+        data() {
+            return {
+                profils: []
+            }
+        },
+        created() {
+            this.getProfil();
+        },
+        methods: {
+            async getProfil() {
+                try {
+                    const response = await axios.get("profil_perusahaan");
+                    this.profils = response.data;
+                } catch (error) {
+                    console.log("Oopss.. Terjadi Kesalahan");
+                }
+            }
+        }
     }
 </script>
