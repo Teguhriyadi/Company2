@@ -1,4 +1,5 @@
 <template>
+    <router-view/>
     <app-header/>
 
     <app-hero/>
@@ -16,8 +17,6 @@
         <app-testimonial/>
 
         <app-team/>
-
-        <app-knowledge/>
 
         <app-contact/>
     </main>
