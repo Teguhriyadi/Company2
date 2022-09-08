@@ -24,47 +24,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/', [AppController::class, "app"]);
 
-Route::get("/template_admin", function () {
-    return view("pages.layouts.main");
-});
 Route::prefix("admin")->group(function () {
-    Route::get("/login", [LoginController::class, "login"]);
-
-    Route::get("/dashboard", [AppController::class, "dashboard"]);
-
-    Route::prefix("master")->group(function () {
-        Route::get("/kategori/edit", [KategoriController::class, "edit"]);
-        Route::put("/kategori/simpan", [KategoriController::class, "update"]);
-        Route::resource("kategori", KategoriController::class);
-        Route::get("/services/edit", [ServicesController::class, "edit"]);
-        Route::put("/services/simpan", [ServicesController::class, "update"]);
-        Route::resource("services", ServicesController::class);
-        Route::get("/client/edit", [ClientController::class, "edit"]);
-        Route::put("/client/simpan", [ClientController::class, "update"]);
-        Route::resource("client", ClientController::class);
+    Route::group(["middleware" => ["guest"]], function () {
+        Route::get("/login", [LoginController::class, "login"]);
+        Route::post("/login", [LoginController::class, "post_login"]);
     });
 
-    Route::prefix("pengaturan")->group(function () {
-        Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
-        Route::get("/team/edit", [TeamController::class, "edit"]);
-        Route::get("/team/simpan", [TeamController::class, "update"]);
-        Route::resource("team", TeamController::class);
-        Route::resource("testimonial", TestimonialController::class);
-        Route::resource("pesan", PesanController::class);
-    });
+    Route::group(["middleware" => ["autentikasi"]], function () {
+        Route::get("/dashboard", [AppController::class, "dashboard"]);
+        Route::prefix("master")->group(function () {
+            Route::get("/kategori/edit", [KategoriController::class, "edit"]);
+            Route::put("/kategori/simpan", [KategoriController::class, "update"]);
+            Route::resource("kategori", KategoriController::class);
+            Route::get("/services/edit", [ServicesController::class, "edit"]);
+            Route::put("/services/simpan", [ServicesController::class, "update"]);
+            Route::resource("services", ServicesController::class);
+            Route::get("/client/edit", [ClientController::class, "edit"]);
+            Route::put("/client/simpan", [ClientController::class, "update"]);
+            Route::resource("client", ClientController::class);
+        });
 
-    Route::prefix("akun")->group(function () {
+        Route::prefix("pengaturan")->group(function () {
+            Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+            Route::get("/team/edit", [TeamController::class, "edit"]);
+            Route::get("/team/simpan", [TeamController::class, "update"]);
+            Route::resource("team", TeamController::class);
+            Route::resource("testimonial", TestimonialController::class);
+            Route::resource("pesan", PesanController::class);
+        });
 
-        Route::get("/users/edit", [UserController::class, "edit"]);
-        Route::put("/users/simpan", [UserController::class, "update"]);
-        Route::resource("users", UserController::class);
+        Route::prefix("akun")->group(function () {
 
-        Route::get("/role/edit", [RoleController::class, "edit"]);
-        Route::put("/edit/simpan", [RoleController::class, "update"]);
-        Route::resource("role", RoleController::class);
+            Route::get("/users/edit", [UserController::class, "edit"]);
+            Route::put("/users/simpan", [UserController::class, "update"]);
+            Route::resource("users", UserController::class);
+
+            Route::get("/role/edit", [RoleController::class, "edit"]);
+            Route::put("/edit/simpan", [RoleController::class, "update"]);
+            Route::resource("role", RoleController::class);
+        });
+
+        Route::get("logout", [LoginController::class, "logout"]);
     });
 });

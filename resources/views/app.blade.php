@@ -4,7 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Jasa Layanan Digital Website</title>
+    <title>
+        {{ empty($data_profil) ? '-' : $data_profil->profil_nama }}
+    </title>
+    @if (empty($data_profil))
+    @else
+        <link rel="icon" type="image/png" href="{{ $data_profil->profil_foto }}" />
+    @endif
 
     <link
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
