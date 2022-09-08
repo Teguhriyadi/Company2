@@ -2,7 +2,7 @@
     <header id="header" class="fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
-          <h1><a href="index.html">Net2.</a></h1>
+          <h1><a href="index.html">JLDW</a></h1>
         </div>
 
         <nav id="navbar" class="navbar">
