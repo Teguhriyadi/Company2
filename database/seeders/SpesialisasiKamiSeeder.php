@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Master\TentangKami;
+use App\Models\Master\SpesialisasiKami;
 
-class TentangKamiSeeder extends Seeder
+class SpesialisasiKamiSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class TentangKamiSeeder extends Seeder
      */
     public function run()
     {
-        TentangKami::create([
+        SpesialisasiKami::create([
             'judul' => 'Spesialisasi Kami',
             'foto' => 'http://127.0.0.1:8000/assets/meeting.png',
             // 'foto' => 'http://propertiku.proyek.ti.polindra.ac.id/storage/app/public/image/3Tc2rfQy4o4DVPYw2VLAwro33xntV2ycNSRLiiSK.png',

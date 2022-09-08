@@ -12,7 +12,7 @@ use App\Http\Controllers\API\ApiContactController;
 use App\Http\Controllers\API\ApiFooterController;
 use App\Http\Controllers\API\ApiLayananController;
 use App\Http\Controllers\API\ApiProdukController;
-use App\Http\Controllers\API\ApiTentangKamiController;
+use App\Http\Controllers\API\ApiSpesialisasiKamiController;
 use App\Http\Controllers\API\TargetController;
 use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
@@ -78,8 +78,8 @@ Route::prefix('produk')->group(function () {
 
 
 
-Route::prefix('tentang')->group(function () {
-    Route::controller(ApiTentangKamiController::class)->group(function () {
+Route::prefix('spesialisasi')->group(function () {
+    Route::controller(ApiSpesialisasiKamiController::class)->group(function () {
         Route::get('', 'index');
         Route::get('/{id}', 'detail');
         Route::post('', 'store');
