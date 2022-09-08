@@ -1,5 +1,4 @@
 <template>
-    <router-view/>
     <app-header/>
 
     <app-hero/>

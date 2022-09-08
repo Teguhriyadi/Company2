@@ -1,5 +1,5 @@
 <template>
-    <section id="about" class="about_us">
+    <section id="tentang_kami" class="about_us">
         <div class="container">
           <div class="section-title">
             <h2 data-aos="fade-up" data-aos-delay="400">About Us</h2>

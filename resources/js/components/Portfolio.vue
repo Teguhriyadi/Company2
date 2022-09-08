@@ -3,10 +3,9 @@
         <div class="container">
           <div class="section-title" data-aos="fade-up">
             <h2>Portfolio</h2>
-            <router-link>
-                        Hame
-                    </router-link>
-            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem</p>
+            <p>
+                Beberapa Portfolio Kami
+            </p>
           </div>
 
           <div class="row" data-aos="fade-up" data-aos-delay="200">

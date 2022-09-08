@@ -1,5 +1,5 @@
 <template>
-    <section id="contact" class="contact">
+    <section id="kontak" class="contact">
         <div class="container">
           <div class="section-title" data-aos="fade-up">
             <h2>Contact Us</h2>
@@ -51,48 +51,28 @@
             </div>
 
             <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
-              <form action="forms/contact.php" method="POST" role="form" class="php-email-form">
+              <form method="POST" role="form" class="php-email-form" @submit.prevent="saveKirimanPertanyaan">
                 <div class="form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required/>
+                  <input type="text" v-model="pesan_nama" class="form-control" id="name" placeholder="Your Name" required/>
                 </div>
                 <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    id="email"
-                    placeholder="Your Email"
-                    required
+                  <input type="email" class="form-control" v-model="pesan_email" id="email" placeholder="Your Email" required/>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" v-model="pesan_subject" id="subject" placeholder="Subject" required
                   />
                 </div>
                 <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    name="subject"
-                    id="subject"
-                    placeholder="Subject"
-                    required
-                  />
+                  <input type="text" v-model="pesan_nama_perusahaan" class="form-control" id="name" placeholder="Your Name" required/>
                 </div>
                 <div class="form-group">
-                  <textarea
-                    class="form-control"
-                    name="message"
-                    rows="5"
-                    placeholder="Message"
-                    required
+                  <textarea class="form-control" v-model="pesan_teks" rows="5" placeholder="Message" required
                   ></textarea>
                 </div>
-                <div class="my-3">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">
-                    Your message has been sent. Thank you!
-                  </div>
-                </div>
                 <div class="text-center">
-                  <button type="submit">Send Message</button>
+                  <button type="submit">
+                    Kirim
+                  </button>
                 </div>
               </form>
             </div>

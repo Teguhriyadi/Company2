@@ -1,5 +1,5 @@
 <template>
-    <section id="team" class="team">
+    <section id="tim" class="team">
         <div class="container">
           <div class="section-title" data-aos="fade-up">
             <h2>Team</h2>
