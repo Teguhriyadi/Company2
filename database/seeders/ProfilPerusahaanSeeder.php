@@ -16,7 +16,7 @@ class ProfilPerusahaanSeeder extends Seeder
     public function run()
     {
         ProfilPerusahaan::create([
-            "profil_nama" => "JasaLayananDigitalWebsite",
+            "profil_nama" => "JLDW",
             "profil_deskripsi" => "Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet",
             "profil_no_hp" => "085324237299",
             "profil_email" => "admin@gmail.com",

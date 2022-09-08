@@ -5,15 +5,12 @@
             <h2>Contact Us</h2>
           </div>
 
-          <div class="row">
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100" v-for="profil in profils" :key="profil.id">
+          <div class="row" v-for="contact in contacts" :key="contact.id">
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <div class="contact-about">
-                <h3>Net2.</h3>
+                <h3>{{ contact.profil_nama }}</h3>
                 <p>
-                  Cras fermentum odio eu feugiat. Justo eget magna fermentum
-                  iaculis eu non diam phasellus. Scelerisque felis imperdiet
-                  proin fermentum leo. Amet volutpat consequat mauris nunc
-                  congue.
+                  {{ contact.profil_deskripsi }}
                 </p>
                 <div class="social-links">
                   <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -38,17 +35,17 @@
               <div class="info">
                 <div>
                   <i class="ri-map-pin-line"></i>
-                  <p>A108 Adam Street<br />New York, NY 535022</p>
+                  <p>{{ contact.profil_alamat }}</p>
                 </div>
 
                 <div>
                   <i class="ri-mail-send-line"></i>
-                  <p>info@example.com</p>
+                  <p>{{ contact.profil_email }}</p>
                 </div>
 
                 <div>
                   <i class="ri-phone-line"></i>
-                  <p>+1 5589 55488 55s</p>
+                  <p>{{ contact.profil_no_hp }}</p>
                 </div>
               </div>
             </div>
@@ -122,6 +119,24 @@
 
 <script>
     export default {
-        name: "ContactComponents"
+        name: "ContactComponents",
+        data() {
+            return {
+                contacts: []
+            }
+        },
+        created() {
+            this.getContacts();
+        },
+        methods: {
+            async getContacts() {
+                try {
+                    const response = await axios.get("profil_perusahaan");
+                    this.contacts = response.data;
+                } catch (error) {
+                    console.log("Oopss.. Terjadi Kesalahan");
+                }
+            }
+        }
     }
 </script>
