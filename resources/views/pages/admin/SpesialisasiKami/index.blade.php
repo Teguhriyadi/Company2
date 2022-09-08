@@ -2,7 +2,7 @@
 
 @section('title', 'Role')
 
-@section('title_breadcrumb', 'Produk Kami')
+@section('title_breadcrumb', 'Spesialisasi Kami')
 
 @section('content')
 
@@ -34,7 +34,7 @@
                                     <tr>
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td class="text-center">{{ $data->judul }}</td>
-                                        <td class="text-center">{{ $data->deskripsi }}</td>
+                                        <td class="text-justify">{{ $data->deskripsi }}</td>
                                         <td class="text-center">
                                             <img src="{{ url($data->foto) }}" width="150" height="135" >
                                         </td>
