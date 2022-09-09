@@ -81,7 +81,12 @@ $data = ProfilPerusahaan::first();
         </div>
     </div>
 
+
     @include('pages.layouts.partials.js.style_js')
+
+    @if (session('message'))
+        {!! session('message') !!}
+    @endif
 
     @yield('js')
 

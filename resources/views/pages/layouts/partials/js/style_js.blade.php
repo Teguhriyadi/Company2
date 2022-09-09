@@ -18,3 +18,4 @@
 <script src="{{ url('/tema') }}/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <script src="{{ url('/tema') }}/js/demo/datatables-demo.js"></script>
+<script src="{{ url('sweetalert/dist/sweetalert2.all.min.js') }}"></script>

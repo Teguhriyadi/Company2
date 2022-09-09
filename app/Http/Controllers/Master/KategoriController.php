@@ -19,9 +19,15 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-        Kategori::create($request->all());
+        $count = Kategori::where("kategori_nama", $request->kategori_nama)->count();
 
-        return back();
+        if ($count > 0) {
+            return back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+        } else {
+            Kategori::create($request->all());
+
+            return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
+        }
     }
 
     public function edit(Request $request)
@@ -39,6 +45,13 @@ class KategoriController extends Controller
             "kategori_nama" => $request->kategori_nama
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil disimpan!', 'success')</script>");;
+    }
+
+    public function destroy($id)
+    {
+        Kategori::where("id", $id)->delete();
+
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil dihapus!', 'success')</script>");
     }
 }

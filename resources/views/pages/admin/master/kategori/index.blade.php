@@ -81,6 +81,10 @@
                                                 <i class="fa fa-edit"></i>
                                                 Edit
                                             </button>
+                                            <button id="deleteKategori" data-id="{{ $data->id }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -140,6 +144,35 @@
                 }
             })
         }
+
+        $(document).ready(function() {
+            $('body').on('click', '#deleteKategori', function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iyaa, Saya Yakin'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form_string =
+                            "<form method=\"POST\" action=\"{{ url('/admin/master/kategori/') }}/" +
+                            id +
+                            "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                        form = $(form_string)
+                        form.appendTo('body');
+                        form.submit();
+                    } else {
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                    }
+                })
+            })
+        })
     </script>
 
 @endsection
