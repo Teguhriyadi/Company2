@@ -84,6 +84,9 @@
                 <a class="collapse-item" href="{{ url('/admin/akun/role') }}">
                     Role
                 </a>
+                <a class="collapse-item" href="{{ url('/admin/akun/informasi_login') }}">
+                    Informasi Login
+                </a>
             </div>
         </div>
     </li>

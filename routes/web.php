@@ -64,6 +64,8 @@ Route::prefix("admin")->group(function () {
             Route::get("/role/edit", [RoleController::class, "edit"]);
             Route::put("/edit/simpan", [RoleController::class, "update"]);
             Route::resource("role", RoleController::class);
+
+            Route::get("informasi_login", [AppController::class, "informasi_login"]);
         });
 
         Route::get("logout", [LoginController::class, "logout"]);
