@@ -1,23 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Pesan')
 
-@section('title_breadcrumb', 'Profil Perusahaan')
-
-@section('breadcrumb')
-
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-            <a href="">
-                Dashboard
-            </a>
-        </div>
-        <div class="breadcrumb-item">
-            @yield('title')
-        </div>
-    </div>
-
-@endsection
+@section('title_breadcrumb', 'Pesan')
 
 @section('content')
 
@@ -26,7 +11,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fa fa-envelope"></i> Data Pesan
+                        <i class="fa fa-envelope"></i> Data @yield('title')
                     </h6>
                 </div>
                 <div class="card-body">
