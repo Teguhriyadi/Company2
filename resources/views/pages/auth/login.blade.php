@@ -2,7 +2,13 @@
 <html>
 
 <head>
-    <title>Halaman Login</title>
+    <title>
+        {{ empty($profil) ? '-' : $profil->profil_nama }} - Login Aplikasi
+    </title>
+    @if (empty($profil))
+    @else
+        <link rel="icon" type="image/png" href="{{ $profil->profil_foto }}" />
+    @endif
     <style>
         * {
             margin: 0;

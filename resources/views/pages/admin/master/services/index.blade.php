@@ -1,8 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Jasa')
 
-@section('title_breadcrumb', 'Profil Perusahaan')
+@section('title_breadcrumb', 'Jasa')
 
 @section('breadcrumb')
 

@@ -1,5 +1,7 @@
 @extends('pages.layouts.main')
 
+@section('title', 'Dashboard')
+
 @section('title_breadcrumb', 'Mohammad')
 
 @section('content')

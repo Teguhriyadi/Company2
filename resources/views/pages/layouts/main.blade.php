@@ -1,3 +1,7 @@
+@php
+use App\Models\Pengaturan\ProfilPerusahaan;
+$data = ProfilPerusahaan::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +13,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - @yield('title')</title>
+    <title>
+        {{ empty($data) ? '-' : $data->profil_nama }} - @yield('title')
+    </title>
+    @if (empty($data))
+    @else
+        <link rel="icon" type="image/png" href="{{ $data->profil_foto }}" />
+    @endif
 
     <!-- Custom fonts for this template-->
     @include('pages.layouts.partials.css.style_css')
