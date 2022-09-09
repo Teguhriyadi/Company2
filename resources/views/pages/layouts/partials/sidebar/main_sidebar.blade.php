@@ -87,21 +87,25 @@
         </div>
     </li>
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item {{ Request::segment(2) == 'akun' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Akun</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse {{ Request::segment(2) == 'akun' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('/admin/akun/users') }}">
+                <a class="collapse-item {{ Request::is('admin/akun/users') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/users') }}">
                     Users
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/akun/role') }}">
+                <a class="collapse-item {{ Request::is('admin/akun/role') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/role') }}">
                     Role
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/akun/informasi_login') }}">
+                <a class="collapse-item {{ Request::is('admin/akun/informasi_login') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/informasi_login') }}">
                     Informasi Login
                 </a>
             </div>
