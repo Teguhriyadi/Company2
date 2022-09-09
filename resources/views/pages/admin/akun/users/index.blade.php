@@ -1,8 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Role')
+@section('title', 'Users')
 
-@section('title_breadcrumb', 'Role')
+@section('title_breadcrumb', 'Users')
 
 @section('content')
 
@@ -28,7 +28,45 @@
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
-
+                            <tbody>
+                                @php
+                                    $no = 0;
+                                @endphp
+                                @foreach ($data_user as $data)
+                                    <tr>
+                                        <td class="text-center">{{ ++$no }}.</td>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->email }}</td>
+                                        <td class="text-center">
+                                            @if ($data->status == 1)
+                                                <form action="{{ url('/admin/akun/users/non_aktifkan/' . $data->id) }}"
+                                                    method="POST">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-times"></i> Non - Aktifkan
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ url('/admin/akun/users/aktifkan/' . $data->id) }}"
+                                                    method="POST">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-check"></i> Aktifkan
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">{{ $data->getRole->role_nama }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ url('/admin/akun/users/'.$data->id.'/edit') }}" class="btn btn-warning btn-sm">
+                                                <i class="fa fa-edit"></i> Edit
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

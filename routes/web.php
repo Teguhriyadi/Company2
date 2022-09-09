@@ -61,6 +61,8 @@ Route::prefix("admin")->group(function () {
 
             Route::get("/users/edit", [UserController::class, "edit"]);
             Route::put("/users/simpan", [UserController::class, "update"]);
+            Route::put("/users/non_aktifkan/{id}", [UserController::class, "non_aktifkan"]);
+            Route::put("/users/aktifkan/{id}", [UserController::class, "aktifkan"]);
             Route::resource("users", UserController::class);
 
             Route::get("/role/edit", [RoleController::class, "edit"]);
