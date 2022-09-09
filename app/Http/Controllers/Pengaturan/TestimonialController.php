@@ -36,7 +36,7 @@ class TestimonialController extends Controller
             "testimonial_review" => $request->testimonial_review
         ]);
 
-        return redirect("/admin/pengaturan/testimonial");
+        return redirect("/admin/pengaturan/testimonial")->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan!', 'success');</script>"]);
     }
 
     public function edit($id)
@@ -69,6 +69,22 @@ class TestimonialController extends Controller
             "testimonial_review" => $request->testimonial_review
         ]);
 
-        return redirect("/admin/pengaturan/testimonial");
+        return redirect("/admin/pengaturan/testimonial")->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan!', 'success');</script>"]);
+    }
+
+    public function destroy($id)
+    {
+        $testimonial = Testimonial::where("id", $id)->first();
+
+        $str = $testimonial->testimonial_foto;
+        $hasil = trim($str, url('/'));
+
+        $print = substr($hasil, 8);
+
+        Storage::delete($print);
+
+        $testimonial->delete();
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus!', 'success');</script>"]);
     }
 }

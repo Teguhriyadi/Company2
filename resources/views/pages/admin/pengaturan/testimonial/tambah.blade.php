@@ -1,23 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Testimonial')
 
-@section('title_breadcrumb', 'Profil Perusahaan')
-
-@section('breadcrumb')
-
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-            <a href="">
-                Dashboard
-            </a>
-        </div>
-        <div class="breadcrumb-item">
-            @yield('title')
-        </div>
-    </div>
-
-@endsection
+@section('title_breadcrumb', 'Tambah Testimonial')
 
 @section('content')
 
