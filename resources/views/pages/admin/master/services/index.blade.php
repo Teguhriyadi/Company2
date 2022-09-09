@@ -4,21 +4,6 @@
 
 @section('title_breadcrumb', 'Jasa')
 
-@section('breadcrumb')
-
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-            <a href="">
-                Dashboard
-            </a>
-        </div>
-        <div class="breadcrumb-item">
-            @yield('title')
-        </div>
-    </div>
-
-@endsection
-
 @section('content')
 
     <div class="row">
@@ -63,7 +48,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fa fa-envelope"></i> Data Pesan
+                        <i class="fa fa-bars"></i> Data @yield('title')
                     </h6>
                 </div>
                 <div class="card-body">
@@ -94,6 +79,10 @@
                                                 data-target="#exampleModal">
                                                 <i class="fa fa-edit"></i>
                                                 Edit
+                                            </button>
+                                            <button id="deleteJasa" data-id="{{ $data->id }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
                                     </tr>
@@ -154,6 +143,35 @@
                 }
             })
         }
+
+        $(document).ready(function() {
+            $('body').on('click', '#deleteJasa', function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iyaa, Saya Yakin'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form_string =
+                            "<form method=\"POST\" action=\"{{ url('/admin/master/services/') }}/" +
+                            id +
+                            "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                        form = $(form_string)
+                        form.appendTo('body');
+                        form.submit();
+                    } else {
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                    }
+                })
+            })
+        })
     </script>
 
 @endsection

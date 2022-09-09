@@ -21,7 +21,7 @@ class ServicesController extends Controller
     {
         Services::create($request->all());
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
     }
 
     public function edit(Request $request)
@@ -41,6 +41,13 @@ class ServicesController extends Controller
             "services_deskripsi" => $request->services_deskripsi
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil disimpan!', 'success');</script>");;
+    }
+
+    public function destroy($id)
+    {
+        Services::where("id", $id)->delete();
+
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil dihapus!', 'success');</script>");
     }
 }
