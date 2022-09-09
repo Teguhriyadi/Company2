@@ -18,7 +18,7 @@
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
+    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
         <a class="nav-link" href="{{ url('/admin/dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
@@ -33,45 +33,54 @@
         Interface
     </div>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
+    <li class="nav-item {{ Request::segment(2) == 'master' ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
             aria-controls="master">
             <i class="fas fa-fw fa-cog"></i>
             <span>Master</span>
         </a>
-        <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="master" class="collapse {{ Request::segment(2) == 'master' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('/admin/master/kategori') }}">
+                <a class="collapse-item {{ Request::is('admin/master/kategori') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/kategori') }}">
                     Kategori
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/master/services') }}">
+                <a class="collapse-item {{ Request::is('admin/master/services') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/services') }}">
                     Jasa
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/master/client') }}">
+                <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/client') }}">
                     Client
                 </a>
             </div>
         </div>
     </li>
 
-    <li class="nav-item">
+    <li class="nav-item {{ Request::segment(2) == 'pengaturan' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturan"
             aria-expanded="true" aria-controls="pengaturan">
             <i class="fas fa-fw fa-cog"></i>
             <span>Pengaturan</span>
         </a>
-        <div id="pengaturan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="pengaturan" class="collapse {{ Request::segment(2) == 'pengaturan' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/profil_perusahaan') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
                     Profil Perusahaan
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/pengaturan/team') }}">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/team') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/team') }}">
                     Team
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/pengaturan/testimonial') }}">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/testimonial') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/testimonial') }}">
                     Testimonial
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/pengaturan/pesan') }}">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/pesan') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/pesan') }}">
                     Pesan
                 </a>
             </div>
