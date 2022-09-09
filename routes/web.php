@@ -43,6 +43,8 @@ Route::prefix("admin")->group(function () {
             Route::resource("services", ServicesController::class);
             Route::get("/client/edit", [ClientController::class, "edit"]);
             Route::put("/client/simpan", [ClientController::class, "update"]);
+            Route::put("/client/non_aktifkan/{id}", [ClientController::class, "non_aktifkan"]);
+            Route::put("/client/aktifkan/{id}", [ClientController::class, "aktifkan"]);
             Route::resource("client", ClientController::class);
         });
 

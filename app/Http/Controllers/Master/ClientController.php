@@ -79,4 +79,22 @@ class ClientController extends Controller
 
         return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil dihapus!', 'success')</script>");
     }
+
+    public function non_aktifkan($id)
+    {
+        Client::where("id", $id)->update([
+            "client_status" => 0
+        ]);
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Non Aktifkan', 'success');</script>"]);
+    }
+
+    public function aktifkan($id)
+    {
+        Client::where("id", $id)->update([
+            "client_status" => 1
+        ]);
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Aktifkan', 'success');</script>"]);
+    }
 }

@@ -42,7 +42,8 @@
                                         </td>
                                         <td class="text-center">
                                             @if ($data->client_status == 1)
-                                                <form action="">
+                                                <form action="{{ url('/admin/master/client/non_aktifkan/' . $data->id) }}"
+                                                    method="POST">
                                                     @method('PUT')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger btn-sm">
@@ -50,11 +51,12 @@
                                                     </button>
                                                 </form>
                                             @else
-                                                <form action="">
+                                                <form action="{{ url('/admin/master/client/aktifkan/' . $data->id) }}"
+                                                    method="POST">
                                                     @method('PUT')
                                                     @csrf
                                                     <button type="submit" class="btn btn-success btn-sm">
-                                                        <i class="fa fa-checklist"></i> Aktifkan
+                                                        <i class="fa fa-check"></i> Aktifkan
                                                     </button>
                                                 </form>
                                             @endif
