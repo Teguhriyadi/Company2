@@ -16,10 +16,10 @@ $print = substr($hasil, 8);
     <br>
     <center>
         @if (empty($edit->client_logo))
-            <img src="{{ url('/gambar/gambar_user.png') }}" style="width: 50%" class="gambar-preview mb-3"
+            <img src="{{ url('/gambar/gambar_user.png') }}" style="width: 100%" class="gambar-preview mb-3"
                 id="tampilGambar">
         @else
-            <img src="{{ $edit->client_logo }}" style="width: 50%" class="gambar-preview mb-3" id="tampilGambar">
+            <img src="{{ $edit->client_logo }}" style="width: 100%" class="gambar-preview mb-3" id="tampilGambar">
         @endif
     </center>
     <input type="file" class="form-control" name="client_logo_new" id="client_logo_new" onchange="previewImage()">

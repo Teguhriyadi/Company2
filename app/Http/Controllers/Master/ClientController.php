@@ -30,7 +30,7 @@ class ClientController extends Controller
             "client_status" => 1
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success')</script>");
     }
 
     public function edit(Request $request)
@@ -61,6 +61,22 @@ class ClientController extends Controller
             "client_nama" => $request->client_nama
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil disimpan!', 'success')</script>");
+    }
+
+    public function destroy($id)
+    {
+        $client = Client::where("id", $id)->first();
+
+        $str = $client->client_logo;
+        $hasil = trim($str, url('/'));
+
+        $print = substr($hasil, 8);
+
+        Storage::delete($print);
+
+        $client->delete();
+
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil dihapus!', 'success')</script>");
     }
 }

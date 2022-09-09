@@ -1,23 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Client')
 
-@section('title_breadcrumb', 'Profil Perusahaan')
-
-@section('breadcrumb')
-
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-            <a href="">
-                Dashboard
-            </a>
-        </div>
-        <div class="breadcrumb-item">
-            @yield('title')
-        </div>
-    </div>
-
-@endsection
+@section('title_breadcrumb', 'Client')
 
 @section('content')
 
@@ -25,7 +10,7 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <i class="fa fa-envelope"></i> Data Pesan
+                    <i class="fa fa-envelope"></i> Data @yield('title')
                     <a type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
                         data-target="#exampleModalTambah">
                         <i class="fa fa-plus"></i>
@@ -53,15 +38,37 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $data->client_nama }}</td>
                                         <td class="text-center">
-                                            <img src="{{ $data->client_logo }}" style="width: 50%;">
+                                            <img src="{{ $data->client_logo }}" class="img-fluid" style="width: 100px;">
                                         </td>
-                                        <td class="text-center">{{ $data->team_jabatan }}</td>
+                                        <td class="text-center">
+                                            @if ($data->client_status == 1)
+                                                <form action="">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-times"></i> Non - Aktifkan
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-checklist"></i> Aktifkan
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
                                             <button onclick="editClient({{ $data->id }})" type="button"
                                                 class="btn btn-warning btn-sm" data-toggle="modal"
                                                 data-target="#exampleModal">
                                                 <i class="fa fa-edit"></i>
                                                 Edit
+                                            </button>
+                                            <button id="deleteClient" data-id="{{ $data->id }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
                                     </tr>
@@ -178,5 +185,34 @@
                 $("#tampilGambar").height("300");
             }
         }
+
+        $(document).ready(function() {
+            $('body').on('click', '#deleteClient', function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iyaa, Saya Yakin'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form_string =
+                            "<form method=\"POST\" action=\"{{ url('/admin/master/client/') }}/" +
+                            id +
+                            "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                        form = $(form_string)
+                        form.appendTo('body');
+                        form.submit();
+                    } else {
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                    }
+                })
+            })
+        })
     </script>
 @endsection
