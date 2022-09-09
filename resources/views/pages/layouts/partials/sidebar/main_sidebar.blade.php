@@ -5,13 +5,21 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">
+            @php
+                use App\Models\Pengaturan\ProfilPerusahaan;
+
+                $data_profil = ProfilPerusahaan::first();
+
+            @endphp
+            {{ empty($data_profil) ? '' : $data_profil->profil_nama }}
+        </div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ url('/admin/dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
