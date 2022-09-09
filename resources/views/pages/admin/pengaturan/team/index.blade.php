@@ -1,23 +1,8 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Profil Perusahaan')
+@section('title', 'Team')
 
-@section('title_breadcrumb', 'Profil Perusahaan')
-
-@section('breadcrumb')
-
-    <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item active">
-            <a href="">
-                Dashboard
-            </a>
-        </div>
-        <div class="breadcrumb-item">
-            @yield('title')
-        </div>
-    </div>
-
-@endsection
+@section('title_breadcrumb', 'Team')
 
 @section('content')
 
@@ -25,7 +10,7 @@
         <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <i class="fa fa-envelope"></i> Data Pesan
+                    <i class="fa fa-envelope"></i> Data @yield('title')
                     <a type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal"
                         data-target="#exampleModalTambah">
                         <i class="fa fa-plus"></i>
@@ -53,7 +38,7 @@
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $data->team_nama }}</td>
                                         <td class="text-center">
-                                            <img src="{{ $data->team_foto }}" style="width: 100%;">
+                                            <img src="{{ $data->team_foto }}" class="img-fluid" style="width: 100px;">
                                         </td>
                                         <td class="text-center">{{ $data->team_jabatan }}</td>
                                         <td class="text-center">
@@ -62,6 +47,10 @@
                                                 data-target="#exampleModal">
                                                 <i class="fa fa-edit"></i>
                                                 Edit
+                                            </button>
+                                            <button id="deleteTeam" data-id="{{ $data->id }}"
+                                                class="btn btn-danger btn-sm">
+                                                <i class="fa fa-trash"></i> Hapus
                                             </button>
                                         </td>
                                     </tr>
@@ -143,8 +132,8 @@
                         <button type="reset" class="btn btn-danger btn-sm">
                             <i class="fa fa-times"></i> Batal
                         </button>
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fa fa-save"></i> Simpan
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Tambah
                         </button>
                     </div>
                 </form>
@@ -183,5 +172,34 @@
                 $("#tampilGambar").height("300");
             }
         }
+
+        $(document).ready(function() {
+            $('body').on('click', '#deleteTeam', function() {
+                let id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda Yakin?',
+                    text: "Anda tidak akan dapat mengembalikan ini!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iyaa, Saya Yakin'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form_string =
+                            "<form method=\"POST\" action=\"{{ url('/admin/pengaturan/team/') }}/" +
+                            id +
+                            "\" accept-charset=\"UTF-8\"><input name=\"_method\" type=\"hidden\" value=\"DELETE\"><input name=\"_token\" type=\"hidden\" value=\"{{ csrf_token() }}\"></form>"
+
+                        form = $(form_string)
+                        form.appendTo('body');
+                        form.submit();
+                    } else {
+                        Swal.fire('Konfirmasi Diterima!', 'Data Anda Masih Terdata', 'success');
+                    }
+                })
+            })
+        })
     </script>
 @endsection

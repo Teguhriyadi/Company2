@@ -31,7 +31,7 @@ class TeamController extends Controller
             "team_status" => 1
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
     }
 
     public function edit(Request $request)
@@ -63,6 +63,22 @@ class TeamController extends Controller
             "team_foto" => $data,
         ]);
 
-        return back();
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success')</script>"]);
+    }
+
+    public function destroy($id)
+    {
+        $team = Team::where("id", $id)->first();
+
+        $str = $team->team_foto;
+        $hasil = trim($str, url('/'));
+
+        $print = substr($hasil, 8);
+
+        Storage::delete($print);
+
+        $team->delete();
+
+        return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }
 }
