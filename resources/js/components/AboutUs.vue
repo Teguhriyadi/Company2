@@ -2,7 +2,7 @@
     <section id="tentang_kami" class="about_us">
         <div class="container">
           <div class="section-title">
-            <h2 data-aos="fade-up" data-aos-delay="400">About Us</h2>
+            <h2 data-aos="fade-up" data-aos-delay="400">Tentang Kami</h2>
             <p data-aos="fade-up" data-aos-delay="400">
 
               Magnam dolores commodi suscipit. Necessitatibus eius consequatur

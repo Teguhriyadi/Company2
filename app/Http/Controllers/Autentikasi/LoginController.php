@@ -41,12 +41,14 @@ class LoginController extends Controller
                     $request->session()->regenerate();
 
                     return redirect()->intended("/admin/dashboard");
+                } else {
+                    return redirect("/admin/login");
                 }
             } else {
-                return back();
+                return redirect("/admin/login");
             }
         } else {
-            return back();
+            return redirect("/admin/login");
         }
     }
 

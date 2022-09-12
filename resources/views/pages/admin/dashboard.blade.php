@@ -9,6 +9,18 @@ use Carbon\Carbon;
 @section('title_breadcrumb', 'Dashboard')
 
 @section('content')
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Selamat Datang <b>{{ Auth::user()->nama }}</b> !</h4>
+                <p>di <b>APLIKASI JASA LAYANAN DIGITAL WEBSITE</b></p>
+                <hr>
+                <p class="mb-0">Silahkan Pilih Menu Untuk Memulai Program</p>
+              </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-xl-3 col-md-6 mb-4">
             <a href="{{ url('/admin/akun/users') }}">
