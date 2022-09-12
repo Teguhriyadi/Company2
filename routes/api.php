@@ -8,13 +8,13 @@ use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\WorkController;
 use App\Http\Controllers\API\PartnerController;
-use App\Http\Controllers\API\ApiContactController;
 use App\Http\Controllers\API\ApiFooterController;
 use App\Http\Controllers\API\ApiLayananController;
 use App\Http\Controllers\API\ApiProdukController;
 use App\Http\Controllers\API\ApiSpesialisasiKamiController;
-use App\Http\Controllers\API\TargetController;
+use App\Http\Controllers\API\ApiTentangKamiController;
 use App\Http\Controllers\API\ApiCarouselController;
+use App\Http\Controllers\API\TargetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,8 +43,8 @@ Route::resource('partner', PartnerController::class);
 Route::resource('work', WorkController::class);
 Route::resource('target', TargetController::class);
 
-Route::prefix('contacts')->group(function () {
-    Route::controller(ApiContactController::class)->group(function () {
+Route::prefix('tentang_kami')->group(function () {
+    Route::controller(ApiTentangKamiController::class)->group(function () {
         Route::get('', 'index');
         Route::get('/{id}', 'detail');
         Route::post('', 'store');
