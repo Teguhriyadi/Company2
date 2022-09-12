@@ -69,6 +69,7 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("footer")->group(function () {
         Route::get("/", [FooterController::class, "index"]);
+        Route::delete("/hapus/{id}", [FooterController  ::class, "hapus"]);
     });
 
 });
