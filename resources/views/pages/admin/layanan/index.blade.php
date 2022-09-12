@@ -2,7 +2,7 @@
 
 @section('title', 'Role')
 
-@section('title_breadcrumb', 'Produk Kami')
+@section('title_breadcrumb', 'Layanan')
 
 @section('content')
 

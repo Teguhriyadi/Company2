@@ -58,7 +58,7 @@ Route::prefix("admin")->group(function () {
         Route::get("/", [ProdukController::class, "index"]);
     });
 
-    Route::prefix("tentang_kami")->group(function () {
+    Route::prefix("spesialisasi_kami")->group(function () {
         Route::get("/", [SpesialisasiKamiController::class, "index"]);
     });
 
