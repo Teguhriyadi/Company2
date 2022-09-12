@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\AboutUsController;
 use App\Http\Controllers\API\CarouselController;
 use App\Http\Controllers\API\JasaController;
 use App\Http\Controllers\API\KategoriController;
@@ -46,6 +47,7 @@ Route::resource('work', WorkController::class);
 Route::resource('target', TargetController::class);
 Route::resource('services', ServicesController::class);
 Route::resource('portfolio', PortfolioController::class);
+Route::resource('tentang_kami', AboutUsController::class);
 
 Route::prefix('contacts')->group(function () {
     Route::controller(ApiContactController::class)->group(function () {
