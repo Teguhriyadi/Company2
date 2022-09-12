@@ -9,6 +9,7 @@ use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Produk\ProdukController;
 use App\Http\Controllers\Spesialisasi_Kami\SpesialisasiKamiController;
 use App\Http\Controllers\Layanan\LayananController;
+use App\Http\Controllers\Footer\FooterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -64,6 +65,10 @@ Route::prefix("admin")->group(function () {
 
     Route::prefix("layanan")->group(function () {
         Route::get("/", [LayananController::class, "index"]);
+    });
+
+    Route::prefix("footer")->group(function () {
+        Route::get("/", [FooterController::class, "index"]);
     });
 
 });
