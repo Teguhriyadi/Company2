@@ -55,18 +55,6 @@
             'app-knowledge' : KnowledgeComponent,
             'app-footer' : FooterComponent,
             'app-contact' : ContactComponent
-        },
-        methods: {
-            clickButton() {
-                let navbarButton = document.getElementById('clickHamburger')
-                let getNavbar = document.querySelector('#navbar')
-
-                getNavbar.classList.toggle('navbar-mobile')
-
-                navbarButton.classList.toggle('bi-list')
-                navbarButton.classList.toggle('bi-x')
-
-            }
         }
     }
 </script>

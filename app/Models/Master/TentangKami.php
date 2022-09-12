@@ -10,5 +10,6 @@ class TentangKami extends Model
     use HasFactory;
 
     protected $table = "tentang_kami";
+
     protected $guarded = [""];
 }

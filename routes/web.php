@@ -11,6 +11,7 @@ use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\TeamController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
+use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::prefix("admin")->group(function () {
     });
 
     Route::group(["middleware" => ["autentikasi"]], function () {
+        Route::get("/", [AppController::class, "dashboard"]);
         Route::get("/dashboard", [AppController::class, "dashboard"]);
         Route::prefix("master")->group(function () {
             Route::get("/kategori/edit", [KategoriController::class, "edit"]);
@@ -49,6 +51,7 @@ Route::prefix("admin")->group(function () {
         });
 
         Route::prefix("pengaturan")->group(function () {
+            Route::resource("tentang_kami", TentangKamiController::class);
             Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
             Route::get("/team/edit", [TeamController::class, "edit"]);
             Route::get("/team/simpan", [TeamController::class, "update"]);

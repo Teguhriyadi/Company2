@@ -11,16 +11,16 @@
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-            <li><a class="nav-link scrollto" href="#about">Tentang Kami</a></li>
-            <li><a class="nav-link scrollto" href="#services">Jasa</a></li>
-            <li>
+            <li class="linkss"><a class="nav-link scrollto" href="#home">Home</a></li>
+            <li class="linkss"><a class="nav-link scrollto" href="#tentang_kami">Tentang Kami</a></li>
+            <li class="linkss"><a class="nav-link scrollto" href="#jasa">Jasa</a></li>
+            <li class="linkss">
               <a class="nav-link scrollto" href="#portfolio">Portfolio</a>
             </li>
-            <li><a class="nav-link scrollto" href="#team">Tim</a></li>
-            <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
-            <li>
-              <a class="getstarted scrollto" href="#about">Get Started</a>
+            <li class="linkss"><a class="nav-link scrollto" href="#tim">Tim</a></li>
+            <li class="linkss"><a class="nav-link scrollto" href="#kontak">Kontak</a></li>
+            <li class="linkss">
+              <a class="getstarted scrollto" href="#tentang_kami">Get Started</a>
             </li>
           </ul>
           <i class="bi bi-list mobile-nav-toggle" id="clickHamburger" @click="clickButton"></i>
@@ -48,7 +48,18 @@
                 } catch (error) {
                     console.log("Oopss.. Terjadi Kesalahan");
                 }
+            },
+            clickButton() {
+                let navbarButton = document.getElementById('clickHamburger')
+                let getNavbar = document.querySelector('#navbar')
+
+                getNavbar.classList.toggle('navbar-mobile')
+
+                navbarButton.classList.toggle('bi-list')
+                navbarButton.classList.toggle('bi-x')
+
             }
         }
     }
+
 </script>

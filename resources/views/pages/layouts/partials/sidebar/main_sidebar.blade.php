@@ -67,6 +67,9 @@
         <div id="pengaturan" class="collapse {{ Request::segment(2) == 'pengaturan' ? 'show' : '' }}"
             aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/tentang_kami') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/tentang_kami') }}">
+                    Tentang Kami
+                </a>
                 <a class="collapse-item {{ Request::is('admin/pengaturan/profil_perusahaan') ? 'active' : '' }}"
                     href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
                     Profil Perusahaan

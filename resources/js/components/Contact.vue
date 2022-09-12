@@ -2,7 +2,7 @@
     <section id="kontak" class="contact">
         <div class="container">
             <div class="section-title" data-aos="fade-up">
-                <h2>Contact Us</h2>
+                <h2>Kontak Kami</h2>
             </div>
 
             <div class="row" v-for="contact in contacts" :key="contact.id">
@@ -96,6 +96,10 @@
                 } catch (error) {
                     console.log("Oopss.. Terjadi Kesalahan");
                 }
+            },
+
+            saveKirimanPertanyaan() {
+                console.log("data");
             }
         }
     }
