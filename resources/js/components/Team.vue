@@ -11,7 +11,7 @@
               <div class="member" data-aos="fade-up" data-aos-delay="100">
                 <div class="member-img">
                   <img
-                    src="assets/img/team/team-1.jpg"
+                    :src="team.team_foto"
                     class="img-fluid"
                     alt=""
                   />

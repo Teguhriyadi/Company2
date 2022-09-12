@@ -37,7 +37,7 @@
 
                   <div class="portfolio-links">
                     <a
-                      href="assets/img/portfolio/portfolio-1.jpg"
+                      href="#"
                       data-gallery="portfolioGallery"
                       class="portfolio-lightbox"
                       title="App 1"
