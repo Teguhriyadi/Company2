@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AboutUsController;
 use App\Http\Controllers\API\CarouselController;
+use App\Http\Controllers\API\ContactUsController;
 use App\Http\Controllers\API\JasaController;
 use App\Http\Controllers\API\KategoriController;
 use App\Http\Controllers\API\PesanController;
@@ -36,6 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("contact_us", [ContactUsController::class, "store"]);
 Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
