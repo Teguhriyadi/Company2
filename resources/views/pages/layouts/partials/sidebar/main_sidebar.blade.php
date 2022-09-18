@@ -54,6 +54,9 @@
                     href="{{ url('/admin/master/client') }}">
                     Client
                 </a>
+                <a class="collapse-item" {{ Request::is('admin/master/portfolio') ? 'active' : '' }}  href="{{ url('/admin/master/portfolio') }}">
+                    Portfolio
+                </a>
             </div>
         </div>
     </li>

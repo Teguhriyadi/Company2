@@ -13,8 +13,5 @@ class Portfolio extends Model
 
     protected $guarded = [''];
 
-    public function getKategori()
-    {
-        return $this->belongsTo("App\Models\Master\Kategori", "id_kategori", "id");
-    }
+
 }

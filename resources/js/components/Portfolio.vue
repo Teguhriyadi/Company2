@@ -11,7 +11,7 @@
             <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="400">
                 <div class="col-lg-4 col-md-6 portfolio-item" v-for="portfolio in portfolios" :key="portfolio.id">
                     <div class="portfolio-wrap">
-                        <img :src="portfolio.portfolio_foto" class="img-fluid" alt=""/>
+                        <img :src="portfolio.portfolio_foto" class="img-fluid" style="height: 300px;">
                         <div class="portfolio-info">
                             <h4>{{ portfolio.portfolio_nama }}</h4>
                             <p>{{ portfolio.portfolio_deskripsi }}</p>

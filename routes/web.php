@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Akun\RoleController;
 use App\Http\Controllers\Akun\UserController;
+use App\Http\Controllers\Master\PortfolioController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\ClientController;
@@ -48,6 +49,9 @@ Route::prefix("admin")->group(function () {
             Route::put("/client/non_aktifkan/{id}", [ClientController::class, "non_aktifkan"]);
             Route::put("/client/aktifkan/{id}", [ClientController::class, "aktifkan"]);
             Route::resource("client", ClientController::class);
+
+            Route::get("/portfolio/edit", [PortfolioController::class, "edit"]);
+            Route::resource("portfolio", PortfolioController::class);
         });
 
         Route::prefix("pengaturan")->group(function () {

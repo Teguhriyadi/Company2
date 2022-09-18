@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("portfolio_foto");
             $table->string("portfolio_nama", 100);
-            $table->integer("id_kategori");
-            $table->integer("id_client");
             $table->text("portfolio_deskripsi");
             $table->timestamps();
         });

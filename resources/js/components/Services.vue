@@ -12,7 +12,7 @@
                 <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" v-for="service in services" :key="service.id">
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon">
-                            <i class="{{ service.services_icon }}"></i>
+                            <i :class="service.services_icon"></i>
                         </div>
                         <h4 class="title">
                             {{ service.services_title }}
