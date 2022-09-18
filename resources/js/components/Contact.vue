@@ -21,7 +21,7 @@
                             </a>
                             <a href="#" class="instagram">
                                 <i class="bi bi-instagram"></i>
-                                </a>
+                            </a>
                             <a href="#" class="linkedin">
                                 <i class="bi bi-linkedin"></i>
                             </a>
@@ -51,19 +51,19 @@
                 <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
                     <form method="POST" role="form" class="php-email-form" @submit.prevent="saveKirimanPertanyaan">
                         <div class="form-group">
-                            <input type="text" v-model="pesan_nama" class="form-control" id="name" placeholder="Your Name" required/>
+                            <input type="text" v-model="data.pesan_nama" class="form-control" id="name" placeholder="Nama Anda" required/>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" v-model="pesan_email" id="email" placeholder="Your Email" required/>
+                            <input type="email" class="form-control" v-model="data.pesan_email" id="email" placeholder="Email" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" v-model="pesan_subject" id="subject" placeholder="Subject" required/>
+                            <input type="text" class="form-control" v-model="data.pesan_subjek" id="subject" placeholder="Subjek" required/>
                         </div>
                         <div class="form-group">
-                            <input type="text" v-model="pesan_nama_perusahaan" class="form-control" id="name" placeholder="Your Name" required/>
+                            <input type="text" v-model="data.pesan_nama_perusahaan" class="form-control" id="name" placeholder="Nama Perusahaan" required/>
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" v-model="pesan_teks" rows="5" placeholder="Message" required></textarea>
+                            <textarea class="form-control" v-model="data.pesan_teks" rows="5" placeholder="Pesan" required></textarea>
                         </div>
                         <div class="text-center">
                             <button type="submit">
@@ -82,6 +82,7 @@
         name: "ContactComponents",
         data() {
             return {
+                data: {},
                 contacts: []
             }
         },
@@ -98,8 +99,19 @@
                 }
             },
 
-            saveKirimanPertanyaan() {
-                console.log("data");
+            saveKirimanPertanyaan(e) {
+                axios.post("contact_us", this.data)
+                .then(() => {
+                    this.$router.push("/");
+                }).catch(error => {
+                    console.log(error.response);
+                });
+
+                this.errors = [];
+
+                e.preventDefault();
+
+                this.data = [];
             }
         }
     }

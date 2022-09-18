@@ -8,18 +8,29 @@
                         Pusat Jasa Layanan Digital Website
                     </h2>
                     <div data-aos="fade-up" data-aos-delay="800">
-                        <a href="#about" class="btn-get-started scrollto">
+                        <br>
+                        <a href="#tentang_kami" class="btn-get-started scrollto">
                             Get Started
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
-                    <img src="/assets/img/hero-img.png" class="img-fluid animated" alt=""/>
+                    <img src="/assets/img/hero-img.png" class="img-fluid animated pt-5" alt=""/>
                 </div>
             </div>
         </div>
     </section>
 </template>
+
+<style scoped>
+    .btn-get-started {
+        background-color: #3498db;
+        padding: 10px 30px 10px 30px;
+        color: white;
+        border-radius: 50px;
+
+    }
+</style>
 
 <script>
     export default {
