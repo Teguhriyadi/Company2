@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label for="deskripsi"> Deskripsi </label>
-                            <textarea name="deskripsi" id="deskripsi">{{ empty($data_tentang_kami->deskripsi) ? '' : $data_tentang_kami->deskripsi }}</textarea>
+                            <textarea name="deskripsi" class="form-control" rows="5" id="deskripsi">{{ empty($data_tentang_kami->deskripsi) ? '' : $data_tentang_kami->deskripsi }}</textarea>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -86,9 +86,9 @@
     @section('js')
 
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
-    <script>
+    <!-- <script>
         CKEDITOR.replace( 'deskripsi' );
-    </script>
+    </script> -->
 
     <script type="text/javascript">
         function previewImage() {

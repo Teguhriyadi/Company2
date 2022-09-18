@@ -20,7 +20,7 @@ class PortfolioController extends Controller
                 $data[] = [
                     "portfolio_foto" => $d->portfolio_foto,
                     "portfolio_nama" => $d->portfolio_nama,
-                    "nama_kategori" => $d->getKategori->kategori_nama,
+                    "portfolio_deskripsi" => $d->portfolio_deskripsi,
                 ];
             }
         }

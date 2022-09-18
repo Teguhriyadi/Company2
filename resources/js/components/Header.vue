@@ -2,11 +2,10 @@
     <header id="header" class="fixed-top d-flex align-items-center">
       <div class="container d-flex align-items-center justify-content-between">
         <div class="logo" v-for="profil in profils" :key="profil.id">
-            <h1>
-                <a href="index.html">
+            <img :src="profil.profil_foto">
+            <a href="#" style="margin-left: 10px; font-size: 25px; color: black; font-weight: 700">
                     {{ profil.profil_nama }}
                 </a>
-            </h1>
         </div>
 
         <nav id="navbar" class="navbar">
