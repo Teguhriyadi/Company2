@@ -61,6 +61,10 @@
                     href="{{ url('/admin/master/choose_us') }}">
                     Choose Us
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/artikel') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/artikel') }}">
+                    Artikel
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
                     href="{{ url('/admin/master/client') }}">
                     Client
