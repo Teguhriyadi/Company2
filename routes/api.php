@@ -18,6 +18,7 @@ use App\Http\Controllers\API\ApiProdukController;
 use App\Http\Controllers\API\ApiTentangKamiController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\ChooseUsController;
+use App\Http\Controllers\API\Master\QuestionController;
 use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
@@ -62,60 +63,4 @@ Route::get("/artikel/detail/{slug}", [ArtikelController::class, "artikel"]);
 Route::get("/artikel/kategori/{slug_kategori}", [ArtikelController::class, "detail_by_kategori"]);
 Route::resource("artikel", ArtikelController::class);
 Route::resource("tag", TagController::class);
-
-Route::prefix('contacts')->group(function () {
-    Route::controller(ApiContactController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('layanan')->group(function () {
-    Route::controller(ApiLayananController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-Route::prefix('produk')->group(function () {
-    Route::controller(ApiProdukController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('tentang')->group(function () {
-    Route::controller(ApiTentangKamiController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('footer')->group(function () {
-    Route::controller(ApiFooterController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
+Route::resource("question", QuestionController::class);

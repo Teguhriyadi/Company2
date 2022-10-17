@@ -15,6 +15,7 @@ use App\Http\Controllers\Master\ServicesController;
 use App\Http\Controllers\Master\TagController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
+use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\Pengaturan\TeamController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
 use App\Http\Controllers\TentangKamiController;
@@ -97,6 +98,13 @@ Route::prefix("admin")->group(function () {
         });
 
         Route::prefix("pengaturan")->group(function () {
+
+            // Data Syarat Ketentuan
+            Route::get("/syarat_ketentuan/edit", [SyaratKetentuanController::class, "edit"]);
+            Route::put("/syarat_ketentuan/simpan", [SyaratKetentuanController::class, "update"]);
+            Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
+            // END
+
             Route::resource("tentang_kami", TentangKamiController::class);
             Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
             Route::get("/team/edit", [TeamController::class, "edit"]);

@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ArtikelSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(ArtikelTagSeeder::class);
+        $this->call(SyaratKetentuanSeeder::class);
     }
 }
