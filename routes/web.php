@@ -6,6 +6,7 @@ use App\Http\Controllers\Master\PortfolioController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\CarouselController;
+use App\Http\Controllers\Master\ChooseUsController;
 use App\Http\Controllers\Master\ClientController;
 use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Master\ServicesController;
@@ -63,6 +64,12 @@ Route::prefix("admin")->group(function () {
             Route::get("/carousel/edit", [CarouselController::class, "edit"]);
             Route::put("/carousel/simpan", [CarouselController::class, "update"]);
             Route::resource("carousel", CarouselController::class);
+            // END
+
+            // Data Choose Us
+            Route::get("/choose_us/edit", [ChooseUsController::class, "edit"]);
+            Route::put("/choose_us/simpan", [ChooseUsController::class, "update"]);
+            Route::resource("choose_us", ChooseUsController::class);
             // END
 
             Route::get("/client/edit", [ClientController::class, "edit"]);

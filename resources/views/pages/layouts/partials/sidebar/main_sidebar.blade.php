@@ -57,6 +57,10 @@
                     href="{{ url('/admin/master/carousel') }}">
                     Carousel
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/choose_us') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/choose_us') }}">
+                    Choose Us
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
                     href="{{ url('/admin/master/client') }}">
                     Client
