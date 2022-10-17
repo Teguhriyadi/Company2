@@ -10,9 +10,21 @@
 
         <nav id="navbar" class="navbar">
           <ul>
-            <li class="linkss"><a class="nav-link scrollto" href="#home">Home</a></li>
-            <li class="linkss"><a class="nav-link scrollto" href="#tentang_kami">Tentang Kami</a></li>
-            <li class="linkss"><a class="nav-link scrollto" href="#jasa">Jasa</a></li>
+            <li class="linkss">
+                <a class="nav-link scrollto" href="#home">
+                    Home
+                </a>
+            </li>
+            <li class="linkss">
+                <a class="nav-link scrollto" href="#tentang_kami">
+                    Tentang Kami
+                </a>
+            </li>
+            <li class="linkss">
+                <a class="nav-link scrollto" href="#jasa">
+                    Jasa
+                </a>
+            </li>
             <li class="linkss">
               <a class="nav-link scrollto" href="#portfolio">Portfolio</a>
             </li>
@@ -27,6 +39,12 @@
       </div>
     </header>
 </template>
+
+<style scoped>
+    .scrollto {
+        font-weight: 700;
+    }
+</style>
 
 <script>
     export default {

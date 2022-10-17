@@ -32,7 +32,7 @@ class AppController extends Controller
             "data_profil" => ProfilPerusahaan::first()
         ];
 
-        return view("app", $data);
+        return view("main", $data);
     }
 
     public function informasi_login()

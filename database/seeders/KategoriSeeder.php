@@ -16,14 +16,17 @@ class KategoriSeeder extends Seeder
     public function run()
     {
         Kategori::create([
+            "kategori_slug" => "desain-ui-ux",
             "kategori_nama" => "Desain UI / UX"
         ]);
 
         Kategori::create([
+            "kategori_slug" => "marketing",
             "kategori_nama" => "Marketing"
         ]);
 
         Kategori::create([
+            "kategori_slug" => "business",
             "kategori_nama" => "Business"
         ]);
     }

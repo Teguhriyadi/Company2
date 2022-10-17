@@ -24,5 +24,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientSeeder::class);
         $this->call(PortfolioSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(CarouselSeeder::class);
+        $this->call(ChooseUsSeeder::class);
+        $this->call(TestimonialSeeder::class);
+        $this->call(StepPesanSeeder::class);
+        $this->call(ArtikelSeeder::class);
+        $this->call(TagSeeder::class);
+        $this->call(ArtikelTagSeeder::class);
     }
 }

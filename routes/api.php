@@ -16,8 +16,12 @@ use App\Http\Controllers\API\ApiFooterController;
 use App\Http\Controllers\API\ApiLayananController;
 use App\Http\Controllers\API\ApiProdukController;
 use App\Http\Controllers\API\ApiTentangKamiController;
+use App\Http\Controllers\API\ArtikelController;
+use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
+use App\Http\Controllers\API\StepPesanController;
+use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\TargetController;
 // use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
@@ -41,6 +45,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource("testimonial", TestimonialController::class);
 Route::post("contact_us", [ContactUsController::class, "store"]);
 Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
+Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
 Route::resource('team', TeamController::class);
@@ -50,8 +55,15 @@ Route::resource('partner', PartnerController::class);
 Route::resource('work', WorkController::class);
 Route::resource('target', TargetController::class);
 Route::resource('services', ServicesController::class);
+Route::resource('choose_us', ChooseUsController::class);
+Route::resource('step_pesan', StepPesanController::class);
 Route::resource('portfolio', PortfolioController::class);
 Route::resource('tentang_kami', AboutUsController::class);
+Route::get("/artikel/{slug}", [ArtikelController::class, "detail"]);
+Route::get("/artikel/detail/{slug}", [ArtikelController::class, "artikel"]);
+Route::get("/artikel/kategori/{slug_kategori}", [ArtikelController::class, "detail_by_kategori"]);
+Route::resource("artikel", ArtikelController::class);
+Route::resource("tag", TagController::class);
 
 Route::prefix('contacts')->group(function () {
     Route::controller(ApiContactController::class)->group(function () {
@@ -102,18 +114,6 @@ Route::prefix('tentang')->group(function () {
 
 Route::prefix('footer')->group(function () {
     Route::controller(ApiFooterController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('carousel')->group(function () {
-    Route::controller(ApiCarouselController::class)->group(function () {
         Route::get('', 'index');
         Route::get('/{id}', 'detail');
         Route::post('', 'store');

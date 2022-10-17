@@ -53,4 +53,13 @@
             'app-contact' : ContactComponent
         }
     }
+    var nav = document.querySelector('header');
+
+      window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 100) {
+          nav.classList.add('bg-primary', 'shadow');
+        } else {
+          nav.classList.remove('bg-primary', 'shadow');
+        }
+      });
 </script>

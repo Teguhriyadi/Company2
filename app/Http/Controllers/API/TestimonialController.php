@@ -10,7 +10,7 @@ class TestimonialController extends Controller
 {
     public function index()
     {
-        $testimonial = Testimonial::orderBy("created_at", "DESC")->paginate(6);
+        $testimonial = Testimonial::orderBy("created_at", "DESC")->get();
 
         if ($testimonial->count() < 1) {
             $data = "Data Tidak Ada";
