@@ -46,6 +46,9 @@
                     href="{{ url('/admin/master/kategori') }}">
                     Kategori
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/tag') ? 'active' : '' }}" href="{{ url('/admin/master/tag') }}">
+                    Tag
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/services') ? 'active' : '' }}"
                     href="{{ url('/admin/master/services') }}">
                     Jasa

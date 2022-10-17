@@ -8,6 +8,7 @@ use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\ClientController;
 use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Master\ServicesController;
+use App\Http\Controllers\Master\TagController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\TeamController;
@@ -38,9 +39,19 @@ Route::prefix("admin")->group(function () {
         Route::get("/", [AppController::class, "dashboard"]);
         Route::get("/dashboard", [AppController::class, "dashboard"]);
         Route::prefix("master")->group(function () {
+
+            // Data Kategori
             Route::get("/kategori/edit", [KategoriController::class, "edit"]);
             Route::put("/kategori/simpan", [KategoriController::class, "update"]);
             Route::resource("kategori", KategoriController::class);
+            // END
+
+            // Data Tag
+            Route::get("/tag/edit", [TagController::class, "edit"]);
+            Route::put("/tag/simpan", [TagController::class, "update"]);
+            Route::resource("tag", TagController::class);
+            // END
+
             Route::get("/services/edit", [ServicesController::class, "edit"]);
             Route::put("/services/simpan", [ServicesController::class, "update"]);
             Route::resource("services", ServicesController::class);
