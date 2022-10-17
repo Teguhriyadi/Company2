@@ -10,27 +10,29 @@ class ServicesController extends Controller
 {
     public function index()
     {
-        $data = [
-            "data_services" => Services::get()
-        ];
+        $var["services"] = Services::orderBy("created_at", "DESC")->get();
 
-        return view("pages.admin.master.services.index", $data);
+        return view("pages.admin.master.services.index", $var);
     }
 
     public function store(Request $request)
     {
-        Services::create($request->all());
+        $count = Services::where("services_title", $request->services_title)->count();
 
-        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
+        if ($count > 0) {
+            return back()->with("message", "<script>Swal.fire('Error', 'Tidak Boleh Duplikasi Data', 'error');</script>");
+        } else {
+            Services::create($request->all());
+
+            return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
+        }
     }
 
     public function edit(Request $request)
     {
-        $data = [
-            "edit" => Services::where("id", $request->id)->first()
-        ];
+        $var["edit"] = Services::where("id", $request->id)->first();
 
-        return view("pages.admin.master.services.edit", $data);
+        return view("pages.admin.master.services.edit", $var);
     }
 
     public function update(Request $request)

@@ -52,9 +52,12 @@ Route::prefix("admin")->group(function () {
             Route::resource("tag", TagController::class);
             // END
 
+            // Data Jasa
             Route::get("/services/edit", [ServicesController::class, "edit"]);
             Route::put("/services/simpan", [ServicesController::class, "update"]);
             Route::resource("services", ServicesController::class);
+            // END
+
             Route::get("/client/edit", [ClientController::class, "edit"]);
             Route::put("/client/simpan", [ClientController::class, "update"]);
             Route::put("/client/non_aktifkan/{id}", [ClientController::class, "non_aktifkan"]);

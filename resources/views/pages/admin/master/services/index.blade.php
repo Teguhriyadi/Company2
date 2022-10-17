@@ -7,49 +7,14 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fa fa-plus"></i> Tambah Data
-                    </h6>
-                </div>
-                <form action="{{ url('/admin/master/services') }}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="services_icon"> Icon </label>
-                            <input type="text" class="form-control" name="services_icon" id="services_icon"
-                                placeholder="Masukkan Icon">
-                        </div>
-                        <div class="form-group">
-                            <label for="services_title"> Judul </label>
-                            <input type="text" class="form-control" name="services_title" id="services_title"
-                                placeholder="Masukkan Judul">
-                        </div>
-                        <div class="form-group">
-                            <label for="services_deskripsi"> Deskripsi </label>
-                            <input type="text" class="form-control" name="services_deskripsi" id="services_deskripsi"
-                                placeholder="Masukkan Deskripsi">
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="reset" class="btn btn-danger btn-sm">
-                            <i class="fa fa-times"></i> Batal
-                        </button>
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            <i class="fa fa-plus"></i> Tambah
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fa fa-bars"></i> Data @yield('title')
-                    </h6>
+                    <i class="fa fa-bars"></i> Data @yield("title")
+                    <a type="button" class="btn btn-primary btn-sm float-right mr-2" data-toggle="modal" data-target="#exampleModalTambah">
+                        <i class="fa fa-plus"></i>
+                        Tambah
+                    </a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -67,7 +32,7 @@
                                 @php
                                     $no = 0;
                                 @endphp
-                                @foreach ($data_services as $data)
+                                @foreach ($services as $data)
                                     <tr>
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $data->services_icon }}</td>
@@ -95,6 +60,52 @@
         </div>
     </div>
 
+    <!-- Tambah Data -->
+    <div class="modal fade" id="exampleModalTambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="fa fa-plus"></i> Tambah Data
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ url('/admin/master/services/') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="services_icon"> Icon </label>
+                            <input type="text" class="form-control" name="services_icon" id="services_icon"
+                                placeholder="Masukkan Icon">
+                        </div>
+                        <div class="form-group">
+                            <label for="services_title"> Judul </label>
+                            <input type="text" class="form-control" name="services_title" id="services_title"
+                                placeholder="Masukkan Judul">
+                        </div>
+                        <div class="form-group">
+                            <label for="services_deskripsi"> Deskripsi </label>
+                            <input type="text" class="form-control" name="services_deskripsi" id="services_deskripsi"
+                                placeholder="Masukkan Deskripsi">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-danger btn-sm">
+                            <i class="fa fa-times"></i> Batal
+                        </button>
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fa fa-plus"></i> Tambah
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+
+    <!-- Edit Data -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -106,7 +117,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ url('/admin/master/services/simpan') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('/admin/master/services/simpan') }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="modal-body" id="modal-content-edit">
@@ -124,6 +135,7 @@
             </div>
         </div>
     </div>
+    <!-- END -->
 
 @endsection
 
