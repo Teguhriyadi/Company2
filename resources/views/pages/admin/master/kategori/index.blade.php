@@ -63,6 +63,7 @@
                                 <tr>
                                     <th class="text-center">No.</th>
                                     <th>Kategori</th>
+                                    <th>Slug</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -74,6 +75,7 @@
                                     <tr>
                                         <td class="text-center">{{ ++$no }}.</td>
                                         <td>{{ $data->kategori_nama }}</td>
+                                        <td>{{ $data->kategori_slug }}</td>
                                         <td class="text-center">
                                             <button onclick="editKategori({{ $data->id }})" type="button"
                                                 class="btn btn-warning btn-sm" data-toggle="modal"
