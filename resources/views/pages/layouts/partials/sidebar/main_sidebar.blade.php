@@ -53,6 +53,10 @@
                     href="{{ url('/admin/master/services') }}">
                     Jasa
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/carousel') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/carousel') }}">
+                    Carousel
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
                     href="{{ url('/admin/master/client') }}">
                     Client
