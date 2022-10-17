@@ -10,6 +10,7 @@ use App\Http\Controllers\Master\CarouselController;
 use App\Http\Controllers\Master\ChooseUsController;
 use App\Http\Controllers\Master\ClientController;
 use App\Http\Controllers\Master\KategoriController;
+use App\Http\Controllers\Master\QuestionController;
 use App\Http\Controllers\Master\ServicesController;
 use App\Http\Controllers\Master\TagController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
@@ -77,6 +78,12 @@ Route::prefix("admin")->group(function () {
             Route::get("/artikel/edit", [ArtikelController::class, "edit"]);
             Route::put("/artikel/simpan", [ArtikelController::class, "update"]);
             Route::resource("artikel", ArtikelController::class);
+            // END
+
+            // Data Artikel
+            Route::get("/question/edit", [QuestionController::class, "edit"]);
+            Route::put("/question/simpan", [QuestionController::class, "update"]);
+            Route::resource("question", QuestionController::class);
             // END
 
             Route::get("/client/edit", [ClientController::class, "edit"]);

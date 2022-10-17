@@ -65,6 +65,10 @@
                     href="{{ url('/admin/master/artikel') }}">
                     Artikel
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/question') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/question') }}">
+                    Question
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
                     href="{{ url('/admin/master/client') }}">
                     Client

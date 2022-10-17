@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CarouselSeeder::class);
         $this->call(ChooseUsSeeder::class);
         $this->call(TestimonialSeeder::class);
-        $this->call(StepPesanSeeder::class);
+        $this->call(QuestionSeeder::class);
         $this->call(ArtikelSeeder::class);
         $this->call(TagSeeder::class);
         $this->call(ArtikelTagSeeder::class);
