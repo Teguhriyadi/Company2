@@ -32,5 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(TagSeeder::class);
         $this->call(ArtikelTagSeeder::class);
         $this->call(SyaratKetentuanSeeder::class);
+        $this->call(BookingOnlineSeeder::class);
     }
 }

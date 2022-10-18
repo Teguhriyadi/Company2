@@ -11,19 +11,15 @@ use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\WorkController;
 use App\Http\Controllers\API\PartnerController;
-use App\Http\Controllers\API\ApiContactController;
-use App\Http\Controllers\API\ApiFooterController;
-use App\Http\Controllers\API\ApiLayananController;
-use App\Http\Controllers\API\ApiProdukController;
-use App\Http\Controllers\API\ApiTentangKamiController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\ChooseUsController;
+use App\Http\Controllers\API\Master\BookingOnlineController;
 use App\Http\Controllers\API\Master\QuestionController;
+use App\Http\Controllers\API\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\TargetController;
-// use App\Http\Controllers\API\ApiCarouselController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +60,5 @@ Route::get("/artikel/kategori/{slug_kategori}", [ArtikelController::class, "deta
 Route::resource("artikel", ArtikelController::class);
 Route::resource("tag", TagController::class);
 Route::resource("question", QuestionController::class);
+Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
+Route::resource("booking_online", BookingOnlineController::class);
