@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string("pesan_nama", 100);
             $table->string("pesan_email", 100);
-            $table->string("pesan_no_hp", 30);
             $table->string("pesan_nama_perusahaan", 100);
             $table->string("pesan_subjek", 100);
             $table->text("pesan_teks");

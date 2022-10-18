@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Pengaturan\Carousel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Master\Carousel1;
-
 
 class CarouselSeeder extends Seeder
 {
@@ -16,28 +15,16 @@ class CarouselSeeder extends Seeder
      */
     public function run()
     {
-        Carousel1::create([
-            'foto' => 'http://127.0.0.1:8000/assets/HOME.jpg',
-            'icon' => 'http://127.0.0.1:8000/assets/qjual_logo.png',
-            'deksripsi' => '“Smart Dalam Berjualan & Membuat Transaksi Jadi Lebih Mudah”',
-            'nm_link' => 'Learn More',
-            'link' => 'http://propertiku.proyek.ti.polindra.ac.id/',
+        Carousel::create([
+            "carousel_judul" => "Web 1",
+            "carousel_deskripsi" => "Lorem Ipsum Dolor Sit Amet",
+            "carousel_gambar" => "https://images.unsplash.com/photo-1665430922646-5f4fecfc02bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
         ]);
 
-        Carousel1::create([
-            'foto' => 'http://127.0.0.1:8000/assets/HOME.jpg',
-            'icon' => 'http://127.0.0.1:8000/assets/qjual_logo.png',
-            'deksripsi' => '“Smart Dalam Berjualan & Membuat Transaksi Jadi Lebih Mudah”',
-            'nm_link' => 'Learn More',
-            'link' => 'http://propertiku.proyek.ti.polindra.ac.id/',
-        ]);
-
-        Carousel1::create([
-            'foto' => 'http://127.0.0.1:8000/assets/HOME.jpg',
-            'icon' => 'http://127.0.0.1:8000/assets/qjual_logo.png',
-            'deksripsi' => '“Smart Dalam Berjualan & Membuat Transaksi Jadi Lebih Mudah”',
-            'nm_link' => 'Learn More',
-            'link' => 'http://propertiku.proyek.ti.polindra.ac.id/',
+        Carousel::create([
+            "carousel_judul" => "Web 2",
+            "carousel_deskripsi" => "Lorem Ipsum Dolor Sit Amet",
+            "carousel_gambar" => "https://images.unsplash.com/photo-1665430922646-5f4fecfc02bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80"
         ]);
     }
 }

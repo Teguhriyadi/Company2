@@ -1,6 +1,6 @@
 @extends('pages.layouts.main')
 
-@section('title', 'Role')
+@section('title', 'Users')
 
 @section('title_breadcrumb', 'Tambah Users')
 
@@ -12,7 +12,9 @@
             <div class="col-md-4">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <i class="fa fa-upload"></i> Upload Gambar
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <i class="fa fa-upload"></i> Upload Gambar
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -21,7 +23,8 @@
                                 <img src="{{ url('/gambar/upload-gambar.jpg') }}" class="img-fluid gambar-preview mb-3"
                                     id="tampilGambar">
                             </center>
-                            <input type="file" class="form-control" name="foto" id="foto">
+                            <input type="file" class="form-control" name="foto" id="foto"
+                                onchange="previewImage()">
                         </div>
                     </div>
                 </div>
@@ -29,7 +32,9 @@
             <div class="col-md-8">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <i class="fa fa-plus"></i> Tambah Data
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <i class="fa fa-plus"></i> Tambah Data
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
@@ -72,5 +77,25 @@
             </div>
         </div>
     </form>
+
+@endsection
+
+@section('js')
+
+    <script type="text/javascript">
+        function previewImage() {
+            const image = document.querySelector("#foto");
+            const imgPreview = document.querySelector(".gambar-preview");
+            imgPreview.style.display = "block";
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                $("#tampilGambar").addClass('mb-3');
+                $("#tampilGambar").width("100%");
+                $("#tampilGambar").height("300");
+            }
+        }
+    </script>
 
 @endsection

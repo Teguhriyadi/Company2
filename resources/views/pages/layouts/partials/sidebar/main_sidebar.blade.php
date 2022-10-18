@@ -5,13 +5,21 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">
+            @php
+                use App\Models\Pengaturan\ProfilPerusahaan;
+
+                $data_profil = ProfilPerusahaan::first();
+
+            @endphp
+            {{ empty($data_profil) ? '' : $data_profil->profil_nama }}
+        </div>
     </a>
 
     <hr class="sidebar-divider my-0">
 
-    <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+    <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/admin/dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -25,59 +33,111 @@
         Interface
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
+    <li class="nav-item {{ Request::segment(2) == 'master' ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
+            aria-controls="master">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Akun</span>
+            <span>Master</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="master" class="collapse {{ Request::segment(2) == 'master' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ url('/admin/akun/users') }}">
-                    Users
+                <a class="collapse-item {{ Request::is('admin/master/kategori') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/kategori') }}">
+                    Kategori
                 </a>
-                <a class="collapse-item" href="{{ url('/admin/akun/role') }}">
-                    Role
+                <a class="collapse-item {{ Request::is('admin/master/tag') ? 'active' : '' }}" href="{{ url('/admin/master/tag') }}">
+                    Tag
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/services') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/services') }}">
+                    Jasa
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/carousel') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/carousel') }}">
+                    Carousel
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/choose_us') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/choose_us') }}">
+                    Choose Us
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/artikel') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/artikel') }}">
+                    Artikel
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/question') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/question') }}">
+                    Question
+                </a>
+                <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/client') }}">
+                    Client
+                </a>
+                <a class="collapse-item" {{ Request::is('admin/master/portfolio') ? 'active' : '' }}  href="{{ url('/admin/master/portfolio') }}">
+                    Portfolio
                 </a>
             </div>
         </div>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/admin/proyek/') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-        <span>Proyek Kami</span></a>
+    <li class="nav-item {{ Request::segment(2) == 'pengaturan' ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturan"
+            aria-expanded="true" aria-controls="pengaturan">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Pengaturan</span>
+        </a>
+        <div id="pengaturan" class="collapse {{ Request::segment(2) == 'pengaturan' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('admin/pengaturan/syarat_ketentuan') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/syarat_ketentuan') }}">
+                    Syarat & Ketentuan
+                </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/tentang_kami') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/tentang_kami') }}">
+                    Tentang Kami
+                </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/profil_perusahaan') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
+                    Profil Perusahaan
+                </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/team') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/team') }}">
+                    Team
+                </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/testimonial') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/testimonial') }}">
+                    Testimonial
+                </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/pesan') ? 'active' : '' }}"
+                    href="{{ url('/admin/pengaturan/pesan') }}">
+                    Pesan
+                </a>
+            </div>
+        </div>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/admin/spesialisasi_kami/') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-        <span>Spesialisasi Kami</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/admin/layanan/') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-        <span>Layanan</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/admin/footer/') }}">
-            <i class="fas fa-fw fa-chart-area"></i>
-        <span>Footer</span></a>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item {{ Request::segment(2) == 'akun' ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+            aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>Akun</span>
+        </a>
+        <div id="collapseTwo" class="collapse {{ Request::segment(2) == 'akun' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('admin/akun/users') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/users') }}">
+                    Users
+                </a>
+                <a class="collapse-item {{ Request::is('admin/akun/role') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/role') }}">
+                    Role
+                </a>
+                <a class="collapse-item {{ Request::is('admin/akun/informasi_login') ? 'active' : '' }}"
+                    href="{{ url('/admin/akun/informasi_login') }}">
+                    Informasi Login
+                </a>
+            </div>
+        </div>
     </li>
 
     <!-- Divider -->

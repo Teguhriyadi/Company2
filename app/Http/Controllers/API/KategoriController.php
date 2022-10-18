@@ -18,6 +18,25 @@ class KategoriController extends Controller
             $data = [];
             foreach ($kategori as $d) {
                 $data[] = [
+                    "kategori_slug" => $d->kategori_slug,
+                    "kategori_nama" => $d->kategori_nama
+                ];
+            }
+        }
+        return response()->json($data, 200);
+    }
+
+    public function filter($slug)
+    {
+        $filter = Kategori::where("kategori_slug", "!=", $slug)->get();
+
+        if ($filter->count() < 1) {
+            $data = "Data Tidak Ada";
+        } else {
+            $data = [];
+            foreach ($filter as $d) {
+                $data[] = [
+                    "kategori_slug" => $d->kategori_slug,
                     "kategori_nama" => $d->kategori_nama
                 ];
             }

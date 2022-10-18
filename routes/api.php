@@ -1,19 +1,24 @@
 <?php
 
+use App\Http\Controllers\API\AboutUsController;
 use App\Http\Controllers\API\CarouselController;
+use App\Http\Controllers\API\ContactUsController;
 use App\Http\Controllers\API\JasaController;
 use App\Http\Controllers\API\KategoriController;
 use App\Http\Controllers\API\PesanController;
 use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TeamController;
+use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\WorkController;
 use App\Http\Controllers\API\PartnerController;
-use App\Http\Controllers\API\ApiFooterController;
-use App\Http\Controllers\API\ApiLayananController;
-use App\Http\Controllers\API\ApiProdukController;
-use App\Http\Controllers\API\ApiSpesialisasiKamiController;
-use App\Http\Controllers\API\ApiTentangKamiController;
-use App\Http\Controllers\API\ApiCarouselController;
+use App\Http\Controllers\API\ArtikelController;
+use App\Http\Controllers\API\ChooseUsController;
+use App\Http\Controllers\API\Master\BookingOnlineController;
+use App\Http\Controllers\API\Master\QuestionController;
+use App\Http\Controllers\API\Pengaturan\SyaratKetentuanController;
+use App\Http\Controllers\API\PortfolioController;
+use App\Http\Controllers\API\ServicesController;
+use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\TargetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +38,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::resource("testimonial", TestimonialController::class);
+Route::post("contact_us", [ContactUsController::class, "store"]);
 Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
+Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
 Route::resource('team', TeamController::class);
@@ -42,72 +50,15 @@ Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);
 Route::resource('work', WorkController::class);
 Route::resource('target', TargetController::class);
-
-Route::prefix('tentang_kami')->group(function () {
-    Route::controller(ApiTentangKamiController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('layanan')->group(function () {
-    Route::controller(ApiLayananController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-Route::prefix('produk')->group(function () {
-    Route::controller(ApiProdukController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('spesialisasi')->group(function () {
-    Route::controller(ApiSpesialisasiKamiController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('footer')->group(function () {
-    Route::controller(ApiFooterController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
-
-
-
-Route::prefix('carousel1')->group(function () {
-    Route::controller(ApiCarouselController::class)->group(function () {
-        Route::get('', 'index');
-        Route::get('/{id}', 'detail');
-        Route::post('', 'store');
-        Route::put('/{id}', 'update');
-        Route::delete('/{id}', 'destroy');
-    });
-});
+Route::resource('services', ServicesController::class);
+Route::resource('choose_us', ChooseUsController::class);
+Route::resource('portfolio', PortfolioController::class);
+Route::resource('tentang_kami', AboutUsController::class);
+Route::get("/artikel/{slug}", [ArtikelController::class, "detail"]);
+Route::get("/artikel/detail/{slug}", [ArtikelController::class, "artikel"]);
+Route::get("/artikel/kategori/{slug_kategori}", [ArtikelController::class, "detail_by_kategori"]);
+Route::resource("artikel", ArtikelController::class);
+Route::resource("tag", TagController::class);
+Route::resource("question", QuestionController::class);
+Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
+Route::resource("booking_online", BookingOnlineController::class);

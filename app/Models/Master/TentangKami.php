@@ -9,7 +9,7 @@ class TentangKami extends Model
 {
     use HasFactory;
 
-    protected $table = "tentangkami";
+    protected $table = "tentang_kami";
 
-    protected $guarded = [''];
+    protected $guarded = [""];
 }
