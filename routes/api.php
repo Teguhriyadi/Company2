@@ -20,6 +20,7 @@ use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\TargetController;
+use App\Http\Controllers\API\Pengaturan\KebijakanPrivasiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -62,3 +63,4 @@ Route::resource("tag", TagController::class);
 Route::resource("question", QuestionController::class);
 Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
 Route::resource("booking_online", BookingOnlineController::class);
+Route::resource("kebijakan_privasi", KebijakanPrivasiController::class);
