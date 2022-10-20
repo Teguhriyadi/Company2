@@ -26,6 +26,7 @@ class ProfilPerusahaanController extends Controller
 
         ProfilPerusahaan::create([
             "profil_nama" => $request->profil_nama,
+            "profil_singkat" => $request->profil_singkat,
             "profil_deskripsi" => $request->profil_deskripsi,
             "profil_no_hp" => $request->profil_no_hp,
             "profil_email" => $request->profil_email,
@@ -33,7 +34,7 @@ class ProfilPerusahaanController extends Controller
             "profil_foto" => url('/storage/' . $data)
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil ditambah!', 'success');</script>");
     }
 
     public function update(Request $request, $id)
@@ -52,6 +53,7 @@ class ProfilPerusahaanController extends Controller
 
         ProfilPerusahaan::where("id", $id)->update([
             "profil_nama" => $request->profil_nama,
+            "profil_singkat" => $request->profil_singkat,
             "profil_deskripsi" => $request->profil_deskripsi,
             "profil_no_hp" => $request->profil_no_hp,
             "profil_email" => $request->profil_email,
@@ -59,6 +61,6 @@ class ProfilPerusahaanController extends Controller
             "profil_foto" => $data
         ]);
 
-        return back();
+        return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil disimpan!', 'success');</script>");
     }
 }

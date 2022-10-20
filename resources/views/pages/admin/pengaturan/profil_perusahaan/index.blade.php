@@ -77,6 +77,10 @@
                             placeholder="Masukkan Profil Nama Perusahaan"
                             value="{{ empty($data->profil_nama) ? '' : $data->profil_nama }}">
                     </div>
+                    <div class="form-group">
+                        <label for="profil_singkat"> Deskripsi Singkat </label>
+                        <input type="text" class="form-control" name="profil_singkat" id="profil_singkat" value="{{ empty($data->profil_singkat) ? '' : $data->profil_singkat }}">
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
