@@ -1,5 +1,4 @@
 <template>
-    <app-header/>
     <main id="main">
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
@@ -117,13 +116,11 @@
 
 <script>
 import axios from "axios"
-import Header from "@/views/components/HeaderComponent.vue"
 import TagSidebar from "@/views/components/TagSidebarComponent.vue"
 
 export default {
     name: "DetailBlog",
     components: {
-        "app-header" : Header,
         "app-tag" : TagSidebar
     },
     data() {

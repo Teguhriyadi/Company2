@@ -1,5 +1,4 @@
 <template>
-    <app-header/>
     <main id="main">
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('theme/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
@@ -49,21 +48,14 @@
                 </div>
             </div>
         </section>
-        <app-footer/>
     </main>
 </template>
 
 <script>
 import axios from "axios"
-import Header from "@/views/components/HeaderComponent.vue"
-import Footer from "@/views/components/FooterComponent.vue"
 
 export default {
     name: "SyaratKetentuan",
-    components: {
-        "app-header": Header,
-        "app-footer": Footer
-    },
     data() {
         return {
             dataSyaratKetentuan: []

@@ -1,5 +1,4 @@
 <template>
-    <app-header/>
     <main id="main">
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('UI/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
@@ -51,14 +50,12 @@
 
 <script>
 import axios from "axios"
-import Header from "@/views/components/HeaderComponent.vue"
 import Hero from "@/views/components/HeroComponent.vue"
 import Contact from "@/views/components/ContactComponent.vue"
 
 export default {
     name: "Portofolio",
     components: {
-        "app-header" : Header,
         "app-hero" : Hero,
         "app-contact": Contact
     },
