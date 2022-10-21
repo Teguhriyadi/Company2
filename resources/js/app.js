@@ -86,5 +86,5 @@ const router = createRouter({
     linkExactActiveClass: "active"
 });
 
-axios.defaults.baseURL = "http://127.0.0.1:2909/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 createApp(App).use(router).mount("#app")
