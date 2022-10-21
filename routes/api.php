@@ -16,6 +16,7 @@ use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\Master\BookingOnlineController;
 use App\Http\Controllers\API\Master\ProdukController;
 use App\Http\Controllers\API\Master\QuestionController;
+use App\Http\Controllers\API\PaymentController;
 use App\Http\Controllers\API\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
@@ -67,3 +68,5 @@ Route::resource("booking_online", BookingOnlineController::class);
 Route::resource("kebijakan_privasi", KebijakanPrivasiController::class);
 Route::get("/produk/{slug}", [ProdukController::class, "detail_produk"]);
 Route::resource("produk", ProdukController::class);
+
+Route::post("payment", [PaymentController::class, "handler"]);

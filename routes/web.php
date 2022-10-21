@@ -13,6 +13,7 @@ use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Master\QuestionController;
 use App\Http\Controllers\Master\ServicesController;
 use App\Http\Controllers\Master\TagController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
@@ -31,6 +32,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get("/payment", [PaymentController::class, "index"]);
+Route::post("/payment", [PaymentController::class, "store"]);
 
 Route::get('/', [AppController::class, "app"]);
 
