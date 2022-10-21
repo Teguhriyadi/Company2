@@ -16,9 +16,9 @@ class ProfilPerusahaanSeeder extends Seeder
     public function run()
     {
         ProfilPerusahaan::create([
-            "profil_nama" => "JLDW",
+            "profil_nama" => "DuoBintang",
             "profil_singkat" => "Murah , Aman dan Terpercaya",
-            "profil_deskripsi" => "Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet",
+            "profil_deskripsi" => "Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet",
             "profil_no_hp" => "085324237299",
             "profil_email" => "admin@gmail.com",
             "profil_alamat" => "Villa Intan 2 Blok i4 No.1",
