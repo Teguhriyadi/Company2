@@ -40,20 +40,20 @@
                                     </span>
                                 </p>
                             </router-link>
-                            <form>
+                            <form method="POST" @submit.prevent="userLogin">
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3">
+                                    <label class="form-label" for="email">
                                         Email address
                                     </label>
-                                    <input type="email" id="form3Example3"
-                                    class="form-control"/>
+                                    <input type="email" id="email"
+                                    class="form-control" v-model="user.email">
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4">
+                                    <label class="form-label" for="password">
                                         Password
                                     </label>
-                                    <input type="password" id="form3Example4" class="form-control"/>
+                                    <input type="password" id="password" class="form-control" v-model="user.password">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mb-4" style="width: 100%;">
@@ -86,3 +86,46 @@
         </div>
     </section>
 </template>
+
+<script>
+    import { reactive, ref } from "vue"
+    import { useRouter } from "vue-router"
+    import axios from "axios"
+
+    export default {
+        setup() {
+
+            const router = useRouter()
+            const user = reactive({
+                email: "",
+                password: ""
+            });
+
+            const loginFailed = ref(null)
+
+            function userLogin() {
+                let email = user.email
+                let password = user.password
+
+                axios.post("login", {
+                    email,
+                    password
+                })
+                .then(response => {
+                    localStorage.setItem('token', response.data.token)
+                    return router.push("/")
+
+                    loginFailed.value = true
+                }).catch(error => {
+                    console.log("Error")
+                })
+            }
+
+            return {
+                user,
+                loginFailed,
+                userLogin
+            }
+        }
+    }
+</script>

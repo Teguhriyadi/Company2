@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
                         <h2 data-aos="fade-down">
-                            Selamat Datang di
+                            Selamat Datang {{ user.nama }} di
                             <span>Duo Bintang Studio</span>
                         </h2>
                         <p data-aos="fade-up">
@@ -34,26 +34,69 @@
 </template>
 
 <script>
-    import axios from "axios"
-    export default {
-        name: "ComponentHero",
-        data() {
-            return {
-                dataCarousel: []
+import { onMounted, ref } from "vue"
+import { useRouter } from "vue-router"
+
+import axios from "axios"
+export default {
+    name: "ComponentHero",
+    setup() {
+        const token = localStorage.getItem("token")
+
+        const router = useRouter()
+
+        const user = ref('')
+
+        onMounted(() => {
+            if (!token) {
+                return router.push("/")
             }
-        },
-        created() {
-            this.getCarousel();
-        },
-        methods: {
-            async getCarousel() {
-                try {
-                    const response = await axios.get("carousel");
-                    this.dataCarousel = response.data;
-                } catch (error) {
-                    console.log("Oopss.. Error");
-                }
+
+            axios.defaults.headers.common.Authorization = `Bearer ${token}`
+            axios.get("user")
+            .then(response => {
+                user.value = response.data
+            })
+            .catch(error => {
+                console.log(error.response.data)
+            })
+        })
+
+        function logout() {
+            axios.defaults.headers.common.Authorization = `Bearer ${token}`
+            axios.post("logout")
+            .then(response => {
+                localStorage.removeItem("token")
+
+                return router.push("/")
+            }).catch(error => {
+                console.log(error.response.data)
+            })
+        }
+
+        return {
+            token,
+            user,
+            logout
+        }
+    },
+    data() {
+        return {
+            dataCarousel: []
+        }
+    },
+    created() {
+        this.getCarousel();
+    },
+    methods: {
+        async getCarousel() {
+            try {
+                const response = await axios.get("carousel");
+                this.dataCarousel = response.data;
+            } catch (error) {
+                console.log("Oopss.. Error");
             }
         }
     }
+}
 </script>
