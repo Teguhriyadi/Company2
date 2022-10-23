@@ -17,10 +17,18 @@
                             Portofolio
                         </router-link>
                     </li>
-                    <li>
-                        <router-link to="/produk">
-                            List Harga Produk
-                        </router-link>
+                    <li class="dropdown">
+                        <a href="#">
+                            <span>Kategori Jasa</span>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        </a>
+                        <ul>
+                            <li v-for="(kategori, index) in dataKategoriJasa" :key="index">
+                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.kategori_jasa_slug} }">
+                                    {{ kategori.kategori_jasa_nama }}
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <router-link to="/booking_online">
@@ -62,13 +70,13 @@
 </template>
 
 <script>
-    import { onMounted, ref } from "vue"
-    import { useRouter } from "vue-router"
+import { onMounted, ref } from "vue"
+import { useRouter } from "vue-router"
 
-    import axios from "axios"
-    export default {
-        name: "Header",
-        setup() {
+import axios from "axios"
+export default {
+    name: "Header",
+    setup() {
         const token = localStorage.getItem("token")
 
         const router = useRouter()
@@ -93,23 +101,34 @@
             logout
         }
     },
-        data() {
-            return {
-                dataProfil: [],
+    data() {
+        return {
+            dataProfil: [],
+            dataKategoriJasa: []
+        }
+    },
+    created() {
+        this.getProfil();
+        this.getKategoriJasa();
+    },
+    methods: {
+        async getProfil() {
+            try {
+                const response = await axios.get("profil_perusahaan");
+                this.dataProfil = response.data;
+            } catch (error) {
+                console.log("Oopss.. Error");
             }
         },
-        created() {
-            this.getProfil();
-        },
-        methods: {
-            async getProfil() {
-                try {
-                    const response = await axios.get("profil_perusahaan");
-                    this.dataProfil = response.data;
-                } catch (error) {
-                    console.log("Oopss.. Error");
-                }
+
+        async getKategoriJasa() {
+            try {
+                const response = await axios.get("kategori_jasa");
+                this.dataKategoriJasa = response.data;
+            } catch(error) {
+                console.log("Oopss.. Error");
             }
         }
     }
+}
 </script>

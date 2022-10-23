@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
                         <h2 data-aos="fade-down">
-                            Selamat Datang {{ token }} di
+                            Selamat Datang di
                             <span>Duo Bintang Studio</span>
                         </h2>
                         <p data-aos="fade-up">

@@ -18,6 +18,7 @@ import Product from "@/views/components/ProductComponent.vue"
 import ProductDetail from "@/views/components/ProductDetailComponent.vue"
 import Login from "@/views/components/autentikasi/LoginComponent.vue"
 import Register from "@/views/components/autentikasi/RegisterComponent.vue"
+import KategoriJasa from "@/views/components/KategoriJasa/KategoriJasaComponent.vue"
 
 const routes = [
     {
@@ -38,6 +39,11 @@ const routes = [
         path: "/kategori/:slug",
         name: 'detailKategori',
         component: Kategori
+    },
+    {
+        path: "/jasa/:slug",
+        name: "kategoriJasa",
+        component: KategoriJasa
     },
     {
         path: "/kategori/:slug",
