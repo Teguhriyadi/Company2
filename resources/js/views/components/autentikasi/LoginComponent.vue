@@ -107,13 +107,16 @@
                 let email = user.email
                 let password = user.password
 
-                axios.post("login", {
+                axios.post("auth/login", {
                     email,
                     password
                 })
                 .then(response => {
-                    localStorage.setItem('token', response.data.token)
-                    return router.push("/")
+                    if (response.data.success) {
+                        localStorage.setItem("token", response.data.access_token)
+
+                        return router.push("/");
+                    }
 
                     loginFailed.value = true
                 }).catch(error => {

@@ -208,8 +208,13 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
-    ])->toArray(),
+    'aliases' => [
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+    ],
+    // 'aliases' => Facade::defaultAliases()->merge([
+
+    //     // 'ExampleClass' => App\Example\ExampleClass::class,
+    // ])->toArray(),
 
 ];

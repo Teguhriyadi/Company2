@@ -38,17 +38,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post("/register", [AutentikasiController::class, "register"]);
-Route::post("/login", [AutentikasiController::class, "login"]);
-Route::get("/user", [AutentikasiController::class, "user"]);
-Route::post("/logout", [AutentikasiController::class, "logout"]);
-
-Route::group(["middleware" => "jwt.verify"], function() {
-    Route::get("user", [AutentikasiController::class ,"getUser"]);
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('/login', [AutentikasiController::class, 'login']);
+    Route::post('/register', [AutentikasiController::class, 'register']);
+    Route::post('/logout', [AutentikasiController::class, 'logout']);
+    Route::post('/refresh', [AutentikasiController::class, 'refresh']);
+    Route::get('/user-profile', [AutentikasiController::class, 'userProfile']);
 });
 
 Route::resource("testimonial", TestimonialController::class);

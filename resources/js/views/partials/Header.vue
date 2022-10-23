@@ -77,7 +77,7 @@
 
         function logout() {
             axios.defaults.headers.common.Authorization = `Bearer ${token}`
-            axios.post("logout")
+            axios.post("auth/logout")
             .then(response => {
                 localStorage.removeItem("token")
 

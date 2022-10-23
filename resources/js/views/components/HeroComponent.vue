@@ -53,8 +53,9 @@ export default {
             }
 
             axios.defaults.headers.common.Authorization = `Bearer ${token}`
-            axios.get("user")
+            axios.get("auth/user-profile")
             .then(response => {
+                console.log(response.data)
                 user.value = response.data
             })
             .catch(error => {
@@ -62,22 +63,9 @@ export default {
             })
         })
 
-        function logout() {
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`
-            axios.post("logout")
-            .then(response => {
-                localStorage.removeItem("token")
-
-                return router.push("/")
-            }).catch(error => {
-                console.log(error.response.data)
-            })
-        }
-
         return {
             token,
             user,
-            logout
         }
     },
     data() {
