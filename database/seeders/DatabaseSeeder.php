@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Database\Seeders\Jasa\KategoriJasaSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -34,5 +36,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BookingOnlineSeeder::class);
         $this->call(KebijakanPrivasiSeeder::class);
         $this->call(ProdukSeeder::class);
+        $this->call(KategoriJasaSeeder::class);
     }
 }
