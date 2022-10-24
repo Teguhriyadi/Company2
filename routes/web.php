@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get("/fillable", [AppController::class, "fillable"]);
+// Route::post("/fillable", [AppController::class, "post_fillable"]);
 Route::get("/payment", [PaymentController::class, "index"]);
 Route::post("/payment", [PaymentController::class, "store"]);
 

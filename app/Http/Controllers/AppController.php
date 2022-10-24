@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun\InformasiLogin;
+use App\Models\Coba;
 use App\Models\Master\Client;
 use App\Models\Master\Portfolio;
 use App\Models\Pengaturan\ProfilPerusahaan;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
+
     public function dashboard()
     {
         $data = [

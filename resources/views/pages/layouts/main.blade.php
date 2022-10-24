@@ -28,6 +28,10 @@ $data = ProfilPerusahaan::first();
 
 </head>
 
+@php
+    use Illuminate\Http\Request;
+@endphp
+
 <body id="page-top">
     <div id="wrapper">
         @include('pages.layouts.partials.sidebar.main_sidebar')

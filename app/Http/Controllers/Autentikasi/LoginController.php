@@ -22,8 +22,8 @@ class LoginController extends Controller
 
     public function post_login(Request $request)
     {
-        $validasi = $request->validate([
-            "email" => "required",
+        $credentials = $request->validate([
+            "email" => "required|email",
             "password" => "required"
         ]);
 
@@ -31,8 +31,7 @@ class LoginController extends Controller
 
         if ($user) {
             if ($user->status == 1) {
-                if (Auth::attempt($validasi)) {
-
+                if (Auth::attempt($credentials)) {
                     InformasiLogin::create([
                         "id_user" => $user->id,
                         "nama" => $user->nama
@@ -45,6 +44,7 @@ class LoginController extends Controller
                     return redirect("/admin/login");
                 }
             } else {
+
                 return redirect("/admin/login");
             }
         } else {

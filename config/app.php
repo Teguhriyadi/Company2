@@ -211,6 +211,7 @@ return [
     'aliases' => [
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Request' => Illuminate\Support\Facades\Request::class
     ],
     // 'aliases' => Facade::defaultAliases()->merge([
 
