@@ -24,7 +24,7 @@
                         </a>
                         <ul>
                             <li v-for="(kategori, index) in dataKategoriJasa" :key="index">
-                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.kategori_jasa_slug} }">
+                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.kategori_jasa_slug, id: kategori.kategori_id, nama: kategori.kategori_jasa_nama} }">
                                     {{ kategori.kategori_jasa_nama }}
                                 </router-link>
                             </li>

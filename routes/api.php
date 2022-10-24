@@ -12,8 +12,10 @@ use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\ChooseUsController;
+use App\Http\Controllers\API\Jasa\ProdukPaketController;
 use App\Http\Controllers\API\Master\BookingOnlineController;
 use App\Http\Controllers\API\Master\Jasa\KategoriJasaController;
+use App\Http\Controllers\API\Master\Jasa\PaketJasaController;
 use App\Http\Controllers\API\Master\ProdukController;
 use App\Http\Controllers\API\Master\QuestionController;
 use App\Http\Controllers\API\PaymentController;
@@ -74,7 +76,11 @@ Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
 Route::resource("booking_online", BookingOnlineController::class);
 Route::resource("kebijakan_privasi", KebijakanPrivasiController::class);
 Route::get("/produk/{slug}", [ProdukController::class, "detail_produk"]);
-Route::resource("produk", ProdukController::class);
+Route::get("/produk/filter/{id}", [ProdukController::class, "index"]);
 
+Route::get("/kategori_jasa/{slug}", [KategoriJasaController::class, "detail"]);
 Route::resource("kategori_jasa", KategoriJasaController::class);
+Route::get("paket_jasa/{slug}", [PaketJasaController::class, "index"]);
 Route::post("payment", [PaymentController::class, "handler"]);
+
+Route::resource("produk_paket", ProdukPaketController::class);

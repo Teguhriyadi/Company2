@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ProdukController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $produk = Produk::orderBy("created_at", "DESC")->get();
+        $produk = Produk::where("kategori_jasa_id", $id)->orderBy("created_at", "DESC")->get();
 
         if ($produk->count() < 1) {
             $data = "Data Tidak Ada";
@@ -20,6 +20,7 @@ class ProdukController extends Controller
                 $data[] = [
                     "produk_image" => $d->produk_image,
                     "produk_judul" => $d->produk_judul,
+                    "produk_kategori_jasa_id" => $d->kategori_jasa_id,
                     "produk_slug" => $d->produk_slug,
                     "produk_harga" => "Rp. " . number_format($d->produk_harga),
                     "produk_deskripsi_singkat" => $d->produk_deskripsi_singkat,

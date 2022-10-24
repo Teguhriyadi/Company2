@@ -18,11 +18,27 @@ class KategoriJasaController extends Controller
             $data = [];
             foreach ($kategori_jasa as $d) {
                 $data[] = [
+                    "kategori_id" => $d->id,
                     "kategori_jasa_nama" => $d->kategori_jasa_nama,
                     "kategori_jasa_slug" => $d->kategori_jasa_slug,
                 ];
             }
         }
         return response()->json($data, 200);
+    }
+
+    public function detail($slug)
+    {
+        $kategori = KategoriJasa::where("kategori_jasa_slug", $slug)->first();
+
+        if (empty($kategori)) {
+            return response()->json([["message" => "Data Tidak Ada"]]);
+        } else {
+            $data[] = [
+                "kategori_id" => $kategori->id,
+                "kategori_slug" => $kategori->kategori_jasa_slug,
+            ];
+            return response()->json($data);
+        }
     }
 }
