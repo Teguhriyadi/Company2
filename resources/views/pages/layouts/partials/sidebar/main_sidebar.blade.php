@@ -100,10 +100,6 @@
                     href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
                     Profil Perusahaan
                 </a>
-                <a class="collapse-item {{ Request::is('admin/pengaturan/team') ? 'active' : '' }}"
-                    href="{{ url('/admin/pengaturan/team') }}">
-                    Team
-                </a>
                 <a class="collapse-item {{ Request::is('admin/pengaturan/testimonial') ? 'active' : '' }}"
                     href="{{ url('/admin/pengaturan/testimonial') }}">
                     Testimonial
