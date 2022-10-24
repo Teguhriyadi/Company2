@@ -17,7 +17,6 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
-use App\Http\Controllers\Pengaturan\TeamController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
 use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
@@ -113,9 +112,6 @@ Route::prefix("admin")->group(function () {
 
             Route::resource("tentang_kami", TentangKamiController::class);
             Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
-            Route::get("/team/edit", [TeamController::class, "edit"]);
-            Route::get("/team/simpan", [TeamController::class, "update"]);
-            Route::resource("team", TeamController::class);
             Route::resource("testimonial", TestimonialController::class);
             Route::resource("pesan", PesanController::class);
         });
