@@ -56,7 +56,6 @@ Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
-Route::resource('team', TeamController::class);
 Route::post('pesan', [PesanController::class, "store"]);
 Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);

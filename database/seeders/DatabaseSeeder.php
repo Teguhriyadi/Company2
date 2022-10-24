@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ServiceSeeder::class);
         $this->call(TentangKamiSeeder::class);
         $this->call(ProfilPerusahaanSeeder::class);
-        $this->call(TeamSeeder::class);
         $this->call(PartnerSeeder::class);
         $this->call(KategoriSeeder::class);
         $this->call(ClientSeeder::class);
