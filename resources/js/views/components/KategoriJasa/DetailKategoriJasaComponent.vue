@@ -25,12 +25,7 @@
                             </div>
                             <div class="mt-4 ms-3">
                                 <p class="btn btn-dark position-relative">
-                                    Jepretan Foto Outdoor
-                                    <span class="position-absolute top-0 start-100 translate-middle p-2 bg-success border border-light rounded-circle">
-                                        <span class="visually-hidden">
-                                            New alerts
-                                        </span>
-                                    </span>
+                                    Beberapa Hasil Foto Dari Jasa
                                 </p>
                             </div>
                             <div id="projects" class="projects mt-2 text-center">

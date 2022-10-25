@@ -18,6 +18,7 @@ use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
+use App\Http\Controllers\Production\Produk\BenefitProdukController;
 use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
 
@@ -98,8 +99,18 @@ Route::prefix("admin")->group(function () {
             Route::put("/client/aktifkan/{id}", [ClientController::class, "aktifkan"]);
             Route::resource("client", ClientController::class);
 
+            // Data Portofolio
             Route::get("/portfolio/edit", [PortfolioController::class, "edit"]);
             Route::resource("portfolio", PortfolioController::class);
+            // END
+        });
+
+        Route::prefix("production")->group(function() {
+
+            // Data Benefit
+            Route::resource("benefit", BenefitProdukController::class);
+            // END
+
         });
 
         Route::prefix("pengaturan")->group(function () {

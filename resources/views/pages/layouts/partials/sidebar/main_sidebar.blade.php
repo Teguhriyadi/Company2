@@ -81,6 +81,27 @@
         </div>
     </li>
 
+    <li class="nav-item {{ Request::segment(2) == 'production' ? 'active' : '' }}">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#produk" aria-expanded="true"
+            aria-controls="produk">
+            <i class="fas fa-fw fa-bars"></i>
+            <span>Production</span>
+        </a>
+        <div id="produk" class="collapse {{ Request::segment(2) == 'production' ? 'show' : '' }}"
+            aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('admin/production/produk') ? 'active' : '' }}"
+                    href="{{ url('/admin/production/produk') }}">
+                    Produk
+                </a>
+                <a class="collapse-item {{ Request::is('admin/production/benefit') ? 'active' : '' }}"
+                    href="{{ url('/admin/production/benefit') }}">
+                    Benefit Produk
+                </a>
+            </div>
+        </div>
+    </li>
+
     <li class="nav-item {{ Request::segment(2) == 'pengaturan' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pengaturan"
             aria-expanded="true" aria-controls="pengaturan">

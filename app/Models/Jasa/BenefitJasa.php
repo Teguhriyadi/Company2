@@ -12,4 +12,9 @@ class BenefitJasa extends Model
     protected $table = "benefit_jasa";
 
     protected $guarded = [''];
+
+    public function getProduk()
+    {
+        return $this->belongsTo("App\Models\Master\Produk", "produk_id", "id");
+    }
 }
