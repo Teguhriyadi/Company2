@@ -1,6 +1,6 @@
 <template>
     <main id="main">
-        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/UI/img/about.jpg')">
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/desain/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                 <h2>Detail Price List</h2>
                 <ol>
@@ -74,7 +74,7 @@
                             <p>
                                 {{ detail.produk_deskripsi }}
                             </p>
-                            <router-link to="" class="btn btn-sm btn-warning w-100 text-light">
+                            <router-link :to="{name: 'cart', params: {produk_id: detail.produk_id, paket: paket, jasa: jasa} }" class="btn btn-sm btn-warning w-100 text-light">
                                 Booking Sekarang
                             </router-link>
                         </div>
@@ -93,13 +93,21 @@ export default {
         return {
             detailJasa: [],
             dataBenefit: [],
-            dataHasilFoto: []
+            dataHasilFoto: [],
+            paket: [],
+            jasa: []
         }
     },
     created() {
         this.getDetailJasa();
         this.getBenefit();
         this.getHasilFoto();
+    },
+    mounted() {
+        let paket = this.$route.params.paket;
+        let jasa = this.$route.params.jasa
+        this.paket = paket;
+        this.jasa = jasa;
     },
     methods: {
         async getDetailJasa() {

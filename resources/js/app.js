@@ -20,6 +20,8 @@ import Login from "@/views/components/autentikasi/LoginComponent.vue"
 import Register from "@/views/components/autentikasi/RegisterComponent.vue"
 import KategoriJasa from "@/views/components/KategoriJasa/KategoriJasaComponent.vue"
 import DetailKategoriJasa from "@/views/components/KategoriJasa/DetailKategoriJasaComponent.vue"
+import Cart from "@/views/components/Transaksi/Cart.vue"
+import DetailCart from "@/views/components/Transaksi/DetailCart.vue"
 
 const routes = [
     {
@@ -88,6 +90,16 @@ const routes = [
     {
         path: "/daftar",
         component: Register
+    },
+    {
+        path: "/cart",
+        name: "cart",
+        component: Cart
+    },
+    {
+        path: "/cart_detail",
+        name: "cart_detail",
+        component: DetailCart
     }
 ];
 

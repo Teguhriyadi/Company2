@@ -44,7 +44,7 @@
                                         <p style="color: orange; font-size: 18px; font-weight: bold;">
                                             {{ produk.produk_paket_harga }}
                                         </p>
-                                        <router-link :to="{name: 'detailPaketJasa', params: {slug: produk.produk_paket_slug, id: produk.produk_id} }" class="btn btn-sm btn-warning text-light" style="width: 100%;">
+                                        <router-link :to="{name: 'detailPaketJasa', params: {slug: produk.produk_paket_slug, id: produk.produk_id, paket: jasa.paket_kategori_paket_nama, jasa: namaJasa} }" class="btn btn-sm btn-warning text-light" style="width: 100%;">
                                             Detail
                                         </router-link>
                                     </div>
