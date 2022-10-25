@@ -33,7 +33,7 @@
                                 <template v-if="jasa.paket_id == produk.produk_paket_jasa_id">
                                     <div class="col-lg-4 menu-item text-center">
                                         <a href="/UI/img/hero-carousel/1.jpeg" class="glightbox">
-                                            <img src="/UI/img/hero-carousel/1.jpeg" class="menu-img img-fluid" alt=""/>
+                                            <img :src="produk.produk_paket_gambar" class="menu-img img-fluid" alt=""/>
                                         </a>
                                         <h4 class="mt-2">
                                             {{ produk.produk_paket_nama }}
@@ -44,9 +44,9 @@
                                         <p style="color: orange; font-size: 18px; font-weight: bold;">
                                             {{ produk.produk_paket_harga }}
                                         </p>
-                                        <a href="detail-price.html" class="btn btn-sm btn-warning text-light" style="width: 100%;">
+                                        <router-link :to="{name: 'detailPaketJasa', params: {slug: produk.produk_paket_slug, id: produk.produk_id} }" class="btn btn-sm btn-warning text-light" style="width: 100%;">
                                             Detail
-                                        </a>
+                                        </router-link>
                                     </div>
                                 </template>
                             </template>

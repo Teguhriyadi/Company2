@@ -14,6 +14,8 @@ use App\Http\Controllers\API\ArtikelController;
 use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\Jasa\ProdukPaketController;
 use App\Http\Controllers\API\Master\BookingOnlineController;
+use App\Http\Controllers\API\Master\Jasa\BenefitController;
+use App\Http\Controllers\API\Master\Jasa\HasilProdukJasaController;
 use App\Http\Controllers\API\Master\Jasa\KategoriJasaController;
 use App\Http\Controllers\API\Master\Jasa\PaketJasaController;
 use App\Http\Controllers\API\Master\ProdukController;
@@ -80,4 +82,8 @@ Route::resource("kategori_jasa", KategoriJasaController::class);
 Route::get("paket_jasa/{slug}", [PaketJasaController::class, "index"]);
 Route::post("payment", [PaymentController::class, "handler"]);
 
+Route::get("/produk_paket/detail/{slug}", [ProdukPaketController::class, "detail_produk_paket"]);
 Route::resource("produk_paket", ProdukPaketController::class);
+
+Route::get("/benefit/{produk_id}", [BenefitController::class, "index"]);
+Route::get("/hasil_jasa/{produk_id}", [HasilProdukJasaController::class, "index"]);

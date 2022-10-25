@@ -20,6 +20,7 @@ class ProdukPaketController extends Controller
                 $data[] = [
                     "produk_paket_jasa_id" => $d->getProdukPaket->id,
                     "produk_paket_nama" => $d->getProduk->produk_judul,
+                    "produk_id" => $d->getProduk->id,
                     "produk_paket_slug" => $d->getProduk->produk_slug,
                     "produk_paket_gambar" => $d->getProduk->produk_image,
                     "produk_paket_harga" => "Rp. " . number_format($d->getProduk->produk_harga),
@@ -28,5 +29,23 @@ class ProdukPaketController extends Controller
             }
         }
         return response()->json($data, 200);
+    }
+
+    public function detail_produk_paket($slug)
+    {
+        $detail = ProdukPaket::where("produk_id", $slug)->first();
+
+        if (empty($detail)) {
+            return response()->json([["message" => "Data Tidak Ada"]]);
+        } else {
+            $data = [];
+            $data[] = [
+                "produk_nama" => $detail->getProduk->produk_judul,
+                "produk_gambar" => $detail->getProduk->produk_image,
+                "produk_harga" => "Rp. " . number_format($detail->getProduk->produk_harga),
+                "produk_deskripsi" => $detail->getProduk->produk_deskripsi
+            ];
+            return response()->json($data, 200);
+        }
     }
 }

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\Jasa\BenefitJasaSeeder;
+use Database\Seeders\Jasa\HasilJasaProdukSeeder;
 use Database\Seeders\Jasa\KategoriJasaSeeder;
 use Database\Seeders\Jasa\KategoriPaketSeeder;
 use Database\Seeders\Jasa\PaketJasaSeeder;
@@ -42,5 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(KategoriPaketSeeder::class);
         $this->call(PaketJasaSeeder::class);
         $this->call(ProdukPaketSeeder::class);
+        $this->call(BenefitJasaSeeder::class);
+        $this->call(HasilJasaProdukSeeder::class);
     }
 }
