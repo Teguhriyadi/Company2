@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "midtrans/midtrans-php": "^2.5",
+        "nesbot/carbon": "^2.62",
         "tymon/jwt-auth": "*"
     },
     "require-dev": {

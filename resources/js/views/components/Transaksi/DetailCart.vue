@@ -88,8 +88,8 @@
                                         </p>
                                     </div>
                                     <div class="col-6">
-                                        <div class="text-end">
-                                            <a href="history-cart.html" style="font-size:12px ;" class="mt-3 btn btn-sm btn-warning w-25">
+                                        <div class="text-end" id="pay-button">
+                                            <a @click="buttonPay" style="font-size:12px ;" class="mt-3 btn btn-sm btn-warning w-25">
                                                 <i class="fas fa-dollar-sign">
 
                                                 </i>
@@ -108,20 +108,28 @@
 </template>
 
 <script>
-export default {
-    name: "DetailPemesanan",
-    data() {
-        return {
-            jasa: [],
-            paket: []
-        }
-    },
-    mounted() {
-        let jasa = this.$route.params.jasa;
-        this.jasa = jasa;
+    export default {
+        name: "DetailPemesanan",
+        data() {
+            return {
+                jasa: [],
+                paket: []
+            }
+        },
+        mounted() {
+            let jasa = this.$route.params.jasa;
+            this.jasa = jasa;
 
-        let paket = this.$route.params.paket;
-        this.paket = paket;
+            let paket = this.$route.params.paket;
+            this.paket = paket;
+        },
+        methods: {
+            buttonPay() {
+                window.snap.pay('{{}}', function() {
+
+                });
+            }
+        }
     }
-}
+
 </script>

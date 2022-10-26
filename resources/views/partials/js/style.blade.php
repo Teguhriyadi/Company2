@@ -8,3 +8,4 @@
 
 <!-- Template Main JS File -->
 <script src="{{ url('/desain') }}/js/main.js"></script>
+<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-5Egc5qExRc__evUx"></script>

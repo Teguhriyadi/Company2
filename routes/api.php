@@ -11,6 +11,7 @@ use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\ArtikelController;
+use App\Http\Controllers\API\Autentikasi\LoginController;
 use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\Jasa\ProdukPaketController;
 use App\Http\Controllers\API\Master\BookingOnlineController;
@@ -40,17 +41,13 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::group([
-    'middleware' => 'api',
-    'prefix' => 'auth'
-], function ($router) {
-    Route::post('/login', [AutentikasiController::class, 'login']);
-    Route::post('/register', [AutentikasiController::class, 'register']);
-    Route::post('/logout', [AutentikasiController::class, 'logout']);
-    Route::post('/refresh', [AutentikasiController::class, 'refresh']);
-    Route::get('/user-profile', [AutentikasiController::class, 'userProfile']);
+Route::middleware("auth:sanctum")->get("/user", function(Request $request) {
+    return $request->user();
 });
+
+Route::post("/login", [LoginController::class, "index"]);
+Route::get("/logout", [LoginController::class, "logout"]);
+
 
 Route::resource("testimonial", TestimonialController::class);
 Route::post("contact_us", [ContactUsController::class, "store"]);
