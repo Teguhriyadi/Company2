@@ -68,7 +68,7 @@
                 </div>
 
                 <div class="col-lg-8">
-                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                    <form method="POST" role="form" class="php-email-form" @submit.prevent="transaksi">
                         <div class="row">
                             <h3>Isi Data Pemesanan</h3>
                             <hr style="border-top: dotted 3px" />
@@ -81,14 +81,14 @@
                                     Nama Pemesan
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <input type="text" name="name" class="form-control" id="name" placeholder="Nama Pemesan" required/>
+                                <input type="text" v-model="keranjang.nama" class="form-control" id="name" placeholder="Nama Pemesan" required/>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                 <label for="exampleInputEmail1" class="form-label">
                                     Alamat Email
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Alamat Email" required/>
+                                <input type="email" class="form-control" v-model="keranjang.email" id="email" placeholder="Alamat Email" required/>
                             </div>
                         </div>
                         <div class="row">
@@ -97,31 +97,35 @@
                                     Tanggal Booking
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <input type="date" class="form-control" placeholder="Nomor WA" required/>
+                                <input type="date" class="form-control" v-model="keranjang.booking" required/>
                             </div>
                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                 <label for="exampleInputEmail1" class="form-label">
                                     Nomor WA
                                     <span class="text-danger"> *</span>
                                 </label>
-                                <input type="number" class="form-control" placeholder="Nomor Telepon" required/>
+                                <input type="number" v-model="keranjang.nomor_hp" class="form-control" placeholder="Nomor Telepon" required/>
                             </div>
                             <div class="col-md-12 form-group mt-3 mt-md-0">
                                 <label for="exampleInputEmail1" class="form-label">
                                     Lokasi Pemotretan/Videografi
                                     <span class="text-danger">*</span>
                                 </label>
-                                <input type="text" class="form-control" data-bs-toggle="dropdown" placeholder="Masukkan Lokasi" required/>
+                                <input type="text" v-model="keranjang.lokasi" class="form-control" placeholder="Masukkan Lokasi" required/>
                             </div>
 
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" rows="7" placeholder="Catatan atau pertanyaan opsional" required></textarea>
+                                <textarea class="form-control" v-model="keranjang.catatan" rows="7" placeholder="Catatan atau pertanyaan opsional" required></textarea>
                             </div>
                         </div>
+
                         <div class="text-center">
-                            <router-link :to="{name: 'cart_detail', params: {jasa: jasa, paket: paket} }" class="btn-sm btn btn-warning mt-2">
+                            <button type="submit" class="btn-warning btn-sm mt-2">
                                 Booking Sekarang
-                            </router-link>
+                            </button>
+                            <!-- <router-link :to="{name: 'cart_detail', params: {jasa: jasa, paket: paket} }" class="btn-sm btn btn-warning mt-2">
+                                Booking Sekarang
+                            </router-link> -->
                         </div>
                     </form>
                 </div>
@@ -140,14 +144,28 @@ export default {
             dataProduk: [],
             dataBenefit: [],
             paket: [],
-            jasa: []
+            jasa: [],
+            keranjang: [],
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
+            userId: []
         }
     },
     created() {
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+            }
+        }).then(response => {
+            console.log(response)
+            this.userId = response.data.id
+        });
+
         this.getProduk();
         this.getBenefit();
     },
     mounted() {
+
         let paket = this.$route.params.paket;
         let jasa = this.$route.params.jasa;
 
@@ -173,6 +191,46 @@ export default {
                 this.dataBenefit = response.data;
             } catch (error) {
                 console.log(error);
+            }
+        },
+
+        transaksi() {
+            if (this.keranjang.nama && this.keranjang.email && this.keranjang.booking && this.keranjang.nomor_hp && this.keranjang.lokasi && this.keranjang.catatan) {
+                axios.post("keranjang", {
+                    nama: this.keranjang.nama,
+                    email: this.keranjang.email,
+                    tanggal: this.keranjang.booking,
+                    nomor_hp: this.keranjang.nomor_hp,
+                    lokasi: this.keranjang.lokasi,
+                    catatan: this.keranjang.catatan,
+                    user_id: this.userId
+                }).then(response => {
+                    if (response.data.success) {
+                        return this.$router.push({
+                            name: 'cart_detail',
+                            params: {
+                                jasa: this.jasa,
+                                paket: this.paket,
+                                nama: this.keranjang.nama,
+                                email: this.keranjang.email,
+                                nomor_hp: this.keranjang.nomor_hp,
+                                catatan: this.keranjang.catatan,
+                                lokasi: this.keranjang.lokasi,
+                                id_keranjang: response.data.data.id
+                            }
+                        });
+                    }
+                }).catch(error => {
+                    console.log(error)
+                });
+                // axios.post("keranjang", {
+
+                // })
+                // }).then(response => {
+
+                // }).catch(error => {
+                //     console.log(error);
+                // });
             }
         }
     }

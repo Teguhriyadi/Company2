@@ -27,6 +27,8 @@ use App\Http\Controllers\API\PortfolioController;
 use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\Pengaturan\KebijakanPrivasiController;
+use App\Http\Controllers\API\Transaksi\KeranjangController;
+use App\Http\Controllers\API\Transaksi\PaymentController as TransaksiPaymentController;
 use App\Http\Controllers\JWT\AutentikasiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -84,3 +86,6 @@ Route::resource("produk_paket", ProdukPaketController::class);
 
 Route::get("/benefit/{produk_id}", [BenefitController::class, "index"]);
 Route::get("/hasil_jasa/{produk_id}", [HasilProdukJasaController::class, "index"]);
+
+Route::post("/keranjang", [KeranjangController::class, "keranjang"]);
+Route::get("/payment/{id_cart}", [TransaksiPaymentController::class, "index"]);

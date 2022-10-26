@@ -33,15 +33,15 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Nama Pemesan
                                         </label>
-                                        <h6>Mohammad Ilham Teguhriyadi</h6>
+                                        <h6>{{ pemesan }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Nomor WhatsApp
                                         </label>
-                                        <h6>0817272721</h6>
+                                        <h6>{{ nomor_wa }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Email
                                         </label>
-                                        <h6>rafliseptiann@gmail.com</h6>
+                                        <h6>{{ email }}</h6>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -70,11 +70,11 @@
                                             Catatan
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <h6>Foto harus bagus ya bang</h6>
+                                        <h6>{{ catatan }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Total Pembayaran
                                         </label>
-                                        <h6>Rp.20.000</h6>
+                                        <h6>Rp. 20.000 </h6>
                                     </div>
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
@@ -93,7 +93,7 @@
                                                 <i class="fas fa-dollar-sign">
 
                                                 </i>
-                                                Lanjut Pembayaran
+                                                Lanjutkan Pembayaran
                                             </a>
                                         </div>
                                     </div>
@@ -113,7 +113,13 @@
         data() {
             return {
                 jasa: [],
-                paket: []
+                paket: [],
+                pemesan: [],
+                nomor_wa: [],
+                email: [],
+                catatan: [],
+                pembayaran: [],
+                keranjang_id: []
             }
         },
         mounted() {
@@ -122,10 +128,39 @@
 
             let paket = this.$route.params.paket;
             this.paket = paket;
+
+            let nama = this.$route.params.nama;
+            this.pemesan = nama;
+
+            let nomor_hp = this.$route.params.nomor_hp;
+            this.nomor_wa = nomor_hp
+
+            let email = this.$route.params.email;
+            this.email = email
+
+            let catatan = this.$route.params.catatan;
+            this.catatan = catatan
+
+            let keranjang_id = this.$route.params.id_keranjang;
+            this.keranjang_id = keranjang_id
+        },
+        created() {
+            this.payment();
         },
         methods: {
+            async payment() {
+                let idCart = this.$route.params.id_keranjang;
+                try {
+                    const response = await axios.get("payment/"+idCart)
+                    this.pembayaran = response.data[0].snap_token
+                    console.log(this.pembayaran)
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+
             buttonPay() {
-                window.snap.pay('{{}}', function() {
+                window.snap.pay(this.pembayaran , function() {
 
                 });
             }
