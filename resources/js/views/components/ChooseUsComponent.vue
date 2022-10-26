@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-                    <img src="assets/img/hero-carousel/1.jpeg" class="img-fluid" alt="" />
+                    <img src="/desain/img/hero-carousel/1.jpeg" class="img-fluid" alt="" />
                 </div>
             </div>
         </div>

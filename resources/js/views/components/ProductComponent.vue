@@ -1,6 +1,6 @@
 <template>
     <main id="main">
-        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('UI/img/about.jpg')">
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/desain/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                 <h2>Price List</h2>
                 <ol>
@@ -25,8 +25,8 @@
                 </div>
                 <div class="row gy-5">
                     <div v-for="(produk , index) in dataProduk" :key="index" class="col-lg-4 menu-item text-center">
-                        <a href="assets/img/hero-carousel/1.jpeg" class="glightbox">
-                            <img src="assets/img/hero-carousel/1.jpeg" class="menu-img img-fluid" alt=""/>
+                        <a href="/desain/img/hero-carousel/1.jpeg" class="glightbox">
+                            <img src="/desain/img/hero-carousel/1.jpeg" class="menu-img img-fluid" alt=""/>
                         </a>
                         <h4 class="pt-2">{{ produk.produk_judul }}</h4>
                         <p class="ingredients">
