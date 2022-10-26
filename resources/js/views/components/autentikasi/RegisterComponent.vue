@@ -4,7 +4,7 @@
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
                     <a href="index.html">
-                        <img src="../assets/img/logo.png" height="75" width="80" class="rounded" alt="..."/>
+                        <!-- <img src="/desain/img/logo.png" height="75" width="80" class="rounded" alt="..."/> -->
                     </a>
 
                     <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">

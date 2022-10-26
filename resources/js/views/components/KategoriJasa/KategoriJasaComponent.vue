@@ -1,6 +1,6 @@
 <template>
     <main id="main">
-        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/UI/img/about.jpg')">
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/desain/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                 <h2>Kategori {{ namaJasa }} </h2>
                 <ol>
@@ -55,8 +55,8 @@
                 </div>
                 <div v-else>
                     <div class="col-lg-4 menu-item text-center" v-for="produk in dataProduk" :key="produk.id">
-                        <a href="/UI/img/hero-carousel/1.jpeg" class="glightbox">
-                            <img src="/UI/img/hero-carousel/1.jpeg" class="menu-img img-fluid" alt=""/>
+                        <a :href="produk_paket_gambar" class="glightbox">
+                            <img :src="produk.produk_paket_gambar" class="menu-img img-fluid" alt=""/>
                         </a>
                         <h4 class="mt-2">
                             {{ produk.produk_judul }}

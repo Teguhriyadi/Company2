@@ -14,7 +14,6 @@ import FilterKategori from "@/views/components/FilterKategoriComponent.vue"
 import SyaratKetentuan from "@/views/components/SyaratKetentuanComponent.vue"
 import BookingOnline from "@/views/components/BookingOnlineComponent.vue"
 import KebijakanPrivasi from "@/views/components/KebijakanPrivasiComponent.vue"
-import Product from "@/views/components/ProductComponent.vue"
 import ProductDetail from "@/views/components/ProductDetailComponent.vue"
 import Login from "@/views/components/autentikasi/LoginComponent.vue"
 import Register from "@/views/components/autentikasi/RegisterComponent.vue"
@@ -61,10 +60,6 @@ const routes = [
     {
         path: "/portofolio",
         component: Portofolio
-    },
-    {
-        path: "/produk",
-        component: Product
     },
     {
         path: "/produk/:slug",
