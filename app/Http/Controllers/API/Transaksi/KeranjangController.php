@@ -14,6 +14,7 @@ class KeranjangController extends Controller
             "nama" => $request->nama,
             "email" => $request->email,
             "tanggal" => $request->tanggal,
+            "harga" => $request->harga,
             "nomor_hp" => $request->nomor_hp,
             "lokasi" => $request->lokasi,
             "catatan" => $request->catatan,

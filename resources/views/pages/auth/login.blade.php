@@ -2,8 +2,9 @@
 <html>
 
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>
-        {{ empty($profil) ? '-' : $profil->profil_nama }} - Login Aplikasi
+        {{ empty($profil) ? '-' : $profil->profil_nama }} - Hame Aplikasi
     </title>
     @if (empty($profil))
     @else
@@ -95,7 +96,7 @@
     <div class="container">
         <h1>LOGIN</h1>
         <form action="{{ url('/admin/login') }}" method="POST">
-            {{ csrf_field() }}
+            @csrf
             <label>Email</label>
             <br>
             <input type="email" id="email" name="email">

@@ -44,6 +44,7 @@ class ProdukPaketController extends Controller
                 "produk_nama" => $detail->getProduk->produk_judul,
                 "produk_gambar" => $detail->getProduk->produk_image,
                 "produk_harga" => "Rp. " . number_format($detail->getProduk->produk_harga),
+                "harga" => $detail->getProduk->produk_harga,
                 "produk_deskripsi_singkat" => $detail->getProduk->produk_deskripsi_singkat,
                 "produk_deskripsi" => $detail->getProduk->produk_deskripsi
             ];

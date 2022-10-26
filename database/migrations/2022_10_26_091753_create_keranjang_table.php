@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string("nama");
             $table->string("email");
             $table->string("tanggal");
-            $table->integer("nomor_hp");
+            $table->string("harga");
+            $table->bigInteger("nomor_hp");
             $table->string("lokasi");
             $table->text("catatan");
             $table->integer("user_id");

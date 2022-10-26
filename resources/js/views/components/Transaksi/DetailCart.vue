@@ -74,7 +74,7 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Total Pembayaran
                                         </label>
-                                        <h6>Rp. 20.000 </h6>
+                                        <h6>{{ produkHarga }}</h6>
                                     </div>
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
@@ -105,66 +105,122 @@
             </div>
         </section>
     </main>
+
+    <form id="submit" method="POST" @submit.prevent="kirimPesan">
+        <input type="hidden" name="json" id="json_callback">
+    </form>
 </template>
 
 <script>
-    export default {
-        name: "DetailPemesanan",
-        data() {
-            return {
-                jasa: [],
-                paket: [],
-                pemesan: [],
-                nomor_wa: [],
-                email: [],
-                catatan: [],
-                pembayaran: [],
-                keranjang_id: []
+
+    import axios from "axios"
+
+export default {
+    name: "DetailPemesanan",
+    data() {
+        return {
+            jasa: [],
+            paket: [],
+            pemesan: [],
+            nomor_wa: [],
+            email: [],
+            catatan: [],
+            pembayaran: [],
+            keranjang_id: [],
+            produkHarga: [],
+            json: []
+        }
+    },
+    mounted() {
+        let jasa = this.$route.params.jasa;
+        this.jasa = jasa;
+
+        let paket = this.$route.params.paket;
+        this.paket = paket;
+
+        let nama = this.$route.params.nama;
+        this.pemesan = nama;
+
+        let nomor_hp = this.$route.params.nomor_hp;
+        this.nomor_wa = nomor_hp
+
+        let email = this.$route.params.email;
+        this.email = email
+
+        let catatan = this.$route.params.catatan;
+        this.catatan = catatan
+
+        let produkHarga = this.$route.params.produkHarga;
+        this.produkHarga = produkHarga
+
+        let keranjang_id = this.$route.params.id_keranjang;
+        this.keranjang_id = keranjang_id
+    },
+    created() {
+        this.payment();
+    },
+    methods: {
+        async payment() {
+            let idCart = this.$route.params.id_keranjang;
+            try {
+                const response = await axios.get("payment/"+idCart)
+                this.pembayaran = response.data[0].snap_token
+                console.log(this.pembayaran)
+            } catch (error) {
+                console.log(error);
             }
         },
-        mounted() {
-            let jasa = this.$route.params.jasa;
-            this.jasa = jasa;
 
-            let paket = this.$route.params.paket;
-            this.paket = paket;
-
-            let nama = this.$route.params.nama;
-            this.pemesan = nama;
-
-            let nomor_hp = this.$route.params.nomor_hp;
-            this.nomor_wa = nomor_hp
-
-            let email = this.$route.params.email;
-            this.email = email
-
-            let catatan = this.$route.params.catatan;
-            this.catatan = catatan
-
-            let keranjang_id = this.$route.params.id_keranjang;
-            this.keranjang_id = keranjang_id
+        send_response_callback(result) {
+            document.getElementById("json_callback").value = JSON.stringify(result);
+            $("#submit").submit();
         },
-        created() {
-            this.payment();
+
+        kirimPesan() {
+            console.log("ada");
         },
-        methods: {
-            async payment() {
-                let idCart = this.$route.params.id_keranjang;
-                try {
-                    const response = await axios.get("payment/"+idCart)
-                    this.pembayaran = response.data[0].snap_token
-                    console.log(this.pembayaran)
-                } catch (error) {
-                    console.log(error);
+
+        buttonPay() {
+            window.snap.pay(this.pembayaran, {
+                onSuccess: function(result)
+                {
+                    console.log(result);
+                    document.getElementById("json_callback").value = JSON.stringify(result);
+
+                },
+                onPending: function(result)
+                {
+                    console.log(result);
+                    let kirim = document.getElementById("json_callback").value = JSON.stringify(result);
+
+                    this.json = kirim;
+
+                    axios.post("payment", {
+                       json: this.json
+                    }).then(response => {
+                        console.log(response)
+
+                        window.location = '/'
+                    }).catch(error => {
+                        console.log(error);
+                    });
+                    // window.location = "/";
+                },
+                onError: function(result)
+                {
+                    console.log(result);
+                    document.getElementById("json_callback").value = JSON.stringify(result);
+                    $("#submit").submit();
+                },
+                onClose: function()
+                {
+                    alert('you closed the popup without finishing the payment');
+                    document.getElementById("json_callback").value = JSON.stringify(result);
+                    $("#submit").submit();
                 }
-            },
-
-            buttonPay() {
-                window.snap.pay(this.pembayaran , function() {
-
-                });
-            }
+            });
         }
     }
+}
 
 </script>

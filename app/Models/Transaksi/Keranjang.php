@@ -12,4 +12,9 @@ class Keranjang extends Model
     protected $table = "keranjang";
 
     protected $guarded = [''];
+
+    public function getUser()
+    {
+        return $this->belongsTo("App\Models\User", "user_id", "id");
+    }
 }

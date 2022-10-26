@@ -89,3 +89,4 @@ Route::get("/hasil_jasa/{produk_id}", [HasilProdukJasaController::class, "index"
 
 Route::post("/keranjang", [KeranjangController::class, "keranjang"]);
 Route::get("/payment/{id_cart}", [TransaksiPaymentController::class, "index"]);
+Route::post("/payment", [TransaksiPaymentController::class, "store"]);

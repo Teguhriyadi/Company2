@@ -148,7 +148,9 @@ export default {
             keranjang: [],
             loggedIn: localStorage.getItem("loggedIn"),
             token: localStorage.getItem("token"),
-            userId: []
+            userId: [],
+            harga: [],
+            produkHarga: []
         }
     },
     created() {
@@ -179,6 +181,8 @@ export default {
             try {
                 const response = await axios.get("produk_paket/detail/"+produk_id);
                 this.dataProduk = response.data;
+                this.harga = response.data[0].harga;
+                this.produkHarga = response.data[0].produk_harga
             } catch (error) {
                 console.log(error);
             }
@@ -200,6 +204,7 @@ export default {
                     nama: this.keranjang.nama,
                     email: this.keranjang.email,
                     tanggal: this.keranjang.booking,
+                    harga: this.harga,
                     nomor_hp: this.keranjang.nomor_hp,
                     lokasi: this.keranjang.lokasi,
                     catatan: this.keranjang.catatan,
@@ -216,6 +221,8 @@ export default {
                                 nomor_hp: this.keranjang.nomor_hp,
                                 catatan: this.keranjang.catatan,
                                 lokasi: this.keranjang.lokasi,
+                                harga: this.harga,
+                                produkHarga: this.produkHarga,
                                 id_keranjang: response.data.data.id
                             }
                         });
