@@ -40,7 +40,7 @@
                                     </span>
                                 </p>
                             </router-link>
-                            <form method="POST" @submit.prevent="userLogin">
+                            <form method="POST" @submit.prevent="login">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="email">
                                         Email address
@@ -88,46 +88,56 @@
 </template>
 
 <script>
-    import { reactive, ref } from "vue"
-    import { useRouter } from "vue-router"
     import axios from "axios"
 
     export default {
-        setup() {
-
-            const router = useRouter()
-            const user = reactive({
-                email: "",
-                password: ""
-            });
-
-            const loginFailed = ref(null)
-
-            function userLogin() {
-                let email = user.email
-                let password = user.password
-
-                axios.post("auth/login", {
-                    email,
-                    password
-                })
-                .then(response => {
-                    if (response.data.success) {
-                        localStorage.setItem("token", response.data.access_token)
-
-                        return router.push("/");
-                    }
-
-                    loginFailed.value = true
-                }).catch(error => {
-                    console.log("Error")
-                })
-            }
-
+        name: "LoginComponent",
+        data() {
             return {
-                user,
-                loginFailed,
-                userLogin
+                loggedIn: localStorage.getItem("loggedIn"),
+                token: localStorage.getItem("token"),
+
+                user: [],
+                loginFailed: null
+            }
+        },
+        methods: {
+            login() {
+                if (this.user.email && this.user.password) {
+                    axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie")
+                        .then(response => {
+                            console.log(response)
+
+                            axios.post("login", {
+                                email: this.user.email,
+                                password: this.user.password
+                            }).then(res => {
+                                console.log(res)
+
+                            if (res.data.success) {
+                                localStorage.setItem("loggedIn", "true")
+                                localStorage.setItem("token", res.data.token)
+
+                                this.loggedIn = true
+
+                                return this.$router.push("/");
+                            } else {
+                                this.loginFailed = true
+                            }
+                        }).catch(error => {
+                            console.log(error)
+                        })
+                    })
+                }
+
+                // if (!this.user.email) {
+                //     this.
+                // }
+            }
+        },
+        mounted() {
+            if (this.loggedIn) {
+                return this.$router.push("/");
             }
         }
     }

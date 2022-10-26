@@ -5,7 +5,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
                         <h2 data-aos="fade-down">
-                            Selamat Datang di
+                            Selamat Datang {{ user.nama }} di
                             <span>Duo Bintang Studio</span>
                         </h2>
                         <p data-aos="fade-up">
@@ -34,46 +34,26 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue"
-import { useRouter } from "vue-router"
-
 import axios from "axios"
 export default {
     name: "ComponentHero",
-    setup() {
-        const token = localStorage.getItem("token")
-
-        const router = useRouter()
-
-        const user = ref('')
-
-        onMounted(() => {
-            if (!token) {
-                return router.push("/")
-            }
-
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`
-            axios.get("auth/user-profile")
-            .then(response => {
-                console.log(response.data)
-                user.value = response.data
-            })
-            .catch(error => {
-                console.log(error.response.data)
-            })
-        })
-
-        return {
-            token,
-            user,
-        }
-    },
     data() {
         return {
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
+            user: [],
             dataCarousel: []
         }
     },
     created() {
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+            }
+        }).then(response => {
+            console.log(response)
+            this.user = response.data
+        })
         this.getCarousel();
     },
     methods: {
@@ -84,6 +64,12 @@ export default {
             } catch (error) {
                 console.log("Oopss.. Error");
             }
+        }
+    },
+
+    mounted() {
+        if (!this.loggedIn) {
+            return this.$router.push("/");
         }
     }
 }

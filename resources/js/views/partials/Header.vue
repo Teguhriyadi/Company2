@@ -48,20 +48,22 @@
                     </li>
 
 
-                    <li v-if="!token">
+                    <li v-if="!loggedIn">
                         <router-link to="/login">
                             Login
                         </router-link>
                     </li>
 
-                    <li v-if="!token">
+                    <li v-if="!loggedIn">
                         <router-link to="/daftar">
                             Daftar
                         </router-link>
                     </li>
 
-                    <li v-if="token" @click.prevent="logout" style="color: white;">
-                        Logout
+                    <li v-if="loggedIn">
+                        <a @click="logout" style="color: white;">
+                            Logout
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -70,39 +72,13 @@
 </template>
 
 <script>
-import { onMounted, ref } from "vue"
-import { useRouter } from "vue-router"
 
 import axios from "axios"
 export default {
     name: "Header",
-    setup() {
-        const token = localStorage.getItem("token")
-
-        const router = useRouter()
-
-        const user = ref('')
-
-        function logout() {
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`
-            axios.post("auth/logout")
-            .then(response => {
-                localStorage.removeItem("token")
-
-                return router.push("/")
-            }).catch(error => {
-                console.log(error.response.data)
-            })
-        }
-
-        return {
-            token,
-            user,
-            logout
-        }
-    },
     data() {
         return {
+            loggedIn: null,
             dataProfil: [],
             dataKategoriJasa: []
         }
@@ -112,6 +88,18 @@ export default {
         this.getKategoriJasa();
     },
     methods: {
+        getLoggedIn() {
+            this.loggedIn = localStorage.getItem("loggedIn");
+        },
+
+        logout() {
+            axios.get("logout")
+            .then(() => {
+                localStorage.removeItem("loggedIn")
+
+                return this.$router.push("/");
+            })
+        },
         async getProfil() {
             try {
                 const response = await axios.get("profil_perusahaan");
@@ -127,6 +115,14 @@ export default {
                 this.dataKategoriJasa = response.data;
             } catch(error) {
                 console.log("Oopss.. Error");
+            }
+        }
+    },
+    watch: {
+        $route: {
+            immediate: true,
+            handler() {
+                this.getLoggedIn()
             }
         }
     }
