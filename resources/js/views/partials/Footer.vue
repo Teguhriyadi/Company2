@@ -33,12 +33,12 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>List Produk Yang Bisa Dipilih</h4>
+                        <h4>Kategori Jasa</h4>
                         <ul>
-                            <li v-for="(produk, index) in dataProduk" :key="index">
-                                <i class="bx bx-chevron-right"></i>
-                                <router-link :to="{name: 'produkDetail', params: {slug: produk.produk_slug} }">
-                                    {{ produk.produk_judul }}
+                            <li v-for="(kategori, index) in dataKategoriJasa" :key="index">
+                                <i class="fas fa-arrow-right" style="padding-right: 5px;"></i>
+                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.kategori_jasa_slug, id: kategori.kategori_id, nama: kategori.kategori_jasa_nama} }">
+                                    {{ kategori.kategori_jasa_nama }}
                                 </router-link>
                             </li>
                         </ul>
@@ -76,9 +76,9 @@
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-whatsapp"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-google"></i></a>
+                <a href="#" class="twitter"><i class="fas fa-user"></i></a>
+                <a href="#" class="instagram"><i class="fas fa-user"></i></a>
+                <a href="#" class="google-plus"><i class="fas fa-user"></i></a>
             </div>
         </div>
     </footer>
@@ -91,12 +91,12 @@
         data() {
             return {
                 dataProfilPerusahaan: [],
-                dataProduk: []
+                dataKategoriJasa: []
             }
         },
         created() {
             this.getProfilPerusahaan();
-            this.getProduk();
+            this.getKategoriJasa();
         },
         methods: {
             async getProfilPerusahaan() {
@@ -108,10 +108,10 @@
                 }
             },
 
-            async getProduk() {
+            async getKategoriJasa() {
                 try {
-                    const response = await axios.get("produk");
-                    this.dataProduk = response.data;
+                    const response = await axios.get("kategori_jasa");
+                    this.dataKategoriJasa = response.data;
                 } catch (error) {
                     console.log("Oopss. Error");
                 }
