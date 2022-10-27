@@ -61,7 +61,7 @@
 
 <script>
 import axios from "axios"
-import Contact from "@/views/components/ContactComponent.vue"
+import Contact from "@/views/components/contact/Contact.vue"
 
 export default {
     name: "ProductDetail",
