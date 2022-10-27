@@ -2,14 +2,14 @@
     <main id="main">
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/desain/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-                <h2>Detail Price List</h2>
+                <h2>Detail Harga Jasa</h2>
                 <ol>
                     <li>
                         <router-link to="/">
                             Home
                         </router-link>
                     </li>
-                    <li>Detail Price List</li>
+                    <li>Detail Harga Jasa</li>
                 </ol>
             </div>
         </div>
@@ -28,21 +28,41 @@
                                     Beberapa Hasil Foto Dari Jasa
                                 </p>
                             </div>
-                            <div id="projects" class="projects mt-2 text-center">
-                                <div class="container" data-aos="fade-left">
-                                    <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
-                                        <div class="col-lg-4 col-md-6" v-for="(hasil, index) in dataHasilFoto" :key="index">
-                                            <div class="portfolio-content h-100">
-                                                <img :src="hasil.hasil_gambar" class="img-fluid" alt=""/>
-                                                <div class="portfolio-info">
-                                                    <a :href="hasil.hasil_gambar" title="Remodeling 1" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link">
-                                                        <i class="bi bi-eye ms-4"></i>
-                                                    </a>
+                            <div id="projects" class="projects mt-2">
+                                <template v-if="dataHasilFoto.length">
+                                    <div class="container" data-aos="fade-left">
+                                        <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+                                            <div class="col-lg-4 col-md-6" v-for="(hasil, index) in dataHasilFoto" :key="index">
+                                                <div class="portfolio-content h-100">
+                                                    <img :src="hasil.hasil_gambar" class="img-fluid" alt=""/>
+                                                    <div class="portfolio-info">
+                                                        <a :href="hasil.hasil_gambar" title="Remodeling 1" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link">
+                                                            <i class="bi bi-eye ms-4"></i>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </template>
+                                <template v-else>
+                                    <div v-if="load" class="col-md-12">
+                                        <i>
+                                            <strong>
+                                                Data Sedang Dalam Perjalanan
+                                            </strong>
+                                        </i>
+                                    </div>
+                                    <div v-if="output" class="col-md-12">
+                                        <div class="alert alert-danger">
+                                            <i>
+                                                <strong>
+                                                    Sepertinya Belum Ada Data Yang Bisa Ditampilkan
+                                                </strong>
+                                            </i>
+                                        </div>
+                                    </div>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -61,12 +81,28 @@
                         <div class="price-info mt-3">
                             <h3>Benefit Yang Didapatkan</h3>
                             <ul>
-                                <li v-for="(benefit, index) in dataBenefit" :key="index">
-                                    <strong>
-                                        <i class="fas fa-user"></i>
-                                    </strong> Hasil Foto
-                                    {{ benefit.benefit_nama }}
-                                </li>
+                                <template v-if="dataBenefit.length">
+                                    <li v-for="(benefit, index) in dataBenefit" :key="index">
+                                        <strong>
+                                            <i class="fas fa-user"></i>
+                                        </strong> Hasil Foto
+                                        {{ benefit.benefit_nama }}
+                                    </li>
+                                </template>
+                                <template v-else>
+                                    <div v-if="load">
+                                        <i>
+                                            Tunggu Sebentar Yaa
+                                        </i>
+                                    </div>
+                                    <div v-if="output" class="alert alert-danger">
+                                        <i>
+                                            <strong>
+                                                Oopss.. Belum Ada Data
+                                            </strong>
+                                        </i>
+                                    </div>
+                                </template>
                             </ul>
                         </div>
                         <div class="price-description">
@@ -95,7 +131,9 @@ export default {
             dataBenefit: [],
             dataHasilFoto: [],
             paket: [],
-            jasa: []
+            jasa: [],
+            load: false,
+            output: false,
         }
     },
     created() {
@@ -123,8 +161,20 @@ export default {
         async getBenefit() {
             let produk_id = this.$route.params.id;
             try {
+                this.load = true;
+
                 const response = await axios.get("benefit/"+produk_id);
-                this.dataBenefit = response.data;
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.load = false;
+                        this.output = true;
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.load = false;
+                        this.dataBenefit = response.data;
+                    }, 1000);
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -134,7 +184,17 @@ export default {
             let produk_id = this.$route.params.id;
             try {
                 const response = await axios.get("hasil_jasa/"+produk_id);
-                this.dataHasilFoto = response.data;
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.load = false;
+                        this.output = true;
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.load = false;
+                        this.dataHasilFoto = response.data;
+                    }, 1000);
+                }
             } catch (error) {
                 console.log(error);
             }

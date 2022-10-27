@@ -40,6 +40,10 @@ Route::post("/payment", [PaymentController::class, "store"]);
 
 Route::get('/', [AppController::class, "app"]);
 
+Route::get("/{any}", function() {
+    return view("app");
+});
+
 Route::prefix("admin")->group(function () {
     Route::group(["middleware" => ["guest"]], function () {
         Route::get("/login", [LoginController::class, "login"]);
