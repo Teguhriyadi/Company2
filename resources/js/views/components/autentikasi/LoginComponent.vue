@@ -3,23 +3,20 @@
         <div class="container">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                    <h1 class="my-5 display-5 fw-bold ls-tight profil">
                         DuoBintangStudio <br />
-                        <span style="color: hsl(218, 81%, 75%); font-size: 40px;">
+                        <span class="jargon">
                             <i>
                                 " Murah, Aman, Terpercaya "
                             </i>
                         </span>
                     </h1>
-                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Temporibus, expedita iusto veniam atque, magni tempora mollitia
-                        dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                        ab ipsum nisi dolorem modi. Quos?
+                    <p class="mb-4 opacity-70 pesan">
+                        Isikan Form Login Terlebih Dahulu Jika Anda Ingin Melakukan Transaksi. Kami Memudahkan Anda Dalam Sistem Kami , Yaitu Anda Hanya Perlu Login Sekali Saja. Apabila Anda Logout Dari Sistem Kami, Maka Anda Diharuskan Mengisi Form Login Kembali.
                     </p>
-                    <router-link to="/" class="btn btn-block btn-primary">
+                    <!-- <router-link to="/" class="btn btn-block btn-primary">
                         Kembali Ke Halaman Home
-                    </router-link>
+                    </router-link> -->
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
@@ -57,7 +54,12 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mb-4" style="width: 100%;">
-                                    Login
+                                    <span v-if="loading">
+                                        Data Anda Sedang Diproses Oleh Sistem
+                                    </span>
+                                    <span v-else>
+                                        Login
+                                    </span>
                                 </button>
 
                                 <div class="text-center">
@@ -87,50 +89,70 @@
     </section>
 </template>
 
+<style scoped>
+
+.profil {
+    color: hsl(218, 81%, 95%);
+}
+.jargon {
+    color: hsl(218, 81%, 75%);
+    font-size: 40px;
+}
+.pesan {
+    color: hsl(218, 81%, 85%);
+    word-spacing: 0.4em;
+    text-align: justify
+}
+</style>
+
 <script>
-    import axios from "axios"
+import axios from "axios"
 
-    export default {
-        name: "LoginComponent",
-        data() {
-            return {
-                loggedIn: localStorage.getItem("loggedIn"),
-                token: localStorage.getItem("token"),
+export default {
+    name: "LoginComponent",
+    data() {
+        return {
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
 
-                user: [],
-                loginFailed: null
-            }
-        },
-        methods: {
-            login() {
-                if (this.user.email && this.user.password) {
-                    axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie")
-                        .then(response => {
-                            console.log(response)
+            user: [],
+            loginFailed: null,
+            loading: false
+        }
+    },
+    methods: {
+        login() {
 
-                            axios.post("login", {
-                                email: this.user.email,
-                                password: this.user.password
-                            }).then(res => {
-                                console.log(res)
+            if (this.user.email && this.user.password) {
+                axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie")
+                .then(response => {
+                    axios.post("login", {
+                        email: this.user.email,
+                        password: this.user.password
+                    }).then(res => {
+                        this.loading = true;
+                        if (res.data.success) {
+                            localStorage.setItem("loggedIn", "true")
+                            localStorage.setItem("token", res.data.token)
 
-                            if (res.data.success) {
-                                localStorage.setItem("loggedIn", "true")
-                                localStorage.setItem("token", res.data.token)
+                            this.loggedIn = true
 
-                                this.loggedIn = true
+                            setTimeout(() => {
+                                alert("Anda Berhasil Login")
+                                this.loading = false;
+                                window.location = '/'
+                            }, 1000);
 
-                                return this.$router.push("/");
-                            } else {
-                                this.loginFailed = true
-                            }
-                        }).catch(error => {
-                            console.log(error)
-                        })
+                        } else {
+                            this.loginFailed = true
+                        }
+                    }).catch(error => {
+                        console.log(error)
                     })
-                }
+                })
+            }
 
-                // if (!this.user.email) {
+            // if (!this.user.email) {
                 //     this.
                 // }
             }
