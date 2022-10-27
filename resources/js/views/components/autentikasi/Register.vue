@@ -1,27 +1,22 @@
 <template>
     <section class="background-radial-gradient overflow-hidden">
-        <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+        <div class="container">
             <div class="row gx-lg-5 align-items-center mb-5">
                 <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-                    <a href="index.html">
-                        <!-- <img src="/desain/img/logo.png" height="75" width="80" class="rounded" alt="..."/> -->
-                    </a>
-
-                    <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-                        StudioFoto. <br />
-                        <span style="color: hsl(218, 81%, 75%)">
-                            best than your ex
+                    <h1 class="my-5 display-5 fw-bold ls-tight profil">
+                        Duo Bintang Studio. <br />
+                        <span class="jargon">
+                            <i>
+                                " Kualitas Tidak Perlu Diragukan "
+                            </i>
                         </span>
                     </h1>
-                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                        Temporibus, expedita iusto veniam atque, magni tempora mollitia
-                        dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                        ab ipsum nisi dolorem modi. Quos?
+                    <p class="mb-4 opacity-70 deskripsi">
+                        Form Pendaftaran Digunakan Apabila Anda Belum Mempunyai Akun Di Sistem Kami. Setelah Pendaftaran Selesai, Maka Anda Akan Diarahkan Ke Halaman Login.
                     </p>
-                    <a href="index.html" class="btn btn-block btn-primary">
+                    <!-- <a href="index.html" class="btn btn-block btn-primary">
                         Get Into Home Again
-                    </a>
+                    </a> -->
                 </div>
 
                 <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
@@ -36,33 +31,33 @@
                         <div class="card-body px-4 py-5 px-md-5">
                             <h1 class="mb-2 text-center">
                                 <span style="color: hsl(218, 81%, 75%)">
-                                    Register Page
+                                    Form Register
                                 </span>
                             </h1>
                             <a href="login.html" class="mt-4" style="text-decoration: none; color: black; font-size: 14px">
                                 <p>
-                                    Already have an account?
+                                    Sudah Punya Akun?
                                     <span class="text-primary">
-                                        Sign in here
+                                        Login Disini
                                     </span>
                                 </p>
                             </a>
-                            <form  method="POST" @submit.prevent="handleSubmit">
+                            <form  method="POST" @submit.prevent="register">
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="first_name">
-                                                First name
+                                                Nama Depan
                                             </label>
-                                            <input type="text" id="first_name" class="form-control" v-model="firstname">
+                                            <input type="text" id="first_name" class="form-control" v-model="user.first_name">
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label" for="last_name">
-                                                Last name
+                                                Nama Belakang
                                             </label>
-                                            <input type="text" id="last_name" class="form-control" v-model="user.nama">
+                                            <input type="text" id="last_name" class="form-control" v-model="user.last_name">
                                         </div>
                                     </div>
                                 </div>
@@ -85,11 +80,18 @@
                                     <label class="form-label" for="confirmation_password">
                                         Konfirmasi Password
                                     </label>
-                                    <input type="password" id="confirmation_password" class="form-control" v-model="user.confirmation_password">
+                                    <input type="password" id="confirmation_password" class="form-control" v-model="user.konfirmasi_password">
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-block w-100 mb-4">
-                                    Sign up
+                                    <span v-if="loading">
+                                        <i>
+                                            Data Anda Sedang Diproses Oleh Sistem
+                                        </i>
+                                    </span>
+                                    <span v-else>
+                                        Daftar
+                                    </span>
                                 </button>
 
                                 <div class="text-center">
@@ -119,45 +121,73 @@
     </section>
 </template>
 
+<style scoped>
+
+.profil {
+    color: hsl(218, 81%, 95%);
+}
+
+.jargon {
+    color: hsl(218, 81%, 75%);
+}
+.deskripsi {
+    color: hsl(218, 81%, 85%);
+    word-spacing: 0.4em;
+    text-align: justify
+}
+</style>
+
 <script>
-    import { reactive, ref } from "vue"
-    import { useRouter } from "vue-router"
-    import axios from "axios"
+export default {
+    name: "Register",
+    data() {
+        return {
+            user: [],
+            loading: false
+        }
+    },
+    methods: {
+        register() {
+            this.loading = true;
+            if (this.user.first_name && this.user.last_name && this.user.email && this.user.password && this.user.konfirmasi_password) {
 
-    export default {
-        setup() {
-            const router = useRouter()
+                if (this.user.password != this.user.konfirmasi_password) {
+                    setTimeout(() => {
+                        alert("Konfirmasi Password Tidak Sesuai")
+                        this.loading = false;
 
-            const user = reactive({
-                nama: "",
-                email: "",
-                password: "",
-                confirmation_password: ""
-            });
+                        window.location = "/";
 
-            function handleSubmit() {
-                let nama = user.nama
-                let email = user.email
-                let password = user.password
-                let confirmation_password = user.confirmation_password;
+                    }, 1000);
+                } else {
+                    axios.post("register", {
+                        first_name: this.user.first_name,
+                        last_name: this.user.last_name,
+                        email: this.user.email,
+                        password: this.user.password,
+                        konfirmasi_password: this.user.konfirmasi_password
+                    }).then(response => {
+                        if (response.data.success) {
+                            setTimeout(() => {
+                                alert("Data Anda Berhasil di Buat");
+                                this.loading = false;
 
-                axios.post("register", {
-                    nama,
-                    email,
-                    password,
-                    confirmation_password
-                })
-                .then(() => {
-                    return router.push("/login")
-                }).catch(error => {
-                    console.log("Error")
-                })
-            }
+                                window.location = "/login"
+                            }, 1000);
+                        }
 
-            return {
-                user,
-                handleSubmit
+                        console.log(response.data)
+                    }).catch(error => {
+                        setTimeout(() => {
+                            alert("Email Sudah Terdaftar");
+                            this.loading = false;
+
+                            window.location = "/";
+                        }, 1000);
+                    });
+                }
             }
         }
     }
+}
 </script>

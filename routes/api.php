@@ -48,8 +48,8 @@ Route::middleware("auth:sanctum")->get("/user", function(Request $request) {
 });
 
 Route::post("/login", [LoginController::class, "index"]);
+Route::post("/register", [LoginController::class, "register"]);
 Route::get("/logout", [LoginController::class, "logout"]);
-
 
 Route::resource("testimonial", TestimonialController::class);
 Route::post("contact_us", [ContactUsController::class, "store"]);
