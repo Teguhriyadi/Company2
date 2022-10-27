@@ -43,19 +43,21 @@
                                         Email address
                                     </label>
                                     <input type="email" id="email"
-                                    class="form-control" v-model="user.email">
+                                    class="form-control" v-model="user.email" required>
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="password">
                                         Password
                                     </label>
-                                    <input type="password" id="password" class="form-control" v-model="user.password">
+                                    <input type="password" id="password" class="form-control" v-model="user.password" required>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mb-4" style="width: 100%;">
                                     <span v-if="loading">
-                                        Data Anda Sedang Diproses Oleh Sistem
+                                        <i>
+                                            Data Anda Sedang Diproses Oleh Sistem
+                                        </i>
                                     </span>
                                     <span v-else>
                                         Login
@@ -147,20 +149,22 @@ export default {
                             this.loginFailed = true
                         }
                     }).catch(error => {
-                        console.log(error)
+                        this.loading = true;
+
+                        setTimeout(() => {
+                            alert("Periksa Kembali Form Isian Anda");
+                            this.loading = false
+                            window.location = "/login"
+                        }, 1000);
                     })
                 })
             }
-
-            // if (!this.user.email) {
-                //     this.
-                // }
-            }
-        },
-        mounted() {
-            if (this.loggedIn) {
-                return this.$router.push("/");
-            }
+        }
+    },
+    mounted() {
+        if (this.loggedIn) {
+            return this.$router.push("/");
         }
     }
+}
 </script>
