@@ -30,7 +30,7 @@
     import Hero from "@/views/components/HeroComponent.vue"
     import Testimonial from "@/views/components/TestimonialComponent.vue"
     import Blog from "@/views/components/BlogComponent.vue"
-    import Contact from "@/views/components/ContactComponent.vue"
+    import Contact from "@/views/components/contact/Contact.vue"
 
     export default {
         name: "Home",

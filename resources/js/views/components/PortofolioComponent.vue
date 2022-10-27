@@ -51,7 +51,7 @@
 <script>
 import axios from "axios"
 import Hero from "@/views/components/HeroComponent.vue"
-import Contact from "@/views/components/ContactComponent.vue"
+import Contact from "@/views/components/contact/Contact.vue"
 
 export default {
     name: "Portofolio",
