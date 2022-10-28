@@ -21,6 +21,7 @@ import KategoriJasa from "@/views/components/KategoriJasa/KategoriJasaComponent.
 import DetailKategoriJasa from "@/views/components/KategoriJasa/DetailKategoriJasaComponent.vue"
 import Cart from "@/views/components/Transaksi/Cart.vue"
 import DetailCart from "@/views/components/Transaksi/DetailCart.vue"
+import History from "@/views/components/Transaksi/HistoryBelanja.vue"
 
 const routes = [
     {
@@ -95,6 +96,11 @@ const routes = [
         path: "/cart_detail",
         name: "cart_detail",
         component: DetailCart
+    },
+    {
+        path: "/history_belanja",
+        name: 'history',
+        component: History
     }
 ];
 

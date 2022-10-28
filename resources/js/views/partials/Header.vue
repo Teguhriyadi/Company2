@@ -60,10 +60,27 @@
                         </router-link>
                     </li>
 
-                    <li v-if="loggedIn">
-                        <a @click="logout" style="color: white;">
-                            Logout
+                    <li class="dropdown" v-if="loggedIn">
+                        <a href="#">
+                            <span>Akun</span>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </a>
+                        <ul>
+                            <li>
+                                <a href="profil.html">Profile</a>
+                            </li>
+                            <li>
+                                <a @click="logout">Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li v-if="loggedIn">
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
+                        <router-link :to="{name: 'history', params : {id_user: user.id } }">
+                            <i class="fas fa-cart-flatbed">
+                                Keranjang
+                            </i>
+                        </router-link>
                     </li>
                 </ul>
             </nav>
@@ -78,12 +95,22 @@ export default {
     name: "Header",
     data() {
         return {
-            loggedIn: null,
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
             dataProfil: [],
-            dataKategoriJasa: []
+            dataKategoriJasa: [],
+            user: []
         }
     },
     created() {
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+            }
+        }).then(response => {
+            this.user = response.data
+        });
+
         this.getProfil();
         this.getKategoriJasa();
     },
@@ -98,7 +125,10 @@ export default {
                 localStorage.removeItem("token")
                 localStorage.removeItem("loggedIn")
 
-                return this.$router.push("/");
+                setTimeout(() => {
+                    alert("Berhasil Logout Dari Sistem");
+                    window.location = "/";
+                }, 500);
             })
         },
         async getProfil() {
