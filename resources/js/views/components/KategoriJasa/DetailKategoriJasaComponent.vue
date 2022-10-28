@@ -110,9 +110,30 @@
                             <p>
                                 {{ detail.produk_deskripsi }}
                             </p>
-                            <router-link :to="{name: 'cart', params: {produk_id: detail.produk_id, paket: paket, jasa: jasa} }" class="btn btn-sm btn-warning w-100 text-light">
-                                Booking Sekarang
-                            </router-link>
+                            <!-- <router-link :to="{name: 'cart', params: {produk_id: detail.produk_id, paket: paket, jasa: jasa} }" class="btn btn-sm btn-warning w-100 text-light">
+                                <span v-if="autentikasi">
+                                    <i>
+                                        <strong>
+                                            Data Sedang Diproses
+                                        </strong>
+                                    </i>
+                                </span>
+                                <span v-else>
+                                    Booking Sekarang
+                                </span>
+                            </router-link> -->
+                            <a @click="booking(detail.produk_id)" class="btn btn-sm btn-warning w-100 text-light">
+                                <span v-if="autentikasi">
+                                    <i>
+                                        <strong>
+                                            Data Sedang Diproses
+                                        </strong>
+                                    </i>
+                                </span>
+                                <span v-else>
+                                    Booking Sekarang
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -127,6 +148,9 @@ export default {
     name: "DetailKategoriJasa",
     data() {
         return {
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
+            user: [],
             detailJasa: [],
             dataBenefit: [],
             dataHasilFoto: [],
@@ -134,9 +158,17 @@ export default {
             jasa: [],
             load: false,
             output: false,
+            autentikasi: false
         }
     },
     created() {
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+            }
+        }).then(response => {
+            this.user = response.data
+        });
         this.getDetailJasa();
         this.getBenefit();
         this.getHasilFoto();
@@ -197,6 +229,29 @@ export default {
                 }
             } catch (error) {
                 console.log(error);
+            }
+        },
+
+        booking(produk_id) {
+
+            this.autentikasi = true;
+            if (!this.loggedIn) {
+                setTimeout(() => {
+                    alert("Anda Harus Login Terlebih Dahulu");
+                    this.autentikasi = false;
+
+                    window.location = "/login";
+                }, 1000);
+            } else {
+                setTimeout(() => {
+                    this.autentikasi = false;
+
+                    let idProduk = produk_id;
+                    let jasaNama = this.jasa;
+                    let paketNama = this.paket;
+
+                    return this.$router.push({name: 'cart', params: {produk_id: idProduk, paket: jasaNama, jasa: paketNama} });
+                }, 1000);
             }
         }
     }

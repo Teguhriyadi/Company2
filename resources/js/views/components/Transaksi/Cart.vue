@@ -150,7 +150,8 @@ export default {
             token: localStorage.getItem("token"),
             userId: [],
             harga: [],
-            produkHarga: []
+            produkHarga: [],
+            dataKosong: []
         }
     },
     created() {

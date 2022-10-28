@@ -24,7 +24,7 @@
 
 <script>
     import About from "@/views/components/AboutComponent.vue"
-    import Services from "@/views/components/ServicesComponent.vue"
+    import Jasa from "@/views/components/jasa/Jasa.vue"
     import ChooseUs from "@/views/components/ChooseUsComponent.vue"
     import Questions from "@/views/components/QuestionComponent.vue"
     import Hero from "@/views/components/HeroComponent.vue"
@@ -36,7 +36,7 @@
         name: "Home",
         components: {
             "app-about" : About,
-            "app-services" : Services,
+            "app-services" : Jasa,
             "app-choose-us" : ChooseUs,
             "app-question" : Questions,
             "app-hero" : Hero,
