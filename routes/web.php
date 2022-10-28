@@ -20,6 +20,7 @@ use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
 use App\Http\Controllers\Production\Produk\BenefitProdukController;
 use App\Http\Controllers\TentangKamiController;
+use App\Http\Controllers\Web\Jasa\KategoriJasaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -95,6 +96,10 @@ Route::prefix("admin")->group(function () {
             Route::get("/question/edit", [QuestionController::class, "edit"]);
             Route::put("/question/simpan", [QuestionController::class, "update"]);
             Route::resource("question", QuestionController::class);
+            // END
+
+            // Data Kategori Jasa
+            Route::resource("kategori_jasa", KategoriJasaController::class);
             // END
 
             Route::get("/client/edit", [ClientController::class, "edit"]);

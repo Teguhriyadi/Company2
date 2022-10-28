@@ -70,6 +70,10 @@
                     href="{{ url('/admin/master/question') }}">
                     Question
                 </a>
+                <a class="collapse-item {{ Request::is('admin/master/kategori_jasa') ? 'active' : '' }}"
+                    href="{{ url('/admin/master/kategori_jasa') }}">
+                    Kategori Jasa
+                </a>
                 <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
                     href="{{ url('/admin/master/client') }}">
                     Client
