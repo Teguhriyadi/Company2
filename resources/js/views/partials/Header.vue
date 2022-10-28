@@ -75,11 +75,8 @@
                         </ul>
                     </li>
                     <li v-if="loggedIn">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1</span>
                         <router-link :to="{name: 'history', params : {id_user: user.id } }">
-                            <i class="fas fa-cart-flatbed">
-                                Keranjang
-                            </i>
+                            <i class="fas fa-cart-flatbed" style="margin-right: 5px;"></i> Keranjang
                         </router-link>
                     </li>
                 </ul>
@@ -110,6 +107,7 @@ export default {
         }).then(response => {
             this.user = response.data
         });
+
 
         this.getProfil();
         this.getKategoriJasa();
@@ -147,7 +145,9 @@ export default {
             } catch(error) {
                 console.log("Oopss.. Error");
             }
-        }
+        },
+
+
     },
     watch: {
         $route: {
