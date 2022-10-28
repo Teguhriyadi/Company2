@@ -57,12 +57,32 @@
                     <div class="price-info mt-3">
                         <h3>Benefit Yang Didapatkan</h3>
                         <ul>
-                            <li v-for="(benefit, index) in dataBenefit" :key="index">
+                            <template v-if="dataBenefit.length">
+                                <li v-for="(benefit, index) in dataBenefit" :key="index">
                                 <strong>
                                     <i class="fas fa-user"></i>
                                 </strong>
                                 {{ benefit.benefit_nama }}
                             </li>
+                            </template>
+                            <template v-else>
+                                <div v-if="load" class="col-md-12">
+                                    <i>
+                                        <strong>
+                                            Tunggu Beberapa Detik
+                                        </strong>
+                                    </i>
+                                </div>
+                                <div v-if="output" class="col-md-12">
+                                    <div class="alert alert-danger text-center">
+                                        <i>
+                                            <strong>
+                                                Data Tidak Ada
+                                            </strong>
+                                        </i>
+                                    </div>
+                                </div>
+                            </template>
                         </ul>
                     </div>
                 </div>
@@ -120,8 +140,13 @@
                         </div>
 
                         <div class="text-center">
-                            <button type="submit" class="btn-warning btn-sm mt-2">
-                                Booking Sekarang
+                            <button  type="submit" class="btn btn-warning btn-sm mt-2">
+                                <span v-if="loading">
+                                    Data Sedang Diproses
+                                </span>
+                                <span v-else>
+                                    Booking Sekarang
+                                </span>
                             </button>
                             <!-- <router-link :to="{name: 'cart_detail', params: {jasa: jasa, paket: paket} }" class="btn-sm btn btn-warning mt-2">
                                 Booking Sekarang
@@ -151,7 +176,9 @@ export default {
             userId: [],
             harga: [],
             produkHarga: [],
-            dataKosong: []
+            load: false,
+            output: false,
+            loading: false
         }
     },
     created() {
@@ -192,14 +219,27 @@ export default {
         async getBenefit() {
             let produk_id = this.$route.params.produk_id;
             try {
+                this.load = true;
+
                 const response = await axios.get("benefit/"+produk_id);
-                this.dataBenefit = response.data;
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.load = false;
+                        this.output = true;
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.load = false
+                        this.dataBenefit = response.data;
+                    }, 1000);
+                }
             } catch (error) {
                 console.log(error);
             }
         },
 
         transaksi() {
+            this.loading = true;
             if (this.keranjang.nama && this.keranjang.email && this.keranjang.booking && this.keranjang.nomor_hp && this.keranjang.lokasi && this.keranjang.catatan) {
                 axios.post("keranjang", {
                     nama: this.keranjang.nama,
@@ -212,21 +252,25 @@ export default {
                     user_id: this.userId
                 }).then(response => {
                     if (response.data.success) {
-                        return this.$router.push({
-                            name: 'cart_detail',
-                            params: {
-                                jasa: this.jasa,
-                                paket: this.paket,
-                                nama: this.keranjang.nama,
-                                email: this.keranjang.email,
-                                nomor_hp: this.keranjang.nomor_hp,
-                                catatan: this.keranjang.catatan,
-                                lokasi: this.keranjang.lokasi,
-                                harga: this.harga,
-                                produkHarga: this.produkHarga,
-                                id_keranjang: response.data.data.id
-                            }
-                        });
+                        setTimeout(() => {
+                            this.loading = false;
+                            alert("Data Anda Berhasil Diproses")
+                            return this.$router.push({
+                                name: 'cart_detail',
+                                params: {
+                                    jasa: this.jasa,
+                                    paket: this.paket,
+                                    nama: this.keranjang.nama,
+                                    email: this.keranjang.email,
+                                    nomor_hp: this.keranjang.nomor_hp,
+                                    catatan: this.keranjang.catatan,
+                                    lokasi: this.keranjang.lokasi,
+                                    harga: this.harga,
+                                    produkHarga: this.produkHarga,
+                                    id_keranjang: response.data.data.id
+                                }
+                            });
+                        }, 1000);
                     }
                 }).catch(error => {
                     console.log(error)
