@@ -110,18 +110,6 @@
                             <p>
                                 {{ detail.produk_deskripsi }}
                             </p>
-                            <!-- <router-link :to="{name: 'cart', params: {produk_id: detail.produk_id, paket: paket, jasa: jasa} }" class="btn btn-sm btn-warning w-100 text-light">
-                                <span v-if="autentikasi">
-                                    <i>
-                                        <strong>
-                                            Data Sedang Diproses
-                                        </strong>
-                                    </i>
-                                </span>
-                                <span v-else>
-                                    Booking Sekarang
-                                </span>
-                            </router-link> -->
                             <a @click="booking(detail.produk_id)" class="btn btn-sm btn-warning w-100 text-light">
                                 <span v-if="autentikasi">
                                     <i>
