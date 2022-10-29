@@ -1,6 +1,6 @@
 <template>
     <main id="main">
-        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('theme/img/about.jpg')">
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/desain/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                 <h2>
                     SK
@@ -30,21 +30,39 @@
                 </div>
 
                 <div class="faq-list">
-                    <ul>
-                        <li v-for="(syarat, index) in dataSyaratKetentuan" :key="index" data-aos="fade-up">
-                            <i class="bx bx-help-circle icon-help"></i>
-                            <a data-bs-toggle="collapse" :class="++index === 1 ? 'collapse' : 'collapsed' " :data-bs-target="'#faq-list'+index">
-                                {{ syarat.syarat_ketentuan_judul }}
-                                <i class="bx bx-chevron-down icon-show"></i>
-                                <i class="bx bx-chevron-up icon-close"></i>
-                            </a>
-                            <div :id="'faq-list'+index" :class="index === 1 ? 'collapse show' : 'collapse'" data-bs-parent=".faq-list">
-                                <p>
-                                    {{ syarat.syarat_ketentuan_deskripsi }}
-                                </p>
+                    <template v-if="dataSyaratKetentuan.length">
+                        <ul>
+                            <li v-for="(syarat, index) in dataSyaratKetentuan" :key="index" data-aos="fade-up">
+                                <i class="bx bx-help-circle icon-help"></i>
+                                <a data-bs-toggle="collapse" :class="++index === 1 ? 'collapse' : 'collapsed' " :data-bs-target="'#faq-list'+index">
+                                    {{ syarat.syarat_ketentuan_judul }}
+                                    <i class="bx bx-chevron-down icon-show"></i>
+                                    <i class="bx bx-chevron-up icon-close"></i>
+                                </a>
+                                <div :id="'faq-list'+index" :class="index === 1 ? 'collapse show' : 'collapse'" data-bs-parent=".faq-list">
+                                    <p>
+                                        {{ syarat.syarat_ketentuan_deskripsi }}
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </template>
+                    <template v-else>
+                        <center v-if="spinner" class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
                             </div>
-                        </li>
-                    </ul>
+                        </center>
+                        <div class="col-md-12" v-if="output">
+                            <div class="alert alert-danger text-center">
+                                <i>
+                                    <strong>
+                                        Oopss.. Data Syarat dan Ketentuan Saat Ini Belum Tersedia
+                                    </strong>
+                                </i>
+                            </div>
+                        </div>
+                    </template>
                 </div>
             </div>
         </section>
@@ -58,7 +76,9 @@ export default {
     name: "SyaratKetentuan",
     data() {
         return {
-            dataSyaratKetentuan: []
+            dataSyaratKetentuan: [],
+            spinner: false,
+            output: false
         }
     },
     created() {
@@ -66,11 +86,22 @@ export default {
     },
     methods: {
         async getSyaratKetentuan() {
+            this.spinner = true;
             try {
                 const response = await axios.get("syarat_ketentuan");
-                this.dataSyaratKetentuan = response.data;
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.output = true;
+                        this.spinner = false;
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.dataSyaratKetentuan = response.data;
+                        this.spinner = false;
+                    }, 1000);
+                }
             } catch (error) {
-                console.log("Oopss. Error");
+                console.log(error);
             }
         }
     }
