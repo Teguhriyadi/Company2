@@ -21,6 +21,7 @@ use App\Http\Controllers\Pengaturan\TestimonialController;
 use App\Http\Controllers\Production\Produk\BenefitProdukController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Web\Jasa\KategoriJasaController;
+use App\Http\Controllers\Web\Jasa\PaketKategoriController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -100,6 +101,10 @@ Route::prefix("admin")->group(function () {
 
             // Data Kategori Jasa
             Route::resource("kategori_jasa", KategoriJasaController::class);
+            // END
+
+            // Data Paket Kategori
+            Route::resource("paket_kategori", PaketKategoriController::class);
             // END
 
             Route::get("/client/edit", [ClientController::class, "edit"]);
