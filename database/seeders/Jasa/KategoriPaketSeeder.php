@@ -24,5 +24,25 @@ class KategoriPaketSeeder extends Seeder
             "kategori_paket_nama" => "Paket Outdoor",
             "kategori_paket_status" => 1
         ]);
+
+        KategoriPaket::create([
+            "kategori_paket_nama" => "Paket Platinum",
+            "kategori_paket_status" => 1
+        ]);
+
+        KategoriPaket::create([
+            "kategori_paket_nama" => "Paket Gold",
+            "kategori_paket_status" => 1
+        ]);
+
+        KategoriPaket::create([
+            "kategori_paket_nama" => "Paket Silver",
+            "kategori_paket_status" => 1
+        ]);
+
+        KategoriPaket::create([
+            "kategori_paket_nama" => "Paket Bronze",
+            "kategori_paket_status" => 1
+        ]);
     }
 }

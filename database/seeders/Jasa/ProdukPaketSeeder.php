@@ -27,7 +27,7 @@ class ProdukPaketSeeder extends Seeder
 
         ProdukPaket::create([
             "produk_paket_id" => 3,
-            "produk_id" => 4
+            "produk_id" => 9
         ]);
 
         ProdukPaket::create([
@@ -38,6 +38,21 @@ class ProdukPaketSeeder extends Seeder
         ProdukPaket::create([
             "produk_paket_id" => 2,
             "produk_id" => 6
+        ]);
+
+        ProdukPaket::create([
+            "produk_paket_id" => 3,
+            "produk_id" => 8
+        ]);
+
+        ProdukPaket::create([
+            "produk_paket_id" => 3,
+            "produk_id" => 10
+        ]);
+
+        ProdukPaket::create([
+            "produk_paket_id" => 3,
+            "produk_id" => 11
         ]);
     }
 }
