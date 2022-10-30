@@ -29,6 +29,7 @@ use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\Pengaturan\KebijakanPrivasiController;
 use App\Http\Controllers\API\Transaksi\HistoryPemesananController;
 use App\Http\Controllers\API\Transaksi\KeranjangController;
+use App\Http\Controllers\API\Transaksi\KodeTokenController;
 use App\Http\Controllers\API\Transaksi\PaymentController as TransaksiPaymentController;
 use App\Http\Controllers\JWT\AutentikasiController;
 use Illuminate\Http\Request;
@@ -85,7 +86,8 @@ Route::post("payment", [PaymentController::class, "handler"]);
 Route::get("/produk_paket/detail/{slug}", [ProdukPaketController::class, "detail_produk_paket"]);
 Route::resource("produk_paket", ProdukPaketController::class);
 
-Route::get("/benefit/{produk_id}", [BenefitController::class, "index"]);
+Route::get("/benefit", [BenefitController::class, "index"]);
+Route::get("/benefit/{produk_id}", [BenefitController::class, "detail"]);
 Route::get("/hasil_jasa/{produk_id}", [HasilProdukJasaController::class, "index"]);
 
 Route::post("/keranjang", [KeranjangController::class, "keranjang"]);
@@ -93,3 +95,4 @@ Route::get("/payment/{id_cart}", [TransaksiPaymentController::class, "index"]);
 Route::post("/payment", [TransaksiPaymentController::class, "store"]);
 
 Route::get("/history/{user_id}", [HistoryPemesananController::class, "index"]);
+Route::post("/generate", [KodeTokenController::class, "index"]);
