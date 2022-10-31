@@ -15,7 +15,7 @@ class ProdukPaket extends Model
 
     public function getProdukPaket()
     {
-        return $this->belongsTo("App\Models\Jasa\PaketJasa", "produk_paket_id", "id");
+        return $this->belongsTo("App\Models\Jasa\PaketJasa", "paket_jasa_id", "id");
     }
 
     public function getProduk()

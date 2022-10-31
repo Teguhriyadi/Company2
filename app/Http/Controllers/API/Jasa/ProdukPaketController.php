@@ -24,7 +24,8 @@ class ProdukPaketController extends Controller
                     "produk_paket_slug" => $d->getProduk->produk_slug,
                     "produk_paket_gambar" => $d->getProduk->produk_image,
                     "produk_paket_harga" => "Rp. " . number_format($d->getProduk->produk_harga),
-                    "produk_paket_deskripsi_singkat" => $d->getProduk->produk_deskripsi_singkat
+                    "produk_paket_deskripsi_singkat" => $d->getProduk->produk_deskripsi_singkat,
+                    "harga" => number_format($d->getProduk->produk_harga)
                 ];
             }
         }

@@ -15,11 +15,11 @@ class PaketJasa extends Model
 
     public function getKategoriJasa()
     {
-        return $this->belongsTo("App\Models\Jasa\KategoriJasa", "paket_kategori_jasa_id", "id");
+        return $this->belongsTo("App\Models\Jasa\KategoriJasa", "kategori_jasa_id", "id");
     }
 
     public function getKategoriPaket()
     {
-        return $this->belongsTo("App\Models\Jasa\KategoriPaket", "paket_kategori_paket_id", "id");
+        return $this->belongsTo("App\Models\Jasa\KategoriPaket", "kategori_paket_id", "id");
     }
 }

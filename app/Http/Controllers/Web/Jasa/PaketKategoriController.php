@@ -12,7 +12,7 @@ class PaketKategoriController extends Controller
     {
         $data["paket"] = KategoriPaket::orderBy("id", "ASC")->get();
 
-        return view("pages.admin.master.jasa.paket_jasa.index", $data);
+        return view("pages.admin.master.jasa.paket_kategori.index", $data);
     }
 
     public function store(Request $request)

@@ -37,8 +37,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center">No.</th>
-                                <th class="text-center">Nama Paket</th>
-                                <th class="text-center">Status</th>
+                                <th class="text-center">Kategori Jasa</th>
+                                <th class="text-center">Kategori Paket</th>
                                 <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
@@ -49,18 +49,8 @@
                             @foreach ($paket as $data)
                             <tr>
                                 <td class="text-center">{{ ++$no }}.</td>
-                                <td class="text-center">{{ $data->kategori_paket_nama }}</td>
-                                <td class="text-center">
-                                    @if ($data->kategori_paket_status)
-                                        <span class="badge badge-success">
-                                            Aktif
-                                        </span>
-                                    @else
-                                        <span class="badge badge-danger">
-                                            Non - Aktif
-                                        </span>
-                                    @endif
-                                </td>
+                                <td class="text-center">{{ $data->getKategoriJasa->kategori_jasa_nama }}</td>
+                                <td class="text-center">{{ $data->getKategoriPaket->kategori_paket_nama }}</td>
                                 <td class="text-center">
                                     <button type="button"
                                     class="btn btn-warning btn-sm" data-toggle="modal"
@@ -95,12 +85,34 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/admin/master/paket_kategori/') }}" method="POST">
+            <form action="{{ url('/admin/master/paket_jasa/') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="kategori_paket_nama"> Paket Kategori </label>
-                        <input type="text" class="form-control" name="kategori_paket_nama" id="kategori_paket_nama" required placeholder="Masukkan Paket Kategori">
+                        <label for="paket_kategori_jasa_id">
+                            Kategori Jasa
+                        </label>
+                        <select name="paket_kategori_jasa_id" id="paket_kategori_jasa_id" class="form-control">
+                            <option value="">- Pilih -</option>
+                            @foreach ($kategori_jasa as $item)
+                                <option value="{{ $item["id"] }}">
+                                    {{ $item["kategori_jasa_nama"] }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="paket_kategori_paket_id">
+                            Kategori Paket
+                        </label>
+                        <select name="paket_kategori_paket_id" id="paket_kategori_paket_id" class="form-control">
+                            <option value="">- Pilih -</option>
+                            @foreach ($kategori_paket as $item)
+                                <option value="{{ $item["id"] }}">
+                                    {{ $item["kategori_paket_nama"] }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

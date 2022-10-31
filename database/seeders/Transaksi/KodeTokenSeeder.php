@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders\Transaksi;
+namespace Database\Seeders\transaksi;
 
 use App\Models\Transaksi\KodeToken;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

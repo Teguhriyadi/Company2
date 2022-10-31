@@ -16,19 +16,23 @@ class PaketJasaSeeder extends Seeder
     public function run()
     {
         PaketJasa::create([
-            "paket_kategori_jasa_id" => 1,
-            "paket_kategori_paket_id" => 1
+            "kategori_jasa_id" => 1,
+            "kategori_paket_id" => 1
         ]);
 
         PaketJasa::create([
-            "paket_kategori_jasa_id" => 1,
-            "paket_kategori_paket_id" => 2
+            "kategori_jasa_id" => 1,
+            "kategori_paket_id" => 2
         ]);
 
         PaketJasa::create([
-            "paket_kategori_jasa_id" => 2,
-            "paket_kategori_paket_id" => 2
+            "kategori_jasa_id" => 2,
+            "kategori_paket_id" => 2
         ]);
 
+        PaketJasa::create([
+            "kategori_jasa_id" => 2,
+            "kategori_paket_id" => 1
+        ]);
     }
 }

@@ -4,12 +4,28 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\blog\ArtikelSeeder;
+use Database\Seeders\blog\ArtikelTagSeeder;
+use Database\Seeders\blog\KategoriSeeder;
+use Database\Seeders\components\CarouselSeeder;
+use Database\Seeders\components\ChooseUsSeeder;
+use Database\Seeders\components\ProfilPerusahaanSeeder;
+use Database\Seeders\components\QuestionSeeder;
+use Database\Seeders\components\ServiceSeeder;
+use Database\Seeders\components\TagSeeder;
+use Database\Seeders\components\TentangKamiSeeder;
+use Database\Seeders\components\TestimonialSeeder;
 use Database\Seeders\Jasa\BenefitJasaSeeder;
 use Database\Seeders\Jasa\HasilJasaProdukSeeder;
 use Database\Seeders\Jasa\KategoriJasaSeeder;
 use Database\Seeders\Jasa\KategoriPaketSeeder;
 use Database\Seeders\Jasa\PaketJasaSeeder;
 use Database\Seeders\Jasa\ProdukPaketSeeder;
+use Database\Seeders\selengkapnya\KebijakanPrivasiSeeder;
+use Database\Seeders\selengkapnya\SyaratKetentuanSeeder;
+use Database\Seeders\step\BookingOnlineSeeder;
+use Database\Seeders\Transaksi\KodeTokenSeeder;
+use Database\Seeders\transaksi\ProdukSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -46,5 +62,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProdukPaketSeeder::class);
         $this->call(BenefitJasaSeeder::class);
         $this->call(HasilJasaProdukSeeder::class);
+        $this->call(KodeTokenSeeder::class);
     }
 }

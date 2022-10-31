@@ -16,43 +16,53 @@ class ProdukPaketSeeder extends Seeder
     public function run()
     {
         ProdukPaket::create([
-            "produk_paket_id" => 1,
+            "paket_jasa_id" => 1,
             "produk_id" => 1
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 2,
+            "paket_jasa_id" => 2,
             "produk_id" => 2
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 3,
+            "paket_jasa_id" => 3,
             "produk_id" => 9
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 1,
+            "paket_jasa_id" => 1,
             "produk_id" => 5
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 2,
+            "paket_jasa_id" => 2,
             "produk_id" => 6
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 3,
+            "paket_jasa_id" => 3,
             "produk_id" => 8
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 3,
+            "paket_jasa_id" => 3,
             "produk_id" => 10
         ]);
 
         ProdukPaket::create([
-            "produk_paket_id" => 3,
+            "paket_jasa_id" => 3,
             "produk_id" => 11
+        ]);
+
+        ProdukPaket::create([
+            "paket_jasa_id" => 4,
+            "produk_id" => 3
+        ]);
+
+        ProdukPaket::create([
+            "paket_jasa_id" => 2,
+            "produk_id" => 7
         ]);
     }
 }
