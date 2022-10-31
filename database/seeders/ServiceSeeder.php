@@ -18,25 +18,25 @@ class ServiceSeeder extends Seeder
         Services::create([
             "services_icon" => "bx bxl-dribbble",
             "services_title" => "Testing",
-            "services_deskripsi" => "Lorem Ipsum Dolor Sit Amet"
+            "services_deskripsi" => "Menyediakan jasa testing berbagai device"
         ]);
 
         Services::create([
             "services_icon" => "bx bxl-dribbble",
             "services_title" => "Desain UI / UX",
-            "services_deskripsi" => "Lorem Ipsum Dolor Sit Amet"
+            "services_deskripsi" => "Menyediakan jasa desain pada ui/ux"
         ]);
 
         Services::create([
             "services_icon" => "bx bxl-dribbble",
             "services_title" => "Web Application",
-            "services_deskripsi" => "Lorem Ipsum Dolor Sit Amet"
+            "services_deskripsi" => "Menyediakan Jasa Pembuatan aplikasi website"
         ]);
 
         Services::create([
             "services_icon" => "bx bxl-dribbble",
             "services_title" => "IT Bussiness",
-            "services_deskripsi" => "Lorem Ipsum Dolor Sit Amet"
+            "services_deskripsi" => "Kami juga menyediakan jasa untuk menjembatani it dengan bisnin yang anda jalankan"
         ]);
     }
 }

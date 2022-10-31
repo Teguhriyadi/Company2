@@ -16,21 +16,21 @@ class KebijakanPrivasiSeeder extends Seeder
     public function run()
     {
         KebijakanPrivasi::create([
-            "kebijakan_judul" => "Bagaimana Cara 1",
-            "kebijakan_deskripsi" => "Lorem Ipsum Dolor Sit Amet",
+            "kebijakan_judul" => "Kebijakan & Privasi",
+            "kebijakan_deskripsi" => "Dengan menggunakan layanan kami, Anda memercayakan informasi Anda kepada kami. Kami paham bahwa melindungi informasi Anda dan memberikan kontrol kepada Anda adalah tanggung jawab yang besar dan memerlukan kerja keras",
             "kebijakan_first" => 1
         ]);
 
-        KebijakanPrivasi::create([
-            "kebijakan_judul" => "Bagaimana Cara 2",
-            "kebijakan_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
-            "kebijakan_first" => 0
-        ]);
+        // KebijakanPrivasi::create([
+        //     "kebijakan_judul" => "Bagaimana Cara 2",
+        //     "kebijakan_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
+        //     "kebijakan_first" => 0
+        // ]);
 
-        KebijakanPrivasi::create([
-            "kebijakan_judul" => "Bagaimana Cara 3",
-            "kebijakan_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
-            "kebijakan_first" => 0
-        ]);
+        // KebijakanPrivasi::create([
+        //     "kebijakan_judul" => "Bagaimana Cara 3",
+        //     "kebijakan_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
+        //     "kebijakan_first" => 0
+        // ]);
     }
 }

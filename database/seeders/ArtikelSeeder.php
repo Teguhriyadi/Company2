@@ -17,28 +17,28 @@ class ArtikelSeeder extends Seeder
     public function run()
     {
         Artikel::create([
-            "judul" => "Lorem Ipsum Dolor Sit Amet Satu",
-            "slug" => "lorem-ipsum-dolor-sit-amet-satu",
+            "judul" => "Desain UI / UX",
+            "slug" => "desain",
             "kategori_id" => 1,
-            "deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
+            "deskripsi" => "Desain ini bersumber dari keinginan yang klien inginkan",
             "foto" => "https://images.unsplash.com/photo-1665430922646-5f4fecfc02bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
             "user_id" => 1
         ]);
 
         Artikel::create([
-            "judul" => "Lorem Ipsum Dolor Sit Amet Dua",
-            "slug" => "lorem-ipsum-dolor-sit-amet-dua",
+            "judul" => "Halaman Pemasaran",
+            "slug" => "marketing",
             "kategori_id" => 2,
-            "deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
+            "deskripsi" => "Jasa telah digubakan di berbagai wilayah indonesia",
             "foto" => "https://images.unsplash.com/photo-1665430922646-5f4fecfc02bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
             "user_id" => 1
         ]);
 
         Artikel::create([
-            "judul" => "Lorem Ipsum Dolor Sit Amet Tiga",
-            "slug" => "lorem-ipsum-dolor-sit-amet-tiga",
+            "judul" => "IT Bussiness",
+            "slug" => "it-business",
             "kategori_id" => 3,
-            "deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet",
+            "deskripsi" => "beberapa bisnis yang sedang berlangsung",
             "foto" => "https://images.unsplash.com/photo-1665430922646-5f4fecfc02bd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80",
             "user_id" => 1
         ]);

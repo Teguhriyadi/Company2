@@ -18,7 +18,7 @@ class ProfilPerusahaanSeeder extends Seeder
         ProfilPerusahaan::create([
             "profil_nama" => "DuoBintang",
             "profil_singkat" => "Murah , Aman dan Terpercaya",
-            "profil_deskripsi" => "Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet Lorem ipsum dolor sit amet Lorem Ipsum Dolor Sit Amet",
+            "profil_deskripsi" => "Era digital semakin berkembang, dengan kemajuan teknologi semua orang bisa mendapat informasi yang lebih cepat dan luas secara mudah. disini kami menyediakan jasa untuk videografi, fotografi, dan animasi. jasa yang kami tawarkan memiliki para ahli dalam bidangnya , serta hasil yang diperoleh memuaskan.",
             "profil_no_hp" => "085324237299",
             "profil_email" => "admin@gmail.com",
             "profil_alamat" => "Villa Intan 2 Blok i4 No.1",
