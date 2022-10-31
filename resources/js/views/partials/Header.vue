@@ -67,7 +67,9 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="profil.html">Profile</a>
+                                <router-link to="/profil_saya">
+                                    Profil Saya
+                                </router-link>
                             </li>
                             <li>
                                 <a @click="logout">Log Out</a>

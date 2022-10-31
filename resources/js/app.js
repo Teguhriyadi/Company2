@@ -22,6 +22,7 @@ import DetailKategoriJasa from "@/views/components/KategoriJasa/DetailKategoriJa
 import Cart from "@/views/components/Transaksi/Cart.vue"
 import DetailCart from "@/views/components/Transaksi/DetailCart.vue"
 import History from "@/views/components/Transaksi/HistoryBelanja.vue"
+import ProfilSaya from "@/views/components/user/ProfilSaya.vue"
 
 const routes = [
     {
@@ -101,6 +102,10 @@ const routes = [
         path: "/history_belanja",
         name: 'history',
         component: History
+    },
+    {
+        path: "/profil_saya",
+        component: ProfilSaya
     }
 ];
 
