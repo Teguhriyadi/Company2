@@ -61,9 +61,19 @@
                                         </template>
                                     </ul>
                                     <div class="btn-wrap">
-                                        <a class="btn-buy" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="booking(produk.produk_id)">
-                                            Booking Sekarang
-                                        </a>
+                                        <template v-if="!user.nama">
+                                            <a class="btn-buy" @click="autentikasi">
+                                                Booking Sekarang
+                                            </a>
+                                        </template>
+                                        <template v-else>
+                                            <a class="btn-buy" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="booking(produk.produk_id)">
+                                                Booking Sekarang
+                                            </a>
+                                            <a class="btn btn-success" @click="buttonKlik" >
+                                                Booking
+                                            </a>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +199,9 @@ export default {
             spinner: false,
             output: false,
             input: [],
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
+            user: [],
         }
     },
     created() {
@@ -196,6 +209,13 @@ export default {
         this.getProdukPaket();
         this.getProduk();
         this.getBenefit();
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
+            }
+        }).then(response => {
+            this.user = response.data
+        })
     },
     methods: {
         async getData() {
@@ -253,6 +273,17 @@ export default {
             }
         },
 
+        autentikasi() {
+            alert("Oopss.. Anda Belum Login");
+            window.location = "/login";
+        },
+
+        buttonKlik() {
+            setTimeout(() => {
+                window.open("https://wa.me/6281411126356?text=Hallo", "_blank");
+            }, 500);
+        },
+
         booking(produk_id) {
             this.produkId = produk_id;
 
@@ -269,7 +300,7 @@ export default {
                         alert("Kode Yang Anda Masukkan Salah");
                     } else {
                         if (response.data[0].status == 1) {
-                            alert("Token Aktif");
+
                         } else {
                             alert("Kode Verifikasi Tidak Aktif");
                         }
