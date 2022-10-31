@@ -90,9 +90,7 @@
                                     <div class="col-6">
                                         <div class="text-end" id="pay-button">
                                             <a @click="buttonPay" style="font-size:12px ;" class="mt-3 btn btn-sm btn-warning w-25">
-                                                <i class="fas fa-dollar-sign">
-
-                                                </i>
+                                                <i class="fas fa-dollar-sign"></i>
                                                 Lanjutkan Pembayaran
                                             </a>
                                         </div>
@@ -184,39 +182,32 @@ export default {
             window.snap.pay(this.pembayaran, {
                 onSuccess: function(result)
                 {
-                    console.log(result);
-                    document.getElementById("json_callback").value = JSON.stringify(result);
-
-                },
-                onPending: function(result)
-                {
-                    console.log(result);
+                    alert("Sukses, Pembayaran Selesai")
                     let kirim = document.getElementById("json_callback").value = JSON.stringify(result);
-
                     this.json = kirim;
-
                     axios.post("payment", {
                        json: this.json
                     }).then(response => {
                         console.log(response)
-
                         window.location = '/'
                     }).catch(error => {
                         console.log(error);
                     });
-                    // window.location = "/";
+
                 },
-                onError: function(result)
+                onPending: function()
                 {
-                    console.log(result);
-                    document.getElementById("json_callback").value = JSON.stringify(result);
-                    $("#submit").submit();
+                    alert("Good, Data Anda Sedang di Proses");
+
+                    window.location = "/";
+                },
+                onError: function()
+                {
+                    alert("Periksa Kembali Data Anda");
                 },
                 onClose: function()
                 {
-                    alert('you closed the popup without finishing the payment');
-                    document.getElementById("json_callback").value = JSON.stringify(result);
-                    $("#submit").submit();
+                    alert("Yaah, Transaksi Anda Dibatalkan");
                 }
             });
         }
