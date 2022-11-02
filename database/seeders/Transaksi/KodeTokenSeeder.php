@@ -18,13 +18,22 @@ class KodeTokenSeeder extends Seeder
         KodeToken::create([
             "created_by" => 1,
             "kode" => "29092002",
-            "status" => 1
+            "status" => 1,
+            "jasa_id" => 3,
+        ]);
+
+        KodeToken::create([
+            "created_by" => 1,
+            "kode" => "29092003",
+            "status" => 1,
+            "jasa_id" => 1,
         ]);
 
         KodeToken::create([
             "created_by" => 1,
             "kode" => "06042002",
-            "status" => 0
+            "status" => 0,
+            "jasa_id" => 3,
         ]);
     }
 }
