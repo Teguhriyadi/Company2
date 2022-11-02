@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("kategori_id")->nullable();
             $table->integer("kategori_jasa_id")->nullable();
-            $table->string("produk_image");
+            $table->string("produk_image")->nullable();
             $table->string("produk_judul", 100);
             $table->string("produk_slug");
             $table->integer("produk_harga");

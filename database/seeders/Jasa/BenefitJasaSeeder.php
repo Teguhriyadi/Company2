@@ -17,12 +17,12 @@ class BenefitJasaSeeder extends Seeder
     {
         BenefitJasa::create([
             "benefit_nama" => "Bagus",
-            "produk_id" => 4
+            "produk_id" => 1
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Keren",
-            "produk_id" => 4
+            "produk_id" => 1
         ]);
 
         BenefitJasa::create([
@@ -32,32 +32,32 @@ class BenefitJasaSeeder extends Seeder
 
         BenefitJasa::create([
             "benefit_nama" => "Bersih",
-            "produk_id" => 8
+            "produk_id" => 5
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Mengkilat",
-            "produk_id" => 8
+            "produk_id" => 2
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Terpercaya",
-            "produk_id" => 8
+            "produk_id" => 3
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Kilau",
-            "produk_id" => 10
+            "produk_id" => 6
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Keren",
-            "produk_id" => 10
+            "produk_id" => 7
         ]);
 
         BenefitJasa::create([
             "benefit_nama" => "Rapih",
-            "produk_id" => 11
+            "produk_id" => 8
         ]);
 
         BenefitJasa::create([

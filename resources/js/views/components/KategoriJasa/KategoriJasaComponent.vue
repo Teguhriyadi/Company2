@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <template v-if="namaJasa == 'Jasa Animasi' ">
+        <template v-if="namaJasa == 'Jasa Animasi' || namaJasa == 'Jasa Videografi' ">
             <section id="pricing" class="pricing">
                 <div class="container" data-aos="fade-up">
                     <div class="section-header">
