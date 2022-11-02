@@ -64,51 +64,56 @@
                 </template>
             </div>
         </section>
+        <app-contact/>
     </main>
 </template>
 
 <script>
-export default {
-    name: "Portofolio",
-    data() {
-        return {
-            namaJasa: [],
-            dataPortofolio: [],
-            idJasa: [],
-            spinner: false,
-            output: false
-        }
-    },
-    mounted() {
-        let id = this.$route.params.id;
-        this.idJasa = id;
+    import Contact from "@/views/components/contact/Contact.vue"
+    export default {
+        name: "Portofolio",
+        components: {
+            "app-contact" : Contact
+        },
+        data() {
+            return {
+                namaJasa: [],
+                dataPortofolio: [],
+                idJasa: [],
+                spinner: false,
+                output: false
+            }
+        },
+        mounted() {
+            let id = this.$route.params.id;
+            this.idJasa = id;
 
-        let nama_jasa = this.$route.params.nama;
-        this.namaJasa = nama_jasa;
-    },
-    created() {
-        this.getPortofolio();
-    },
-    methods: {
-        async getPortofolio() {
-            this.spinner = true;
-            try {
-                const response = await axios.get("portofolio");
-                if (response.data == "Data Tidak Ada") {
-                    setTimeout(() => {
-                        this.output = true
-                        this.spinner = false;
-                    }, 1000);
-                } else {
-                    setTimeout(() => {
-                        this.dataPortofolio = response.data;
-                        this.spinner = false;
-                    }, 1000);
+            let nama_jasa = this.$route.params.nama;
+            this.namaJasa = nama_jasa;
+        },
+        created() {
+            this.getPortofolio();
+        },
+        methods: {
+            async getPortofolio() {
+                this.spinner = true;
+                try {
+                    const response = await axios.get("portofolio");
+                    if (response.data == "Data Tidak Ada") {
+                        setTimeout(() => {
+                            this.output = true
+                            this.spinner = false;
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            this.dataPortofolio = response.data;
+                            this.spinner = false;
+                        }, 1000);
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
-            } catch (error) {
-                console.log(error);
             }
         }
     }
-}
 </script>
