@@ -58,44 +58,49 @@
                 </template>
             </div>
         </section>
+        <app-contact/>
     </main>
 </template>
 
 <script>
-import axios from "axios"
+    import axios from "axios"
+    import Contact from "@/views/components/contact/Contact.vue"
 
-export default {
-    name: "BookingOnline",
-    data() {
-        return {
-            dataCaraBooking: [],
-            spinner: false,
-            output: false
-        }
-    },
-    created() {
-        this.getCaraBooking();
-    },
-    methods: {
-        async getCaraBooking() {
-            this.spinner = true;
-            try {
-                const response = await axios.get("booking_online");
-                if (response.data == "Data Tidak Ada") {
-                    setTimeout(() => {
-                        this.output = true;
-                        this.spinner = false;
-                    }, 1000);
-                } else {
-                    setTimeout(() => {
-                        this.dataCaraBooking = response.data;
-                        this.spinner = false;
-                    }, 1000);
+    export default {
+        name: "BookingOnline",
+        components: {
+            "app-contact": Contact
+        },
+        data() {
+            return {
+                dataCaraBooking: [],
+                spinner: false,
+                output: false
+            }
+        },
+        created() {
+            this.getCaraBooking();
+        },
+        methods: {
+            async getCaraBooking() {
+                this.spinner = true;
+                try {
+                    const response = await axios.get("booking_online");
+                    if (response.data == "Data Tidak Ada") {
+                        setTimeout(() => {
+                            this.output = true;
+                            this.spinner = false;
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            this.dataCaraBooking = response.data;
+                            this.spinner = false;
+                        }, 1000);
+                    }
+                } catch (error) {
+                    console.log(error);
                 }
-            } catch (error) {
-                console.log(error);
             }
         }
     }
-}
 </script>
