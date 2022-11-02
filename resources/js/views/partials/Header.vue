@@ -12,10 +12,18 @@
                     <li>
                         <router-link to="/" active-class="active"> Home </router-link>
                     </li>
-                    <li>
-                        <router-link to="/portofolio">
-                            Portofolio
-                        </router-link>
+                    <li class="dropdown">
+                        <a href="#">
+                            <span>Portofolio</span>
+                            <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        </a>
+                        <ul>
+                            <li v-for="(kategori, index) in dataKategoriJasa" :key="index">
+                                <router-link :to="{name: 'portofolio', params: {slug: kategori.kategori_jasa_slug, id: kategori.kategori_id, nama: kategori.kategori_jasa_nama} }">
+                                    {{ kategori.kategori_jasa_nama }}
+                                </router-link>
+                            </li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#">

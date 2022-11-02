@@ -6,7 +6,7 @@ import axios from "axios"
 import App from './src/App.vue'
 
 import Home from "@/views/Home.vue";
-import Portofolio from "@/views/components/PortofolioComponent.vue"
+import Portofolio from "@/views/components/karya/Portofolio.vue"
 import DetailBlog from "@/views/components/DetailBlogComponent.vue"
 import ArtikelBlog from "@/views/components/ArtikelBlogComponent.vue"
 import Kategori from "@/views/components/KategoriComponent.vue"
@@ -60,7 +60,8 @@ const routes = [
         component: FilterKategori
     },
     {
-        path: "/portofolio",
+        path: "/portofolio/:slug",
+        name: 'portofolio',
         component: Portofolio
     },
     {
