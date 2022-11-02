@@ -28,6 +28,7 @@ use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\Pengaturan\KebijakanPrivasiController;
 use App\Http\Controllers\API\Transaksi\HistoryPemesananController;
+use App\Http\Controllers\API\Transaksi\JasaTokenController;
 use App\Http\Controllers\API\Transaksi\KeranjangController;
 use App\Http\Controllers\API\Transaksi\KodeTokenController;
 use App\Http\Controllers\API\Transaksi\PaymentController as TransaksiPaymentController;
@@ -96,3 +97,4 @@ Route::post("/payment", [TransaksiPaymentController::class, "store"]);
 
 Route::get("/history/{user_id}", [HistoryPemesananController::class, "index"]);
 Route::post("/generate", [KodeTokenController::class, "index"]);
+Route::post("/jasa_token", [JasaTokenController::class, "store"]);
