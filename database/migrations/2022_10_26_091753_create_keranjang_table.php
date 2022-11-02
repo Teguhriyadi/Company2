@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string("nama");
             $table->string("email");
-            $table->string("tanggal");
+            $table->string("tanggal")->nullable();
             $table->string("harga");
             $table->bigInteger("nomor_hp");
-            $table->string("lokasi");
+            $table->string("lokasi")->nullable();
             $table->text("catatan");
             $table->integer("user_id");
             $table->timestamps();

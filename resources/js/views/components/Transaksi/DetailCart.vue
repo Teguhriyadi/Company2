@@ -53,11 +53,14 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Jenis Paket Jasa
                                         </label>
-                                        <h6>{{ paket }}</h6>
-                                        <label for="" class="form-label text-warning w-500">
-                                            Jenis Hasil Jasa
-                                        </label>
-                                        <h6>Buku Album</h6>
+                                        <h6 v-if="paket">
+                                            {{ paket }}
+                                        </h6>
+                                        <h6 v-else>
+                                            <strong>
+                                                Tidak Ada
+                                            </strong>
+                                        </h6>
                                     </div>
                                 </div>
                                 <div class="col-4">
@@ -65,7 +68,14 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Lokasi Pemotretan
                                         </label>
-                                        <h6>Monas</h6>
+                                        <h6 v-if="lokasi">
+                                            {{ lokasi }}
+                                        </h6>
+                                        <h6 v-else>
+                                            <strong>
+                                                Tidak Ada
+                                            </strong>
+                                        </h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Catatan
                                             <span class="text-danger">*</span>
@@ -126,6 +136,7 @@ export default {
             pembayaran: [],
             keranjang_id: [],
             produkHarga: [],
+            lokasi: [],
             json: []
         }
     },
@@ -153,6 +164,9 @@ export default {
 
         let keranjang_id = this.$route.params.id_keranjang;
         this.keranjang_id = keranjang_id
+
+        let lokasi = this.$route.params.lokasi;
+        this.lokasi = lokasi
     },
     created() {
         this.payment();

@@ -59,11 +59,11 @@
                         <ul>
                             <template v-if="dataBenefit.length">
                                 <li v-for="(benefit, index) in dataBenefit" :key="index">
-                                <strong>
-                                    <i class="fas fa-user"></i>
-                                </strong>
-                                {{ benefit.benefit_nama }}
-                            </li>
+                                    <strong>
+                                        <i class="fas fa-user"></i>
+                                    </strong>
+                                    {{ benefit.benefit_nama }}
+                                </li>
                             </template>
                             <template v-else>
                                 <div v-if="load" class="col-md-12">
@@ -94,7 +94,14 @@
                             <hr style="border-top: dotted 3px" />
                             <div class="alert alert-success" role="alert">
                                 <i class="fas fa-check"></i>
-                                Yeay, Kamu Telah Memilih <strong>{{ paket }}</strong>, Silahkan Lanjutkan Dengan Mengisi Form
+                                Yeay, Kamu Telah Memilih
+                                <strong v-if="nama_jasa">
+                                    {{ nama_jasa }}
+                                </strong>
+                                <strong v-else>
+                                    {{ paket }}
+                                </strong>
+                                , Silahkan Lanjutkan Dengan Mengisi Form
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="exampleInputEmail1" class="form-label">
@@ -112,27 +119,44 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 form-group">
-                                <label for="exampleInputEmail1" class="form-label">
-                                    Tanggal Booking
-                                    <span class="text-danger"> *</span>
-                                </label>
-                                <input type="date" class="form-control" v-model="keranjang.booking" required/>
-                            </div>
-                            <div class="col-md-6 form-group mt-3 mt-md-0">
-                                <label for="exampleInputEmail1" class="form-label">
-                                    Nomor WA
-                                    <span class="text-danger"> *</span>
-                                </label>
-                                <input type="number" v-model="keranjang.nomor_hp" class="form-control" placeholder="Nomor Telepon" required/>
-                            </div>
-                            <div class="col-md-12 form-group mt-3 mt-md-0">
-                                <label for="exampleInputEmail1" class="form-label">
-                                    Lokasi Pemotretan/Videografi
-                                    <span class="text-danger">*</span>
-                                </label>
-                                <input type="text" v-model="keranjang.lokasi" class="form-control" placeholder="Masukkan Lokasi" required/>
-                            </div>
+                            <template v-if="nama_jasa">
+                                <div class="col-md-12 form-group mt-3 mt-md-0">
+                                    <label for="exampleInputEmail1" class="form-label">
+                                        Nomor WA
+                                        <span class="text-danger"> *</span>
+                                    </label>
+                                    <input type="number" v-model="keranjang.nomor_hp" class="form-control" placeholder="Nomor Telepon" required/>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="col-md-6 form-group">
+                                    <label for="exampleInputEmail1" class="form-label">
+                                        Tanggal Booking
+                                        <span class="text-danger"> *</span>
+                                    </label>
+                                    <input type="date" class="form-control" v-model="keranjang.booking" required/>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <label for="exampleInputEmail1" class="form-label">
+                                        Nomor WA
+                                        <span class="text-danger"> *</span>
+                                    </label>
+                                    <input type="number" v-model="keranjang.nomor_hp" class="form-control" placeholder="Nomor Telepon" required/>
+                                </div>
+                            </template>
+
+                            <template v-if="nama_jasa">
+
+                            </template>
+                            <template v-else>
+                                <div class="col-md-12 form-group mt-3 mt-md-0">
+                                    <label for="exampleInputEmail1" class="form-label">
+                                        Lokasi Pemotretan/Videografi
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" v-model="keranjang.lokasi" class="form-control" placeholder="Masukkan Lokasi" required/>
+                                </div>
+                            </template>
 
                             <div class="form-group mt-3">
                                 <textarea class="form-control" v-model="keranjang.catatan" rows="7" placeholder="Catatan atau pertanyaan opsional" required></textarea>
@@ -175,6 +199,7 @@ export default {
             token: localStorage.getItem("token"),
             userId: [],
             harga: [],
+            nama_jasa : [],
             produkHarga: [],
             load: false,
             output: false,
@@ -198,9 +223,11 @@ export default {
 
         let paket = this.$route.params.paket;
         let jasa = this.$route.params.jasa;
+        let nama_jasa = this.$route.params.nama_jasa;
 
         this.paket = paket;
         this.jasa = jasa;
+        this.nama_jasa = nama_jasa;
     },
     methods: {
         async getProduk() {
@@ -240,49 +267,80 @@ export default {
 
         transaksi() {
             this.loading = true;
-            if (this.keranjang.nama && this.keranjang.email && this.keranjang.booking && this.keranjang.nomor_hp && this.keranjang.lokasi && this.keranjang.catatan) {
-                axios.post("keranjang", {
-                    nama: this.keranjang.nama,
-                    email: this.keranjang.email,
-                    tanggal: this.keranjang.booking,
-                    harga: this.harga,
-                    nomor_hp: this.keranjang.nomor_hp,
-                    lokasi: this.keranjang.lokasi,
-                    catatan: this.keranjang.catatan,
-                    user_id: this.userId
-                }).then(response => {
-                    if (response.data.success) {
-                        setTimeout(() => {
-                            this.loading = false;
-                            alert("Data Anda Berhasil Diproses")
-                            return this.$router.push({
-                                name: 'cart_detail',
-                                params: {
-                                    jasa: this.jasa,
-                                    paket: this.paket,
-                                    nama: this.keranjang.nama,
-                                    email: this.keranjang.email,
-                                    nomor_hp: this.keranjang.nomor_hp,
-                                    catatan: this.keranjang.catatan,
-                                    lokasi: this.keranjang.lokasi,
-                                    harga: this.harga,
-                                    produkHarga: this.produkHarga,
-                                    id_keranjang: response.data.data.id
-                                }
-                            });
-                        }, 1000);
-                    }
-                }).catch(error => {
-                    console.log(error)
-                });
-                // axios.post("keranjang", {
 
-                // })
-                // }).then(response => {
-
-                // }).catch(error => {
-                //     console.log(error);
-                // });
+            if (this.nama_jasa) {
+                if (this.keranjang.nama && this.keranjang.email && this.keranjang.nomor_hp && this.keranjang.catatan) {
+                    axios.post("keranjang", {
+                        nama: this.keranjang.nama,
+                        email: this.keranjang.email,
+                        tanggal: this.keranjang.booking,
+                        harga: this.harga,
+                        nomor_hp: this.keranjang.nomor_hp,
+                        lokasi: this.keranjang.lokasi,
+                        catatan: this.keranjang.catatan,
+                        user_id: this.userId
+                    }).then(response => {
+                        if (response.data.success) {
+                            setTimeout(() => {
+                                this.loading = false;
+                                alert("Data Anda Berhasil Diproses")
+                                return this.$router.push({
+                                    name: 'cart_detail',
+                                    params: {
+                                        jasa: this.nama_jasa,
+                                        nama: this.keranjang.nama,
+                                        email: this.keranjang.email,
+                                        nomor_hp: this.keranjang.nomor_hp,
+                                        catatan: this.keranjang.catatan,
+                                        lokasi: this.keranjang.lokasi,
+                                        harga: this.harga,
+                                        produkHarga: this.produkHarga,
+                                        id_keranjang: response.data.data.id
+                                    }
+                                });
+                            }, 1000);
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
+            } else if (this.jasa) {
+                if (this.keranjang.nama && this.keranjang.email && this.keranjang.booking && this.keranjang.lokasi && this.keranjang.nomor_hp && this.keranjang.catatan) {
+                    axios.post("keranjang", {
+                        nama: this.keranjang.nama,
+                        email: this.keranjang.email,
+                        tanggal: this.keranjang.booking,
+                        harga: this.harga,
+                        nomor_hp: this.keranjang.nomor_hp,
+                        lokasi: this.keranjang.lokasi,
+                        catatan: this.keranjang.catatan,
+                        user_id: this.userId
+                    }).then(response => {
+                        if (response.data.success) {
+                            setTimeout(() => {
+                                this.loading = false;
+                                alert("Data Anda Berhasil Diproses")
+                                return this.$router.push({
+                                    name: 'cart_detail',
+                                    params: {
+                                        jasa: this.jasa,
+                                        paket: this.paket,
+                                        nama: this.keranjang.nama,
+                                        email: this.keranjang.email,
+                                        nomor_hp: this.keranjang.nomor_hp,
+                                        catatan: this.keranjang.catatan,
+                                        lokasi: this.keranjang.lokasi,
+                                        harga: this.harga,
+                                        produkHarga: this.produkHarga,
+                                        id_keranjang: response.data.data.id
+                                    }
+                                });
+                            }, 1000);
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    });
+                }
             }
         }
     }
