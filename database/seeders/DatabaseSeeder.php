@@ -43,7 +43,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PartnerSeeder::class);
         $this->call(KategoriSeeder::class);
         $this->call(ClientSeeder::class);
-        $this->call(PortfolioSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CarouselSeeder::class);
         $this->call(ChooseUsSeeder::class);
@@ -63,5 +62,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BenefitJasaSeeder::class);
         $this->call(HasilJasaProdukSeeder::class);
         $this->call(KodeTokenSeeder::class);
+        $this->call(PortfolioSeeder::class);
     }
 }

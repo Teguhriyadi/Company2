@@ -9,7 +9,7 @@ class Portfolio extends Model
 {
     use HasFactory;
 
-    protected $table = "portfolio";
+    protected $table = "portofolio";
 
     protected $guarded = [''];
 
