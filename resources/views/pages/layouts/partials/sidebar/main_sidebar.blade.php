@@ -109,6 +109,10 @@
                     href="{{ url('/admin/production/benefit') }}">
                     Benefit Produk
                 </a>
+                <a class="collapse-item {{ Request::is('admin/production/portofolio') ? 'active' : '' }}"
+                    href="{{ url('/admin/production/portofolio') }}">
+                    Portofolio
+                </a>
             </div>
         </div>
     </li>

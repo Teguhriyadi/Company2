@@ -19,6 +19,7 @@ use App\Http\Controllers\Pengaturan\ProfilPerusahaanController;
 use App\Http\Controllers\Pengaturan\PesanController;
 use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
+use App\Http\Controllers\Production\PortofolioController;
 use App\Http\Controllers\Production\Produk\BenefitProdukController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Web\Jasa\KategoriJasaController;
@@ -130,6 +131,8 @@ Route::prefix("admin")->group(function () {
             // Data Benefit
             Route::resource("benefit", BenefitProdukController::class);
             // END
+
+            Route::resource("portofolio", PortofolioController::class);
 
         });
 
