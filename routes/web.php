@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AktivasiTokenController;
 use App\Http\Controllers\Akun\RoleController;
 use App\Http\Controllers\Akun\UserController;
 use App\Http\Controllers\Master\PortfolioController;
@@ -144,6 +145,10 @@ Route::prefix("admin")->group(function () {
             Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
             Route::resource("testimonial", TestimonialController::class);
             Route::resource("pesan", PesanController::class);
+        });
+
+        Route::prefix("aktivasi")->group(function() {
+            Route::resource("token", AktivasiTokenController::class);
         });
 
         Route::prefix("akun")->group(function () {

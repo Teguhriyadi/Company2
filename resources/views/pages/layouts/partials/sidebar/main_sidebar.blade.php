@@ -143,6 +143,14 @@
             </div>
         </div>
     </li>
+
+    <li class="nav-item {{ Request::is('admin/aktivasi/token') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/admin/aktivasi/token') }}">
+            <i class="fas fa-fw fa-edit"></i>
+            <span>Aktivasi</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item {{ Request::segment(2) == 'akun' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

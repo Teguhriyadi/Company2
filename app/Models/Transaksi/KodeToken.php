@@ -12,4 +12,14 @@ class KodeToken extends Model
     protected $table = "kode_token";
 
     protected $guarded = [''];
+
+    public function getUser()
+    {
+        return $this->belongsTo("App\Models\User", "created_by", "id");
+    }
+
+    public function getJasa()
+    {
+        return $this->belongsTo("App\Models\Jasa\KategoriJasa", "jasa_id", "id");
+    }
 }
