@@ -21,6 +21,7 @@ use App\Http\Controllers\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\Pengaturan\TestimonialController;
 use App\Http\Controllers\Production\PortofolioController;
 use App\Http\Controllers\Production\Produk\BenefitProdukController;
+use App\Http\Controllers\Production\Produk\ProdukController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Web\Jasa\KategoriJasaController;
 use App\Http\Controllers\Web\Jasa\PaketJasaController;
@@ -128,6 +129,7 @@ Route::prefix("admin")->group(function () {
 
         Route::prefix("production")->group(function() {
 
+            Route::resource("produk", ProdukController::class);
             // Data Benefit
             Route::resource("benefit", BenefitProdukController::class);
             // END
