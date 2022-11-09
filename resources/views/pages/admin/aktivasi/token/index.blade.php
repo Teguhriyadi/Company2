@@ -174,19 +174,6 @@
 @section('js')
 
 <script type="text/javascript">
-    function editArtikel(id) {
-        $.ajax({
-            url: "{{ url('/admin/master/artikel/edit') }}",
-            type: "GET",
-            data: {
-                id: id
-            },
-            success: function(data) {
-                $("#modal-content-edit").html(data);
-                return true;
-            }
-        })
-    }
 
     $(document).ready(function() {
         $('body').on('click', '#deleteKodeToken', function() {
