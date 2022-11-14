@@ -123,24 +123,24 @@ export default {
                             localStorage.setItem("token", res.data.token)
 
                             this.loggedIn = true
-
+                            this.$swal('Good Job', 'Anda Berhasil Login', 'success')
                             setTimeout(() => {
-                                alert("Anda Berhasil Login")
                                 this.loading = false;
                                 window.location = '/'
-                            }, 1000);
+                            }, 2000);
 
                         } else {
                             this.loginFailed = true
                         }
                     }).catch(error => {
+                        console.log(error);
                         this.loading = true;
 
+                        this.$swal('Oopss', 'Periksa Kembali Form Isian Anda', 'error');
                         setTimeout(() => {
-                            alert("Periksa Kembali Form Isian Anda");
                             this.loading = false
-                            window.location = "/login"
-                        }, 1000);
+                            window.location = "login"
+                        }, 2000);
                     })
                 })
             }

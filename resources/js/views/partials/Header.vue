@@ -126,10 +126,10 @@ export default {
                 localStorage.removeItem("token")
                 localStorage.removeItem("loggedIn")
 
+                this.$swal('Good Job', 'Berhasil Logout Dari Sistem', 'success');
                 setTimeout(() => {
-                    alert("Berhasil Logout Dari Sistem");
                     window.location = "/";
-                }, 500);
+                }, 2000);
             })
         },
         async getProfil() {

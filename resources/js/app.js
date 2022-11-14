@@ -2,6 +2,8 @@ import './bootstrap';
 
 import { createWebHistory, createRouter } from "vue-router";
 import {createApp} from 'vue'
+import VueSweetAlert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from "axios"
 import App from './src/App.vue'
 
@@ -124,4 +126,9 @@ if (token) {
     axios.defaults.headers.common["Authorization"] = token
 }
 
-createApp(App).use(router).mount("#app")
+const rendering = createApp(App)
+
+rendering.use(VueSweetAlert2);
+rendering.use(router);
+
+rendering.mount("#app");

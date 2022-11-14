@@ -47,9 +47,9 @@ Route::post("/payment", [PaymentController::class, "store"]);
 
 Route::get('/', [AppController::class, "app"]);
 
-Route::get("/{any}", function() {
-    return view("app");
-})->where("any", ".*");
+// Route::get("/{any}", function() {
+//     return view("app");
+// })->where("any", ".*");
 
 Route::prefix("admin")->group(function () {
     Route::group(["middleware" => ["guest"]], function () {
