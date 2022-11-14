@@ -17,21 +17,33 @@
                 </ol>
             </div>
         </div>
-        <div class="container flex">
-            <div class="error">
-                <span>
-                    Halaman Tidak Ditemukan :)
-                </span>
-                <p>
-                   Sepertinya Halaman Yang Anda Tuju Tidak Ada
-                </p>
-                <router-link to="/" class="btn btn-sm btn-dark">
-                    Kembali Ke Home
-                </router-link>
-            </div>
-            <div class="img">
-                <img src="@/assets/image/self.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 error-not-found">
+                    <div class="error">
+                        <span>
+                            Halaman Tidak Ditemukan :)
+                        </span>
+                        <p>
+                            Sepertinya Halaman Yang Anda Tuju Tidak Ada
+                        </p>
+                        <router-link to="/" class="btn btn-sm btn-dark">
+                            Kembali Ke Home
+                        </router-link>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="img">
+                        <img src="@/assets/image/self.png" class="img-fluid">
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 </template>
+
+<style scoped>
+    .error-not-found {
+        padding-top: 150px;
+    }
+</style>
