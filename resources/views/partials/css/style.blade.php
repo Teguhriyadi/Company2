@@ -8,3 +8,4 @@
 <link href="{{ url('/theme') }}/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
 <link href="{{ url('/theme') }}/css/main.css" rel="stylesheet" />
 <link href="{{ url('/theme') }}/css/login.css" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url('/theme') }}/css/cart-not-found.css">

@@ -25,8 +25,14 @@ import Cart from "@/views/components/Transaksi/Cart.vue"
 import DetailCart from "@/views/components/Transaksi/DetailCart.vue"
 import History from "@/views/components/Transaksi/HistoryBelanja.vue"
 import ProfilSaya from "@/views/components/user/ProfilSaya.vue"
+import NotFound from "@/views/components/page/NotFound.vue"
 
 const routes = [
+    {
+        path: "/:catchAll(.*)",
+        component: NotFound
+    },
+
     {
         path: "/",
         component: Home,

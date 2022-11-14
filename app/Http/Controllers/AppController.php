@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun\InformasiLogin;
-use App\Models\Coba;
-use App\Models\Master\Client;
 use App\Models\Master\Portfolio;
 use App\Models\Pengaturan\ProfilPerusahaan;
 use App\Models\Pengaturan\Testimonial;
@@ -19,7 +17,6 @@ class AppController extends Controller
     {
         $data = [
             "data_last_login" => InformasiLogin::where("id_user", Auth::user()->id)->orderBy("created_at", "DESC")->paginate(5),
-            "count_client" => Client::where("client_status", 1)->count(),
             "count_testi" => Testimonial::count(),
             "count_portfolio" => Portfolio::count(),
             "count_akun" => User::where("status", 1)->count()

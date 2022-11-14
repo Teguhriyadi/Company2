@@ -78,7 +78,7 @@ use Carbon\Carbon;
                                     Client
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    {{ $count_client }}
+                                    0
                                 </div>
                             </div>
                             <div class="col-auto">
