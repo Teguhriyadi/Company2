@@ -8,7 +8,7 @@
 
         <app-services/>
 
-        <app-choose-us/>
+        <app-why-us/>
 
         <app-question/>
 
@@ -21,20 +21,20 @@
 </template>
 
 <script>
-    import About from "@/views/components/AboutComponent.vue"
+    import About from "@/views/components/home/About.vue"
     import Jasa from "@/views/components/jasa/Jasa.vue"
-    import ChooseUs from "@/views/components/ChooseUsComponent.vue"
-    import Questions from "@/views/components/QuestionComponent.vue"
-    import Hero from "@/views/components/HeroComponent.vue"
-    import Testimonial from "@/views/components/TestimonialComponent.vue"
-    import Blog from "@/views/components/BlogComponent.vue"
+    import WhyUs from "@/views/components/home/WhyUs.vue"
+    import Questions from "@/views/components/home/Question.vue"
+    import Hero from "@/views/components/home/Hero.vue"
+    import Testimonial from "@/views/components/home/Testimonial.vue"
+    import Blog from "@/views/components/home/Blog.vue"
 
     export default {
         name: "Home",
         components: {
             "app-about" : About,
             "app-services" : Jasa,
-            "app-choose-us" : ChooseUs,
+            "app-why-us" : WhyUs,
             "app-question" : Questions,
             "app-hero" : Hero,
             "app-testi" : Testimonial,
