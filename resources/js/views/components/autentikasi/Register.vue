@@ -44,7 +44,7 @@
                             </a>
                             <form  method="POST" @submit.prevent="register">
                                 <div class="row">
-                                    <div class="col-md-6 mb-4">
+                                    <div class="col-md-6 mb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="first_name">
                                                 Nama Depan
@@ -52,7 +52,7 @@
                                             <input type="text" id="first_name" class="form-control" v-model="user.first_name">
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
+                                    <div class="col-md-6 mb-2">
                                         <div class="form-outline">
                                             <label class="form-label" for="last_name">
                                                 Nama Belakang
@@ -62,14 +62,14 @@
                                     </div>
                                 </div>
 
-                                <div class="form-outline mb-4">
+                                <div class="form-outline mb-2">
                                     <label class="form-label" for="email">
                                         Email address
                                     </label>
                                     <input type="email" id="email" class="form-control" v-model="user.email">
                                 </div>
 
-                                <div class="form-outline mb-4">
+                                <div class="form-outline mb-2">
                                     <label class="form-label" for="password">
                                         Password
                                     </label>
@@ -83,7 +83,7 @@
                                     <input type="password" id="confirmation_password" class="form-control" v-model="user.konfirmasi_password">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary btn-block w-100 mb-4">
+                                <button type="submit" class="btn btn-primary btn-block w-100 mb-2">
                                     <span v-if="loading">
                                         <i>
                                             Data Anda Sedang Diproses Oleh Sistem
@@ -93,25 +93,6 @@
                                         Daftar
                                     </span>
                                 </button>
-
-                                <div class="text-center">
-                                    <p>or sign up with:</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-google"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-twitter"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-github"></i>
-                                    </button>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -123,6 +104,9 @@
 
 <style scoped>
 
+section {
+    padding-top: 150px;
+}
 .profil {
     color: hsl(218, 81%, 95%);
 }

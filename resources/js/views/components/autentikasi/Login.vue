@@ -63,25 +63,6 @@
                                         Login
                                     </span>
                                 </button>
-
-                                <div class="text-center">
-                                    <p>Atau Login Menggunakan:</p>
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-google"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-twitter"></i>
-                                    </button>
-
-                                    <button type="button" class="btn btn-link btn-floating mx-1">
-                                        <i class="fab fa-github"></i>
-                                    </button>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -92,6 +73,10 @@
 </template>
 
 <style scoped>
+
+section {
+    padding-top: 150px;
+}
 
 .profil {
     color: hsl(218, 81%, 95%);
