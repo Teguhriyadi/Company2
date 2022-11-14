@@ -55,19 +55,14 @@
                 </div>
             </div>
         </section>
-        <app-contact/>
     </main>
 </template>
 
 <script>
 import axios from "axios"
-import Contact from "@/views/components/contact/Contact.vue"
 
 export default {
     name: "ProductDetail",
-    components: {
-        "app-contact" : Contact,
-    },
     data() {
         return {
             detailDataProduk: []

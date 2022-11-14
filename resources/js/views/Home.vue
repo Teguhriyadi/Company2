@@ -16,8 +16,6 @@
 
         <app-blog/>
 
-        <app-contact/>
-
     </main>
 
 </template>
@@ -30,7 +28,6 @@
     import Hero from "@/views/components/HeroComponent.vue"
     import Testimonial from "@/views/components/TestimonialComponent.vue"
     import Blog from "@/views/components/BlogComponent.vue"
-    import Contact from "@/views/components/contact/Contact.vue"
 
     export default {
         name: "Home",
@@ -41,8 +38,7 @@
             "app-question" : Questions,
             "app-hero" : Hero,
             "app-testi" : Testimonial,
-            "app-blog" : Blog,
-            "app-contact" : Contact,
+            "app-blog" : Blog
         }
     }
 </script>

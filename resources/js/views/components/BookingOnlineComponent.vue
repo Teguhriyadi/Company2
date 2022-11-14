@@ -58,19 +58,14 @@
                 </template>
             </div>
         </section>
-        <app-contact/>
     </main>
 </template>
 
 <script>
     import axios from "axios"
-    import Contact from "@/views/components/contact/Contact.vue"
 
     export default {
         name: "BookingOnline",
-        components: {
-            "app-contact": Contact
-        },
         data() {
             return {
                 dataCaraBooking: [],

@@ -49,13 +49,6 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#kontak">
-                            Kontak
-                        </a>
-                    </li>
-
-
                     <li v-if="!loggedIn">
                         <router-link to="/login">
                             Login

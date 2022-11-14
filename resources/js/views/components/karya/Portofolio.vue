@@ -64,17 +64,12 @@
                 </template>
             </div>
         </section>
-        <app-contact/>
     </main>
 </template>
 
 <script>
-    import Contact from "@/views/components/contact/Contact.vue"
     export default {
         name: "Portofolio",
-        components: {
-            "app-contact" : Contact
-        },
         data() {
             return {
                 namaJasa: [],
