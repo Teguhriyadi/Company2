@@ -30,7 +30,7 @@
                 </router-link>
             </div>
             <div class="img">
-                <img src="/theme/img/self.png">
+                <img src="@/assets/image/self.png">
             </div>
         </div>
     </main>
