@@ -206,6 +206,17 @@ export default {
     data() {
         let nama = this.$route.params.nama;
         let id = this.$route.params.id;
+
+        if (!nama) {
+            this.$swal({
+                title: "Oopss",
+                text: "Jangan Akses Lewat URL yaa",
+                icon: "error"
+            }).then(function() {
+                window.location = "/";
+            });
+        }
+
         return {
             namaJasa: nama,
             dataJasa: [],

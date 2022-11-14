@@ -68,47 +68,57 @@
 </template>
 
 <script>
-    export default {
-        name: "Portofolio",
-        data() {
-            return {
-                namaJasa: [],
-                dataPortofolio: [],
-                idJasa: [],
-                spinner: false,
-                output: false
-            }
-        },
-        mounted() {
-            let id = this.$route.params.id;
-            this.idJasa = id;
+export default {
+    name: "Portofolio",
+    data() {
+        return {
+            namaJasa: [],
+            dataPortofolio: [],
+            idJasa: [],
+            spinner: false,
+            output: false
+        }
+    },
+    mounted() {
+        let id = this.$route.params.id;
+        this.idJasa = id;
 
-            let nama_jasa = this.$route.params.nama;
-            this.namaJasa = nama_jasa;
-        },
-        created() {
-            this.getPortofolio();
-        },
-        methods: {
-            async getPortofolio() {
-                this.spinner = true;
-                try {
-                    const response = await axios.get("portofolio");
-                    if (response.data == "Data Tidak Ada") {
-                        setTimeout(() => {
-                            this.output = true
-                            this.spinner = false;
-                        }, 1000);
-                    } else {
-                        setTimeout(() => {
-                            this.dataPortofolio = response.data;
-                            this.spinner = false;
-                        }, 1000);
-                    }
-                } catch (error) {
-                    console.log(error);
+        let nama_jasa = this.$route.params.nama;
+        this.namaJasa = nama_jasa;
+
+        if (!this.namaJasa) {
+            this.$swal({
+                title: "Oopss",
+                text: "Jangan Akses Lewat URL yaa",
+                icon: "error"
+            }).then(function() {
+                window.location = "/";
+            });
+        }
+    },
+    created() {
+        this.getPortofolio();
+    },
+    methods: {
+        async getPortofolio() {
+            this.spinner = true;
+            try {
+                const response = await axios.get("portofolio");
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.output = true
+                        this.spinner = false;
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.dataPortofolio = response.data;
+                        this.spinner = false;
+                    }, 1000);
                 }
+            } catch (error) {
+                console.log(error);
             }
         }
     }
+}
 </script>

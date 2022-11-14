@@ -123,12 +123,16 @@ export default {
                             localStorage.setItem("token", res.data.token)
 
                             this.loggedIn = true
-                            this.$swal('Good Job', 'Anda Berhasil Login', 'success')
                             setTimeout(() => {
                                 this.loading = false;
-                                window.location = '/'
-                            }, 2000);
-
+                                this.$swal({
+                                    title: "Good Job",
+                                    text: "Anda Berhasil Login",
+                                    icon: "success"
+                                }).then(function() {
+                                    window.location = "/"
+                                });
+                            }, 1000);
                         } else {
                             this.loginFailed = true
                         }
@@ -136,10 +140,15 @@ export default {
                         console.log(error);
                         this.loading = true;
 
-                        this.$swal('Oopss', 'Periksa Kembali Form Isian Anda', 'error');
                         setTimeout(() => {
                             this.loading = false
-                            window.location = "login"
+                            this.$swal({
+                                title: "Oopss",
+                                text: "Periksa Kembali Form Isian Anda",
+                                icon: "error"
+                            }).then(function() {
+                                window.location = "/login"
+                            });
                         }, 2000);
                     })
                 })
