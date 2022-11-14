@@ -30,12 +30,12 @@
                                 <ul>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-person"></i>
-                                        <span>{{ artikel.artikel_created_by }}</span>
+                                        <span>{{ artikel.dibuat_oleh.nama }}</span>
                                     </li>
                                     <li class="d-flex align-items-center">
                                         <i class="bi bi-clock"></i>
                                         <a href="blog-details.html">
-                                            <time datetime="2020-01-01">Jan 1, 2022</time>
+                                            <time datetime="2020-01-01">{{ artikel.launching }}</time>
                                         </a>
                                     </li>
                                 </ul>
@@ -49,22 +49,22 @@
 
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
-                                <ul class="cats">
+                                <ul class="cats" style="padding-left: 5px;">
                                     <li>
-                                        <a href="#">
-                                            {{ artikel.artikel_kategori }}
-                                        </a>
+                                        {{ artikel.kategori.kategori_nama }}
                                     </li>
                                 </ul>
 
-                                <i class="bi bi-tags"></i>
-                                <ul class="tags">
-                                    <li v-for="(tag, index) in artikel.artikel_data" :key="index">
-                                        <a href="#">
-                                            {{ tag }}
-                                        </a>
-                                    </li>
-                                </ul>
+                                <i class="bi bi-tags" style="padding-right: 5px;"></i>
+                                <template v-for="(tag, index) in dataTag" :key="index">
+                                    <template v-for="(tag_id, index) in artikel.tag" :key="index">
+                                        <template v-if="tag_id.id_tag == tag.tag_id">
+                                            <span style="padding-right: 5px;">
+                                               - {{ tag.tag_nama }}
+                                            </span>
+                                        </template>
+                                    </template>
+                                </template>
                             </div>
                         </article>
                     </div>
@@ -104,7 +104,7 @@
                                                     {{ terbaru.artikel_judul }}
                                                 </router-link>
                                             </h4>
-                                            <time datetime="2020-01-01">Jan 1, 2020</time>
+                                            <time datetime="2020-01-01">{{ terbaru.launching }}</time>
                                         </div>
                                     </div>
                                 </div>
@@ -134,22 +134,33 @@ export default {
         return {
             detailArtikel: [],
             dataArtikel: [],
-            dataKategori: []
+            dataKategori: [],
+            dataTag: []
         }
     },
     created() {
         this.getDetailArtikel();
         this.getArtikel();
         this.getKategori();
+        this.getTag();
     },
     methods: {
         async getDetailArtikel() {
             let slug = this.$route.params.slug;
             try {
-                const response = await axios.get("artikel/"+slug);
+                const response = await axios.get("artikel/" + slug);
                 this.detailArtikel = response.data;
             } catch (error) {
                 console.log("Oopss.. Error");
+            }
+        },
+
+        async getTag() {
+            try {
+                const response = await axios.get("tag");
+                this.dataTag = response.data.data;
+            } catch (error) {
+                console.log(error);
             }
         },
 
@@ -157,7 +168,7 @@ export default {
             let slug = this.$route.params.slug;
             try {
                 const response = await axios.get("artikel/detail/"+slug);
-                this.dataArtikel = response.data;
+                this.dataArtikel = response.data.data;
             } catch (error) {
                 console.log("Oopss.. Error");
             }

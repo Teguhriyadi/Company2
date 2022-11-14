@@ -26,7 +26,7 @@
             async getTag() {
                 try {
                     const response = await axios.get("tag");
-                    this.dataTag = response.data;
+                    this.dataTag = response.data.data;
                 } catch (error) {
                     console.log("Oopss.. Error");
                 }

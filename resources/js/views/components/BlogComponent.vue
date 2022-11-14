@@ -8,13 +8,15 @@
                 </p>
             </div>
 
-            <div class="row gy-5">
+            <div class="row gy-5 pb-5">
                 <template v-if="dataArtikel.length">
                     <div v-for="(artikel, index) in dataArtikel" :key="index" class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="post-item position-relative h-100">
                             <div class="post-img position-relative overflow-hidden">
                                 <img :src="artikel.artikel_gambar" class="img-fluid" alt=""/>
-                                <span class="post-date">December 12</span>
+                                <span class="post-date">
+                                    {{ artikel.launching }}
+                                </span>
                             </div>
 
                             <div class="post-content d-flex flex-column">
@@ -25,12 +27,12 @@
                                 <div class="meta d-flex align-items-center">
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-person"></i>
-                                        <span class="ps-2">{{ artikel.artikel_created_by }}</span>
+                                        <span class="ps-2">{{ artikel.dibuat_oleh.nama }}</span>
                                     </div>
                                     <span class="px-3 text-black-50">/</span>
                                     <div class="d-flex align-items-center">
                                         <i class="bi bi-folder2"></i>
-                                        <span class="ps-2">{{ artikel.artikel_kategori }}</span>
+                                        <span class="ps-2">{{ artikel.kategori.kategori_nama }}</span>
                                     </div>
                                 </div>
 
@@ -61,6 +63,11 @@
                     </div>
                 </template>
             </div>
+            <center v-if="button">
+                <button class="btn btn-success pt-2 pb-2" style="width: 50%; border-radius: 50px;">
+                    Lihat Lebih Banyak
+                </button>
+            </center>
         </div>
     </section>
 </template>
@@ -74,6 +81,7 @@ export default {
             dataArtikel: [],
             spinner: false,
             output: false,
+            button: false
         }
     },
     created() {
@@ -84,7 +92,11 @@ export default {
             try {
                 this.spinner = true;
                 const response = await axios.get("artikel");
-                if (response.data == "Data Tidak Ada") {
+                console.log(response.data.meta)
+                if (response.data.meta.total > response.data.meta.per_page ) {
+                    this.button = true;
+                }
+                if (response.data.data == []) {
                     setTimeout(() => {
                         this.output = true;
                         this.spinner = false;
@@ -92,7 +104,7 @@ export default {
                 } else {
                     setTimeout(() => {
                         this.spinner = false;
-                        this.dataArtikel = response.data;
+                        this.dataArtikel = response.data.data;
                     }, 1000);
                 }
             } catch (error) {

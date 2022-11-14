@@ -22,4 +22,9 @@ class Artikel extends Model
     {
         return $this->belongsTo("App\Models\User", "user_id", "id");
     }
+
+    public function getArtikelTag()
+    {
+        return $this->hasMany("App\Models\Master\ArtikelTag", "id_blog", "id");
+    }
 }
