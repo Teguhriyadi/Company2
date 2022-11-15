@@ -27,6 +27,7 @@ use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Web\Jasa\KategoriJasaController;
 use App\Http\Controllers\Web\Jasa\PaketJasaController;
 use App\Http\Controllers\Web\Jasa\PaketKategoriController;
+use App\Http\Controllers\Web\Pengaturan\WhyUsController;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -143,6 +144,8 @@ if (Request::segment(1) == 'admin') {
 
                 Route::resource("tentang_kami", TentangKamiController::class);
                 Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+                Route::post("/why_us/upload_gambar", [WhyUsController::class, "upload_gambar"]);
+                Route::resource("why_us", WhyUsController::class);
                 Route::resource("testimonial", TestimonialController::class);
                 Route::resource("pesan", PesanController::class);
             });

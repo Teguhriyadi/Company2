@@ -15,19 +15,6 @@ class ChooseUsSeeder extends Seeder
      */
     public function run()
     {
-        ChooseUs::create([
-            "choose_us_judul" => "Murah",
-            "choose_us_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"
-        ]);
 
-        ChooseUs::create([
-            "choose_us_judul" => "Terjangkau",
-            "choose_us_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"
-        ]);
-
-        ChooseUs::create([
-            "choose_us_judul" => "Konsisten",
-            "choose_us_deskripsi" => "Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet"
-        ]);
     }
 }

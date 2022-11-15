@@ -9,42 +9,29 @@
             </div>
 
             <div class="row why-container">
-                <div class="col-lg-6 content order-lg-1 order-2">
-                    <p>
-                        Jasa Yang Kami Tawarkan Akan Selalu Mengutamakan Kenyamanan Customer / Pelanggan. Kami Mempunyai Alasan Mengapa Harus Memilih Jasa Kami, yaitu :
-                    </p>
-
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class="bi bi-card-checklist"></i></div>
-                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                        <p class="description">
-                            Et harum quidem rerum facilis est et expedita distinctio. Nam
-                            libero tempore, cum soluta nobis est eligendi
-                        </p>
+                <template v-if="dataChooseUs.length">
+                    <div class="col-lg-12 content order-lg-1 order-2" v-for="(choose, index) in dataChooseUs" :key="index">
+                        <div v-html="choose.upload"></div>
                     </div>
-
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-                        <div class="icon"><i class="bi bi-brightness-high"></i></div>
-                        <h4 class="title"><a href="">Magni Dolores</a></h4>
-                        <p class="description">
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                            qui officia deserunt mollit anim id est laborum
-                        </p>
+                </template>
+                <template v-else>
+                    <center v-if="spinner">
+                        <div class="col-lg-12">
+                            <div class="spinner-border" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </center>
+                    <div class="col-lg-12" v-if="output">
+                        <div class="alert alert-danger text-center">
+                            <i>
+                                <strong>
+                                    Oopss.. Data Saat Ini Belum Tersedia
+                                </strong>
+                            </i>
+                        </div>
                     </div>
-
-                    <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="bi bi-calendar4-week"></i></div>
-                        <h4 class="title"><a href="">Dolor Sitema</a></h4>
-                        <p class="description">
-                            Minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo consequat tarad limino ata
-                        </p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6 background order-lg-2" data-aos="zoom-in">
-                    <img :src="'/desain/img/hero-carousel/1.jpeg'" class="img-fluid" alt="" />
-                </div>
+                </template>
             </div>
         </div>
     </section>
@@ -56,7 +43,9 @@ export default {
     name: "ChooseUs",
     data() {
         return {
-            dataChooseUs: []
+            dataChooseUs: [],
+            spinner: false,
+            output: false
         }
     },
     created() {
@@ -65,8 +54,19 @@ export default {
     methods: {
         async getChooseUs() {
             try {
+                this.spinner = true
                 const response = await axios.get("choose_us");
-                this.dataChooseUs = response.data;
+                if (response.data == "Data Tidak Ada") {
+                    setTimeout(() => {
+                        this.output = true
+                        this.spinner = false
+                    }, 1000);
+                } else {
+                    setTimeout(() => {
+                        this.dataChooseUs = response.data
+                        this.spinner = false
+                    }, 1000);
+                }
             } catch (error) {
                 console.log(error);
             }

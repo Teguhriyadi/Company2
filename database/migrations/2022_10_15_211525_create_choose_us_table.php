@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('choose_us', function (Blueprint $table) {
             $table->id();
-            $table->string("choose_us_judul");
-            $table->string("choose_us_deskripsi");
+            $table->string("upload");
             $table->timestamps();
         });
     }

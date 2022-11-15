@@ -18,8 +18,7 @@ class ChooseUsController extends Controller
             $data = [];
             foreach ($chose_us as $d) {
                 $data[] = [
-                    "choose_us_judul" => $d->choose_us_judul,
-                    "choose_us_deskripsi" => $d->choose_us_deskripsi,
+                    "upload" => $d->upload,
                 ];
             }
         }

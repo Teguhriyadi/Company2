@@ -136,6 +136,9 @@
                 <a class="collapse-item {{ Request::is('admin/pengaturan/tentang_kami') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/tentang_kami') }}">
                     Tentang Kami
                 </a>
+                <a class="collapse-item {{ Request::is('admin/pengaturan/why_us') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/why_us') }}">
+                    Why Us
+                </a>
                 <a class="collapse-item {{ Request::is('admin/pengaturan/profil_perusahaan') ? 'active' : '' }}"
                     href="{{ url('/admin/pengaturan/profil_perusahaan') }}">
                     Profil Perusahaan
