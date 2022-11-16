@@ -19,7 +19,7 @@
                     <div class="col-lg-8" v-for="(artikel, index) in detailArtikel" :key="index">
                         <article class="blog-details">
                             <div class="post-img">
-                                <img :src="artikel.artikel_gambar" alt="" class="img-fluid"/>
+                                <img :src="artikel.artikel_gambar" alt="" class="img-fluid" />
                             </div>
 
                             <h2 class="title">

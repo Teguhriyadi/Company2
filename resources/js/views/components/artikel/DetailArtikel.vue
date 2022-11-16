@@ -9,7 +9,7 @@
                             Home
                         </router-link>
                     </li>
-                    <li>Blog Details</li>
+                    <li>Blog Detail</li>
                 </ol>
             </div>
         </div>
@@ -149,9 +149,10 @@ export default {
             let slug = this.$route.params.slug;
             try {
                 const response = await axios.get("artikel/" + slug);
+                console.log(response.data);
                 this.detailArtikel = response.data;
             } catch (error) {
-                console.log("Oopss.. Error");
+                console.log(error);
             }
         },
 
@@ -170,7 +171,7 @@ export default {
                 const response = await axios.get("artikel/detail/"+slug);
                 this.dataArtikel = response.data.data;
             } catch (error) {
-                console.log("Oopss.. Error");
+                console.log(error);
             }
         },
 
@@ -179,7 +180,7 @@ export default {
                 const response = await axios.get("kategori");
                 this.dataKategori = response.data;
             } catch (error) {
-                console.log("Oopss.. Error");
+                console.log(error);
             }
         }
     }

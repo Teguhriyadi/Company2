@@ -13,7 +13,7 @@
                     <div v-for="(artikel, index) in dataArtikel" :key="index" class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="post-item position-relative h-100">
                             <div class="post-img position-relative overflow-hidden">
-                                <img :src="artikel.artikel_gambar" class="img-fluid" alt=""/>
+                                <img :src="artikel.artikel_gambar" class="img-fluid" style="height: 300px; width: 100%" alt=""/>
                                 <span class="post-date">
                                     {{ artikel.launching }}
                                 </span>

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->id();
-            $table->string("slug", 50);
+            $table->string("slug", 100);
             $table->string("judul");
             $table->integer("kategori_id");
             $table->text("deskripsi");
