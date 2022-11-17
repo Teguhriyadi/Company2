@@ -3,28 +3,19 @@
 namespace App\Http\Controllers\API\Master;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Production\Portofolio\GetDataResource;
+use App\Models\Jasa\KategoriJasa;
 use App\Models\Master\Portfolio;
 use Illuminate\Http\Request;
 
 class PortofolioController extends Controller
 {
-    public function index()
+    public function index($slug)
     {
-        $portfolio = Portfolio::orderBy("created_at", "DESC")->get();
+        $kategori_jasa = KategoriJasa::where("kategori_jasa_slug", $slug)->first();
 
-        if ($portfolio->count() < 1) {
-            $data = "Data Tidak Ada";
-        } else {
-            $data = [];
-            foreach ($portfolio as $d) {
-                $data[] = [
-                    "portofolio_url" => $d->portofolio_url,
-                    "portofolio_nama" => $d->portofolio_nama,
-                    "portofolio_deskripsi" => $d->portofolio_deskripsi,
-                    "kategori_jasa_id" => $d->kategori_jasa_id
-                ];
-            }
-        }
-        return response()->json($data, 200);
+        $portofolio = Portfolio::query()->where("kategori_jasa_id", $kategori_jasa->id)->orderBy("created_at", "DESC")->with("getKategoriJasa:id,kategori_jasa_slug")->paginate(6);
+
+        return GetDataResource::collection($portofolio);
     }
 }

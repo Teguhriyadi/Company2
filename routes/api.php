@@ -64,7 +64,7 @@ Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);
 Route::resource('services', ServicesController::class);
 Route::resource('choose_us', ChooseUsController::class);
-Route::resource('portofolio', PortofolioController::class);
+Route::get('portofolio/{slug}', [PortofolioController::class, "index"]);
 Route::resource('tentang_kami', AboutUsController::class);
 Route::get("/artikel/{slug}", [ArtikelController::class, "detail"]);
 Route::get("/artikel/detail/{slug}", [ArtikelController::class, "artikel"]);

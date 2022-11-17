@@ -3,7 +3,13 @@
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/theme/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
                 <h2>
-                    Portofolio {{ namaJasa }}
+                    Portofolio
+                    <template v-if="namaJasa.length">
+                        {{ namaJasa }}
+                    </template>
+                    <template v-else>
+
+                    </template>
                 </h2>
                 <ol>
                     <li>
@@ -20,7 +26,13 @@
         <section id="video" class="container">
             <div class="section-header">
                 <h2>
-                    Portofolio {{ namaJasa }}
+                    Portofolio
+                    <template v-if="namaJasa.length">
+                        {{ namaJasa }}
+                    </template>
+                    <template v-else>
+
+                    </template>
                 </h2>
                 <p>
                     Beberapa Karya Kami Yang Sudah Dipesan Oleh Beberapa Client Yang Telah Menggunakan Jasa Kami
@@ -29,7 +41,7 @@
             <div class="row row-cols-1 row-cols-md-2 g-4 ">
                 <template v-if="dataPortofolio.length">
                     <template v-for="(portofolio, index) in dataPortofolio" :key="index">
-                        <template v-if="idJasa == portofolio.kategori_jasa_id">
+                        <template v-if="idJasa == portofolio.kategori.id">
                             <div class="col-md-6">
                                 <div class="card" style="height: 100%;">
                                     <iframe width="100%" :src="portofolio.portofolio_url"  style="height: 300px;"></iframe>
@@ -45,6 +57,13 @@
                             </div>
                         </template>
                     </template>
+                    <v-pagination
+                    v-model="page"
+                    :pages="10"
+                    :range-size="1"
+                    active-color="#DCEDFF"
+                    @update:modelValue="updateHandler"
+                    />
                 </template>
                 <template v-else>
                     <div class="col-md-12">
@@ -76,7 +95,7 @@ export default {
             dataPortofolio: [],
             idJasa: [],
             spinner: false,
-            output: false
+            output: false,
         }
     },
     created() {
@@ -86,7 +105,6 @@ export default {
     methods: {
         async getJasa() {
             let slug = this.$route.params.slug;
-
             try {
                 const response = await axios.get("kategori_jasa/" + slug);
                 this.namaJasa = response.data.data.jasa_nama
@@ -98,16 +116,17 @@ export default {
 
         async getPortofolio() {
             this.spinner = true;
+            let slug = this.$route.params.slug;
             try {
-                const response = await axios.get("portofolio");
-                if (response.data == "Data Tidak Ada") {
+                const response = await axios.get("portofolio/" + slug);
+                if (response.data.data == []) {
                     setTimeout(() => {
                         this.output = true
                         this.spinner = false;
                     }, 1000);
                 } else {
                     setTimeout(() => {
-                        this.dataPortofolio = response.data;
+                        this.dataPortofolio = response.data.data;
                         this.spinner = false;
                     }, 1000);
                 }
