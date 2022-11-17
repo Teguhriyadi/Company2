@@ -100,7 +100,7 @@
                                         <img :src="terbaru.artikel_gambar" alt="" />
                                         <div>
                                             <h4>
-                                                <router-link :to="{name: 'detailBlog', params: {slug: terbaru.artikel_slug} }">
+                                                <router-link :to="{name: 'blog', params: {slug: terbaru.artikel_slug} }">
                                                     {{ terbaru.artikel_judul }}
                                                 </router-link>
                                             </h4>

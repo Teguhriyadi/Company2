@@ -4,7 +4,7 @@
     <!-- END -->
 
     <!-- CONTENT -->
-    <router-view/>
+    <router-view :key="$route.fullPath"></router-view>
     <!-- END -->
 
     <!-- CONTACT -->

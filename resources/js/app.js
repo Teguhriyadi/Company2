@@ -10,7 +10,6 @@ import App from './src/App.vue'
 import Home from "@/views/Home.vue";
 import Portofolio from "@/views/components/karya/Portofolio.vue"
 import DetailBlog from "@/views/components/artikel/DetailArtikel.vue"
-import ArtikelBlog from "@/views/components/ArtikelBlogComponent.vue"
 import Kategori from "@/views/components/KategoriComponent.vue"
 import FilterKategori from "@/views/components/FilterKategoriComponent.vue"
 import SyaratKetentuan from "@/views/components/selengkapnya/SyaratKetentuan.vue"
@@ -41,11 +40,6 @@ const routes = [
         path: "/blog/:slug",
         name: 'blog',
         component: DetailBlog
-    },
-    {
-        path: "/blog/:slug",
-        name: 'detailBlog',
-        component: ArtikelBlog
     },
     {
         path: "/kategori/:slug",
