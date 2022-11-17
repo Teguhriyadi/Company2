@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <template v-if="namaJasa == 'Jasa Animasi' || namaJasa == 'Jasa Videografi' ">
+        <template v-if="this.namaJasa == 'Jasa Animasi' || this.namaJasa == 'Jasa Videografi' ">
             <section id="pricing" class="pricing">
                 <div class="container" data-aos="fade-up">
                     <div class="section-header">
@@ -204,26 +204,13 @@
 export default {
     name: "KategoriJasa",
     data() {
-        let nama = this.$route.params.nama;
-        let id = this.$route.params.id;
-
-        if (!nama) {
-            this.$swal({
-                title: "Oopss",
-                text: "Jangan Akses Lewat URL yaa",
-                icon: "error"
-            }).then(function() {
-                window.location = "/";
-            });
-        }
-
         return {
-            namaJasa: nama,
+            namaJasa: [],
             dataJasa: [],
             dataKosong: [],
             dataProdukPaket: [],
             dataProduk: [],
-            idJasa: id,
+            idJasa: [],
             dataBenefit: [],
             spinner: false,
             output: false,
@@ -235,6 +222,7 @@ export default {
         }
     },
     created() {
+        this.getSlug();
         this.getData();
         this.getProdukPaket();
         this.getProduk();
@@ -248,6 +236,17 @@ export default {
         })
     },
     methods: {
+        async getSlug() {
+            let slug = this.$route.params.slug;
+            try {
+                const response = await axios.get("kategori_jasa/" + slug);
+                this.namaJasa = response.data.data.jasa_nama;
+                this.idJasa = response.data.data.jasa_id;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         async getData() {
             let id = this.$route.params.id;
             try {

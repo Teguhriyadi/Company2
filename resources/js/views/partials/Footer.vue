@@ -37,8 +37,8 @@
                         <ul>
                             <li v-for="(kategori, index) in dataKategoriJasa" :key="index">
                                 <i class="fas fa-arrow-right" style="padding-right: 5px;"></i>
-                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.kategori_jasa_slug, id: kategori.kategori_id, nama: kategori.kategori_jasa_nama} }">
-                                    {{ kategori.kategori_jasa_nama }}
+                                <router-link :to="{name: 'kategoriJasa', params: {slug: kategori.jasa_slug, id: kategori.jasa_id, nama: kategori.jasa_nama} }">
+                                    {{ kategori.jasa_nama }}
                                 </router-link>
                             </li>
                         </ul>
@@ -111,9 +111,9 @@
             async getKategoriJasa() {
                 try {
                     const response = await axios.get("kategori_jasa");
-                    this.dataKategoriJasa = response.data;
+                    this.dataKategoriJasa = response.data.data;
                 } catch (error) {
-                    console.log("Oopss. Error");
+                    console.log(error);
                 }
             }
         }

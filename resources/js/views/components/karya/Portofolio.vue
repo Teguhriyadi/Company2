@@ -79,27 +79,23 @@ export default {
             output: false
         }
     },
-    mounted() {
-        let id = this.$route.params.id;
-        this.idJasa = id;
-
-        let nama_jasa = this.$route.params.nama;
-        this.namaJasa = nama_jasa;
-
-        if (!this.namaJasa) {
-            this.$swal({
-                title: "Oopss",
-                text: "Jangan Akses Lewat URL yaa",
-                icon: "error"
-            }).then(function() {
-                window.location = "/";
-            });
-        }
-    },
     created() {
+        this.getJasa();
         this.getPortofolio();
     },
     methods: {
+        async getJasa() {
+            let slug = this.$route.params.slug;
+
+            try {
+                const response = await axios.get("kategori_jasa/" + slug);
+                this.namaJasa = response.data.data.jasa_nama
+                this.idJasa = response.data.data.jasa_id
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
         async getPortofolio() {
             this.spinner = true;
             try {
