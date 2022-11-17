@@ -2,7 +2,12 @@
     <main id="main">
         <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/theme/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-                <h2>Kategori {{ namaJasa }} </h2>
+                <h2>
+                    Kategori
+                    <template v-if="namaJasa.length">
+                        {{ namaJasa }}
+                    </template>
+                </h2>
                 <ol>
                     <li>
                         <router-link to="/">
@@ -10,7 +15,10 @@
                         </router-link>
                     </li>
                     <li>
-                        Kategori {{ namaJasa }}
+                        Kategori
+                        <template v-if="namaJasa.length">
+                            {{ namaJasa }}
+                        </template>
                     </li>
                 </ol>
             </div>

@@ -1,15 +1,15 @@
 <template>
     <main id="main">
-        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/about.jpg')">
+        <div class="breadcrumbs d-flex align-items-center" style="background-image: url('/theme/img/about.jpg')">
             <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
-                <h2>Category Details</h2>
+                <h2>Detail Kategori</h2>
                 <ol>
                     <li>
                         <router-link to="/">
                             Home
                         </router-link>
                     </li>
-                    <li>Category Details</li>
+                    <li>Detail Kategori</li>
                 </ol>
             </div>
         </div>
@@ -79,7 +79,7 @@
                                 <h3 class="sidebar-title">Kategori</h3>
                                 <ul class="mt-3">
                                     <li v-for="(kategori, index) in dataKategori" :key="index">
-                                        <router-link :to="{name: 'filterKategori', params: {slug: kategori.kategori_slug} }">
+                                        <router-link :to="{name: 'detailKategori', params: {slug: kategori.kategori_slug} }">
                                             {{ kategori.kategori_nama }} <span>20</span>
                                         </router-link>
                                     </li>
