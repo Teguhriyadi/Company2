@@ -12,7 +12,6 @@ import Home from "@/views/Home.vue";
 import Portofolio from "@/views/components/karya/Portofolio.vue"
 import DetailBlog from "@/views/components/artikel/DetailArtikel.vue"
 import Kategori from "@/views/components/artikel/Kategori.vue"
-import FilterKategori from "@/views/components/FilterKategoriComponent.vue"
 import SyaratKetentuan from "@/views/components/selengkapnya/SyaratKetentuan.vue"
 import BookingOnline from "@/views/components/BookingOnlineComponent.vue"
 import KebijakanPrivasi from "@/views/components/selengkapnya/KebijakanPrivasi.vue"
@@ -57,11 +56,6 @@ const routes = [
         path: "/jasa/detail/:slug",
         name: "detailPaketJasa",
         component: DetailKategoriJasa
-    },
-    {
-        path: "/kategori/:slug",
-        name: 'filterKategori',
-        component: FilterKategori
     },
     {
         path: "/portofolio/:slug",
