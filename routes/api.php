@@ -69,6 +69,7 @@ Route::resource('tentang_kami', AboutUsController::class);
 Route::get("/artikel/{slug}", [ArtikelController::class, "detail"]);
 Route::get("/artikel/detail/{slug}", [ArtikelController::class, "artikel"]);
 Route::get("/artikel/kategori/{slug_kategori}", [ArtikelController::class, "detail_by_kategori"]);
+Route::get("/all-artikel", [ArtikelController::class, "all_artikel"]);
 Route::resource("artikel", ArtikelController::class);
 Route::resource("tag", TagController::class);
 Route::resource("question", QuestionController::class);

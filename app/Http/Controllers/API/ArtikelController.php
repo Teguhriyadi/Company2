@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Artikel\ArtikelResource;
 use App\Http\Resources\Artikel\Detail;
+use App\Http\Resources\Artikel\GetAllArtikel;
 use App\Models\Master\Artikel;
 use App\Models\Master\ArtikelTag;
 use App\Models\Master\Kategori;
@@ -55,5 +56,12 @@ class ArtikelController extends Controller
             }
         }
         return response()->json($data, 200);
+    }
+
+    public function all_artikel()
+    {
+        $artikel = Artikel::orderBy("created_at", "DESC")->with("getKategori:id,kategori_nama")->with("getUser:id,nama")->paginate(12);
+
+        return GetAllArtikel::collection($artikel);
     }
 }

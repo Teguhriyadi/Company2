@@ -64,9 +64,9 @@
                 </template>
             </div>
             <center v-if="button">
-                <button class="btn btn-success pt-2 pb-2" style="width: 50%; border-radius: 50px;">
+                <router-link to="/all-blog" class="btn btn-success pt-2 pb-2" style="width: 50%; border-radius: 50px;">
                     Lihat Lebih Banyak
-                </button>
+                </router-link>
             </center>
         </div>
     </section>
@@ -81,18 +81,23 @@ export default {
             dataArtikel: [],
             spinner: false,
             output: false,
-            button: false
+            button: false,
+            page: {}
         }
     },
     created() {
+        this.updateHandler();
         this.getArtikel();
     },
     methods: {
+        updateHandler() {
+            this.page = 4;
+            console.log(this.page)
+        },
         async getArtikel() {
             try {
                 this.spinner = true;
                 const response = await axios.get("artikel");
-                console.log(response.data.meta)
                 if (response.data.meta.total > response.data.meta.per_page ) {
                     this.button = true;
                 }

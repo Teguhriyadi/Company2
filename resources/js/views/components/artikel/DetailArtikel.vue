@@ -42,9 +42,7 @@
                             </div>
 
                             <div class="content">
-                                <p>
-                                    {{ artikel.artikel_deskripsi }}
-                                </p>
+                                <span v-html="artikel.artikel_deskripsi"></span>
                             </div>
 
                             <div class="meta-bottom">
@@ -86,7 +84,10 @@
                                 <ul class="mt-3">
                                     <li v-for="(kategori, index) in dataKategori" :key="index">
                                         <router-link :to="{name: 'detailKategori', params: {slug: kategori.kategori_slug} }">
-                                            {{ kategori.kategori_nama }} <span>20</span>
+                                            {{ kategori.kategori_nama }}
+                                            <span>
+                                                ({{ kategori.count }})
+                                            </span>
                                         </router-link>
                                     </li>
                                 </ul>

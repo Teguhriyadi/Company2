@@ -6,7 +6,8 @@ import VueSweetAlert2 from 'vue-sweetalert2'
 import 'sweetalert2/dist/sweetalert2.min.css';
 import axios from "axios"
 import App from './src/App.vue'
-
+import VPagination from "@hennge/vue3-pagination"
+import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import Home from "@/views/Home.vue";
 import Portofolio from "@/views/components/karya/Portofolio.vue"
 import DetailBlog from "@/views/components/artikel/DetailArtikel.vue"
@@ -25,6 +26,7 @@ import DetailCart from "@/views/components/Transaksi/DetailCart.vue"
 import History from "@/views/components/Transaksi/HistoryBelanja.vue"
 import ProfilSaya from "@/views/components/user/ProfilSaya.vue"
 import NotFound from "@/views/components/page/NotFound.vue"
+import AllBlog from "@/views/components/artikel/AllArtikel.vue"
 
 const routes = [
     {
@@ -109,6 +111,10 @@ const routes = [
     {
         path: "/profil_saya",
         component: ProfilSaya
+    },
+    {
+        path: "/all-blog",
+        component: AllBlog
     }
 ];
 
@@ -127,6 +133,8 @@ if (token) {
 }
 
 const rendering = createApp(App)
+
+rendering.component("v-pagination",VPagination)
 
 rendering.use(VueSweetAlert2);
 rendering.use(router);

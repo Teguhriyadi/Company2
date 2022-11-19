@@ -12,4 +12,9 @@ class Kategori extends Model
     protected $table = "kategori";
 
     protected $guarded = [''];
+
+    public function getCount()
+    {
+        return $this->hasMany("App\Models\Master\Artikel", "kategori_id", "id");
+    }
 }
