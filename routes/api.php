@@ -57,6 +57,7 @@ Route::resource("testimonial", TestimonialController::class);
 Route::post("contact_us", [ContactUsController::class, "store"]);
 Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
+Route::get("kategori/artikel/{slug}", [ArtikelController::class, "filter_by_kategori"]);
 Route::resource('kategori', KategoriController::class);
 Route::resource('carousel', CarouselController::class);
 Route::post('pesan', [PesanController::class, "store"]);

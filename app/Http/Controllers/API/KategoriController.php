@@ -38,7 +38,8 @@ class KategoriController extends Controller
             foreach ($filter as $d) {
                 $data[] = [
                     "kategori_slug" => $d->kategori_slug,
-                    "kategori_nama" => $d->kategori_nama
+                    "kategori_nama" => $d->kategori_nama,
+                    "count" => $d->getCount->count()
                 ];
             }
         }

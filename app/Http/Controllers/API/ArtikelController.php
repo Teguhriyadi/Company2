@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Artikel\ArtikelResource;
 use App\Http\Resources\Artikel\Detail;
 use App\Http\Resources\Artikel\GetAllArtikel;
+use App\Http\Resources\Artikel\GetKategoriArtikel;
 use App\Models\Master\Artikel;
 use App\Models\Master\ArtikelTag;
 use App\Models\Master\Kategori;
@@ -39,23 +40,14 @@ class ArtikelController extends Controller
     {
         $kategori = Kategori::where("kategori_slug", $slug_kategori)->first();
 
-        $artikel = Artikel::where("kategori_id", $kategori->id)->orderBy("created_at", "DESC")->get();
+        $artikel = Artikel::query()
+        ->where("kategori_id", $kategori->id)
+        ->orderBy("created_at", "DESC")
+        ->with("getKategori:id,kategori_nama")
+        ->with("getUser:id,nama")
+        ->paginate(6);
 
-        if ($artikel->count() < 1) {
-            $data = "Data Tidak Ada";
-        } else {
-            $data = [];
-            foreach ($artikel as $d) {
-                $data[] = [
-                    "artikel_judul" => $d->judul,
-                    "artikel_slug" => $d->slug,
-                    "artikel_gambar" => $d->foto,
-                    "artikel_kategori" => $d->getKategori->kategori_nama,
-                    "artikel_created_by" => $d->getUser->nama,
-                ];
-            }
-        }
-        return response()->json($data, 200);
+        return GetKategoriArtikel::collection($artikel);
     }
 
     public function all_artikel()
@@ -63,5 +55,19 @@ class ArtikelController extends Controller
         $artikel = Artikel::orderBy("created_at", "DESC")->with("getKategori:id,kategori_nama")->with("getUser:id,nama")->paginate(12);
 
         return GetAllArtikel::collection($artikel);
+    }
+
+    public function filter_by_kategori($slug)
+    {
+        $kategori = Kategori::where("kategori_slug", $slug)->first();
+
+        $artikel = Artikel::query()
+        ->where("kategori_id", "!=" ,$kategori->id)
+        ->orderBy("created_at", "DESC")
+        ->with("getKategori:id,kategori_nama")
+        ->with("getUser:id,nama")
+        ->paginate(6);
+
+        return GetKategoriArtikel::collection($artikel);
     }
 }

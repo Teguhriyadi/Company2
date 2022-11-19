@@ -11,7 +11,7 @@ import "@hennge/vue3-pagination/dist/vue3-pagination.css";
 import Home from "@/views/Home.vue";
 import Portofolio from "@/views/components/karya/Portofolio.vue"
 import DetailBlog from "@/views/components/artikel/DetailArtikel.vue"
-import Kategori from "@/views/components/KategoriComponent.vue"
+import Kategori from "@/views/components/artikel/Kategori.vue"
 import FilterKategori from "@/views/components/FilterKategoriComponent.vue"
 import SyaratKetentuan from "@/views/components/selengkapnya/SyaratKetentuan.vue"
 import BookingOnline from "@/views/components/BookingOnlineComponent.vue"
