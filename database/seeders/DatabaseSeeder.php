@@ -25,7 +25,7 @@ use Database\Seeders\selengkapnya\KebijakanPrivasiSeeder;
 use Database\Seeders\selengkapnya\SyaratKetentuanSeeder;
 use Database\Seeders\step\BookingOnlineSeeder;
 use Database\Seeders\Transaksi\KodeTokenSeeder;
-use Database\Seeders\transaksi\ProdukSeeder;
+use Database\Seeders\Transaksi\ProdukSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
