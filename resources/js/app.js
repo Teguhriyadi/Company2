@@ -128,7 +128,7 @@ router.beforeEach((to, from, next) => {
 });
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = "https://kumon.startsheep.my.id/"
+axios.defaults.baseURL = "https://kumon.startsheep.my.id/api/"
 const token = localStorage.getItem("token");
 if (token) {
     axios.defaults.headers.common["Authorization"] = token
