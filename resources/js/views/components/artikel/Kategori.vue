@@ -19,7 +19,7 @@
                     <div id="recent-blog-posts" class="recent-blog-posts">
                         <div class="container" data-aos="fade-up">
                             <div class="row">
-                                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100" v-for="(artikel, index) in dataArtikelByKategori" :key="index">
+                                <div class="col-md-6 mb-5" data-aos="fade-up" data-aos-delay="100" v-for="(artikel, index) in dataArtikelByKategori" :key="index">
                                     <div class="post-item position-relative h-100">
                                         <div class="post-img position-relative overflow-hidden">
                                             <img :src="artikel.artikel_gambar" class="img-fluid" style="height: 300px;" />
