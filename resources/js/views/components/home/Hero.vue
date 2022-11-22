@@ -41,11 +41,26 @@ export default {
         return {
             loggedIn: localStorage.getItem("loggedIn"),
             token: localStorage.getItem("token"),
+            apiData: localStorage.getItem("api_data"),
             user: [],
             dataCarousel: []
         }
     },
     created() {
+        if (!this.apiData) {
+            axios.get("data_api", {
+                headers: {
+                    'Authorization': 'Bearer ' + this.apiData
+                }
+            }).then(response => {
+                localStorage.setItem("api_data", response.data.token);
+            }).catch(error => {
+                console.log("Oops");
+            });
+        } else {
+            this.getCarousel();
+        }
+
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
@@ -54,7 +69,7 @@ export default {
             console.log(response)
             this.user = response.data
         })
-        this.getCarousel();
+
     },
     methods: {
         async getCarousel() {

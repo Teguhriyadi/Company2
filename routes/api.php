@@ -10,6 +10,7 @@ use App\Http\Controllers\API\ProfilPerusahaanController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\ArtikelController;
+use App\Http\Controllers\API\Autentikasi\AppController;
 use App\Http\Controllers\API\Autentikasi\LoginController;
 use App\Http\Controllers\API\ChooseUsController;
 use App\Http\Controllers\API\Jasa\ProdukPaketController;
@@ -49,6 +50,10 @@ Route::middleware("auth:sanctum")->get("/user", function(Request $request) {
     return $request->user();
 });
 
+Route::get("data_api", [AppController::class, "index"]);
+
+Route::get("/generate", [AppController::class, "generate"]);
+
 Route::post("/login", [LoginController::class, "index"]);
 Route::post("/register", [LoginController::class, "register"]);
 Route::get("/logout", [LoginController::class, "logout"]);
@@ -59,7 +64,15 @@ Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
 Route::get("kategori/artikel/{slug}", [ArtikelController::class, "filter_by_kategori"]);
 Route::resource('kategori', KategoriController::class);
-Route::resource('carousel', CarouselController::class);
+Route::resource('carousel', CarouselController::class)->middleware("auth:sanctum");
+
+Route::get("message", function() {
+    return response()->json([
+        "status" => false,
+        "message" => "Maaf, Anda Tidak Punya Akses",
+        "data" => []
+    ]);
+})->name("login");
 Route::post('pesan', [PesanController::class, "store"]);
 Route::resource('jasa', JasaController::class);
 Route::resource('partner', PartnerController::class);
