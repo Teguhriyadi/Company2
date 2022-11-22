@@ -47,20 +47,7 @@ export default {
         }
     },
     created() {
-        if (!this.apiData) {
-            axios.get("data_api", {
-                headers: {
-                    'Authorization': 'Bearer ' + this.apiData
-                }
-            }).then(response => {
-                localStorage.setItem("api_data", response.data.token);
-            }).catch(error => {
-                console.log("Oops");
-            });
-        } else {
-            this.getCarousel();
-        }
-
+        this.getCarousel();
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
@@ -69,12 +56,15 @@ export default {
             console.log(response)
             this.user = response.data
         })
-
     },
     methods: {
         async getCarousel() {
             try {
-                const response = await axios.get("carousel");
+                const response = await axios.get("carousel", {
+                    headers: {
+                        'Authorization' : 'Bearer ' + this.apiData
+                    }
+                });
                 this.dataCarousel = response.data;
             } catch (error) {
                 console.log("Oopss.. Error");
