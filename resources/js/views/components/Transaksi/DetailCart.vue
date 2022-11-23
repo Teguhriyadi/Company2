@@ -20,31 +20,27 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="price-info">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h4>Detail Pemesanan</h4>
-                                </div>
-                                <hr class="mb-2">
-                            </div>
+                            <h4>Detail Pemesanan</h4>
+                            <hr class="mb-2">
 
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="mb-1">
                                         <label for="" class="form-label text-warning w-500">
                                             Nama Pemesan
                                         </label>
-                                        <h6>{{ pemesan }}</h6>
+                                        <h6>{{ form.nama }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Nomor WhatsApp
                                         </label>
-                                        <h6>{{ nomor_wa }}</h6>
+                                        <h6>{{ form.nomor_hp }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Email
                                         </label>
-                                        <h6>{{ email }}</h6>
+                                        <h6>{{ form.email }}</h6>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="mb-1">
                                         <label for="" class="form-label text-warning w-500">
                                             Jenis Jasa
@@ -63,13 +59,13 @@
                                         </h6>
                                     </div>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <div class="mb-1">
                                         <label for="" class="form-label text-warning w-500">
                                             Lokasi Pemotretan
                                         </label>
-                                        <h6 v-if="lokasi">
-                                            {{ lokasi }}
+                                        <h6 v-if="form.lokasi">
+                                            {{ form.lokasi }}
                                         </h6>
                                         <h6 v-else>
                                             <strong>
@@ -80,11 +76,11 @@
                                             Catatan
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <h6>{{ catatan }}</h6>
+                                        <h6>{{ form.catatan }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Total Pembayaran
                                         </label>
-                                        <h6>{{ produkHarga }}</h6>
+                                        <h6>Rp. {{ form.harga }}</h6>
                                     </div>
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
@@ -121,61 +117,43 @@
 
 <script>
 
-    import axios from "axios"
+import axios from "axios"
 
 export default {
     name: "DetailPemesanan",
     data() {
         return {
-            jasa: [],
-            paket: [],
-            pemesan: [],
-            nomor_wa: [],
-            email: [],
-            catatan: [],
-            pembayaran: [],
-            keranjang_id: [],
-            produkHarga: [],
-            lokasi: [],
-            json: []
+            id_cart: [],
+            json: [],
+            checkout: [],
+            form: {
+                nama: [],
+                nomor_hp: [],
+                email: [],
+                lokasi: [],
+                catatan: [],
+                harga: []
+            }
         }
     },
-    mounted() {
-        let jasa = this.$route.params.jasa;
-        this.jasa = jasa;
-
-        let paket = this.$route.params.paket;
-        this.paket = paket;
-
-        let nama = this.$route.params.nama;
-        this.pemesan = nama;
-
-        let nomor_hp = this.$route.params.nomor_hp;
-        this.nomor_wa = nomor_hp
-
-        let email = this.$route.params.email;
-        this.email = email
-
-        let catatan = this.$route.params.catatan;
-        this.catatan = catatan
-
-        let produkHarga = this.$route.params.produkHarga;
-        this.produkHarga = produkHarga
-
-        let keranjang_id = this.$route.params.id_keranjang;
-        this.keranjang_id = keranjang_id
-
-        let lokasi = this.$route.params.lokasi;
-        this.lokasi = lokasi
-    },
     created() {
+        this.getCheckout();
         this.payment();
     },
     methods: {
-        async payment() {
-            let idCart = this.$route.params.id_keranjang;
+        async getCheckout() {
+            let id_cart = this.$route.params.id_cart;
             try {
-                const response = await axios.get("payment/"+idCart)
+                const response = await axios.get("checkout/" + id_cart);
+                this.form = response.data.data
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async payment() {
+            let id_cart = this.$route.params.id_cart;
+            try {
+                const response = await axios.get("payment/"+id_cart)
                 this.pembayaran = response.data[0].snap_token
                 console.log(this.pembayaran)
             } catch (error) {
@@ -200,7 +178,7 @@ export default {
                     let kirim = document.getElementById("json_callback").value = JSON.stringify(result);
                     this.json = kirim;
                     axios.post("payment", {
-                       json: this.json
+                        json: this.json
                     }).then(response => {
                         console.log(response)
                         window.location = '/'

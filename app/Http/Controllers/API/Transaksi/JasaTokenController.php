@@ -25,10 +25,13 @@ class JasaTokenController extends Controller
             "produk_id" => $request->produk_id
         ]);
 
+        $encrypt = encrypt($jasa->id);
+
         return response()->json([
             "success" => true,
             "message" => "Data Berhasil di Tambah",
-            "jasa" => $jasa
+            "jasa" => $jasa,
+            "encrypt" => $encrypt
         ], 200);
 
     }

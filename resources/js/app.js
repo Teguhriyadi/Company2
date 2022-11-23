@@ -36,9 +36,6 @@ const routes = [
     {
         path: "/",
         component: Home,
-        meta: {
-            title: "Home"
-        }
     },
     {
         path: "/blog/:slug",
@@ -91,13 +88,13 @@ const routes = [
         component: Register
     },
     {
-        path: "/cart",
+        path: "/cart/:produk_id/:encrypt",
         name: "cart",
         component: Cart
     },
     {
-        path: "/cart_detail",
-        name: "cart_detail",
+        path: "/checkout/:encrypt/:id_cart",
+        name: "checkout",
         component: DetailCart
     },
     {
@@ -122,12 +119,7 @@ const router = createRouter({
     linkExactActiveClass: "active"
 });
 
-router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title}`
-    next()
-});
-
-axios.defaults.baseURL = "http://kumon.startsheep.my.id/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 const apiData = localStorage.getItem("api_data");
 
 if (apiData == null) {

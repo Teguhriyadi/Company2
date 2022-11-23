@@ -188,7 +188,6 @@ import axios from "axios"
 
 export default {
     name: "Cart",
-
     data() {
         return {
             dataProduk: [],
@@ -208,7 +207,6 @@ export default {
         }
     },
     created() {
-        console.log(this.$route.params.idProdukData)
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
@@ -268,9 +266,7 @@ export default {
 
         transaksi() {
             this.loading = true;
-
-            if (this.nama_jasa) {
-                if (this.keranjang.nama && this.keranjang.email && this.keranjang.nomor_hp && this.keranjang.catatan) {
+            if (this.keranjang.nama && this.keranjang.email && this.keranjang.nomor_hp && this.keranjang.catatan) {
                     axios.post("keranjang", {
                         nama: this.keranjang.nama,
                         email: this.keranjang.email,
@@ -286,17 +282,10 @@ export default {
                                 this.loading = false;
                                 alert("Data Anda Berhasil Diproses")
                                 return this.$router.push({
-                                    name: 'cart_detail',
+                                    name: 'checkout',
                                     params: {
-                                        jasa: this.nama_jasa,
-                                        nama: this.keranjang.nama,
-                                        email: this.keranjang.email,
-                                        nomor_hp: this.keranjang.nomor_hp,
-                                        catatan: this.keranjang.catatan,
-                                        lokasi: this.keranjang.lokasi,
-                                        harga: this.harga,
-                                        produkHarga: this.produkHarga,
-                                        id_keranjang: response.data.data.id
+                                        encrypt: response.data.encrypt,
+                                        id_cart: response.data.data.id
                                     }
                                 });
                             }, 1000);
@@ -305,6 +294,10 @@ export default {
                         console.log(error)
                     });
                 }
+
+
+            if (this.nama_jasa) {
+
             } else if (this.jasa) {
                 if (this.keranjang.nama && this.keranjang.email && this.keranjang.booking && this.keranjang.lokasi && this.keranjang.nomor_hp && this.keranjang.catatan) {
                     axios.post("keranjang", {
