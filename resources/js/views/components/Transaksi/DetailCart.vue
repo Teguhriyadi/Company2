@@ -29,7 +29,7 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Nama Pemesan
                                         </label>
-                                        <h6>{{ form.nama }}</h6>
+                                        <h6>Mohammad</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Nomor WhatsApp
                                         </label>
