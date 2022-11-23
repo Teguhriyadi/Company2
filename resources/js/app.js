@@ -128,7 +128,19 @@ router.beforeEach((to, from, next) => {
 });
 
 axios.defaults.withCredentials = true
-axios.defaults.baseURL = "https://kumon.startsheep.my.id/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
+const apiData = localStorage.getItem("api_data");
+
+if (apiData == null) {
+    axios.get("data_api", {
+        headers: {
+            'Authorization': 'Bearer ' + apiData
+        }
+    }).then(response => {
+        localStorage.setItem("api_data", response.data.token);
+    });
+}
+
 const token = localStorage.getItem("token");
 if (token) {
     axios.defaults.headers.common["Authorization"] = token

@@ -1,5 +1,9 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: *');
+header('Access-Control-Allow-Headers: *');
+
 use App\Http\Controllers\API\AboutUsController;
 use App\Http\Controllers\API\CarouselController;
 use App\Http\Controllers\API\ContactUsController;
@@ -64,7 +68,7 @@ Route::resource('profil_perusahaan', ProfilPerusahaanController::class);
 Route::get('kategori/{slug}', [KategoriController::class, "filter"]);
 Route::get("kategori/artikel/{slug}", [ArtikelController::class, "filter_by_kategori"]);
 Route::resource('kategori', KategoriController::class);
-Route::resource('carousel', CarouselController::class)->middleware("auth:sanctum");
+Route::resource('carousel', CarouselController::class);
 
 Route::get("message", function() {
     return response()->json([

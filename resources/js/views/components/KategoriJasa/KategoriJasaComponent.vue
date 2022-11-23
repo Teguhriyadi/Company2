@@ -343,22 +343,14 @@ export default {
                                     produk_id: this.produkId
                                 }).then(response => {
                                     if (response.data.success == 1) {
+                                        return this.$router.push({name: "cart", params: {idProdukData: '123', nama_jasa: this.namaJasa} })
+                                        // return this.$router.push({name: 'cart', params: {idProdukData: this.produkId, nama_jasa: this.namaJasa} });
+                                        // setTimeout(() => {
 
-                                        setTimeout(() => {
+                                        //     alert("Token Diterima, Anda Akan Diarahkan Ke Halaman Selanjutnya");
+                                        //     $(".modal");
 
-                                            alert("Token Diterima, Anda Akan Diarahkan Ke Halaman Selanjutnya");
-                                            $(".modal").modal("hide");
-                                            return this.$router.push(
-                                            {
-                                                name: 'cart',
-                                                params:
-                                                {
-                                                    produk_id: this.produkId,
-                                                    nama_jasa: this.namaJasa
-                                                }
-                                            },
-                                            );
-                                        }, 1000);
+                                        // }, 1000);
                                     }
                                 }).catch(error => {
                                     alert(error);

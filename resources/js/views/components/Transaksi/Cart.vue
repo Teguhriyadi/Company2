@@ -208,12 +208,12 @@ export default {
         }
     },
     created() {
+        console.log(this.$route.params.idProdukData)
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
             }
         }).then(response => {
-            console.log(response)
             this.userId = response.data.id
         });
 

@@ -60,11 +60,7 @@ export default {
     methods: {
         async getCarousel() {
             try {
-                const response = await axios.get("carousel", {
-                    headers: {
-                        'Authorization' : 'Bearer ' + this.apiData
-                    }
-                });
+                const response = await axios.get("carousel");
                 this.dataCarousel = response.data;
             } catch (error) {
                 console.log("Oopss.. Error");

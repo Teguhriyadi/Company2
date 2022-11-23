@@ -97,27 +97,12 @@ export default {
         return {
             loggedIn: localStorage.getItem("loggedIn"),
             token: localStorage.getItem("token"),
-            apiData: localStorage.getItem("api_data"),
             dataProfil: [],
             dataKategoriJasa: [],
             user: []
         }
     },
     created() {
-        if (!this.apiData) {
-            axios.get("data_api", {
-                headers: {
-                    'Authorization': 'Bearer ' + this.apiData
-                }
-            }).then(response => {
-                localStorage.setItem("api_data", response.data.token);
-            }).catch(error => {
-                console.log("Oops");
-            });
-        } else {
-            console.log(this.apiData);
-        }
-
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
