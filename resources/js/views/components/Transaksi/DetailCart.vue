@@ -29,15 +29,28 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Nama Pemesan
                                         </label>
-                                        <h6 v-if="nama">{{ nama }}</h6>
+                                        <h6 v-if="nama.length">
+                                            {{ nama }}
+                                        </h6>
+                                        <h6 v-else>
+
+                                        </h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Nomor WhatsApp
                                         </label>
-                                        <h6 v-if="nomor_hp">{{ nomor_hp }}</h6>
+                                        <h6 v-if="nomor_wa.length">
+                                            {{ nomor_wa }}
+                                        </h6>
+                                        <h6 v-else>
+
+                                        </h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Email
                                         </label>
-                                        <h6 v-if="email">{{ email }}</h6>
+                                        <h6 v-if="email.length">
+                                            {{ email }}
+                                        </h6>
+                                        <h6 v-else></h6>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -64,23 +77,31 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Lokasi Pemotretan
                                         </label>
-                                        <h6 v-if="lokasi">
+                                        <h6 v-if="lokasi.length">
                                             {{ lokasi }}
                                         </h6>
                                         <h6 v-else>
-                                            <strong>
-                                                Tidak Ada
-                                            </strong>
+
                                         </h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Catatan
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <h6 v-if="catatan">{{ catatan }}</h6>
+                                        <h6 v-if="catatan.length">
+                                            {{ catatan }}
+                                        </h6>
+                                        <h6 v-else>
+
+                                        </h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Total Pembayaran
                                         </label>
-                                        <h6 v-if="harga">Rp. {{ harga }}</h6>
+                                        <h6 v-if="harga.length">
+                                            Rp. {{ harga }}
+                                        </h6>
+                                        <h6 v-else>
+
+                                        </h6>
                                     </div>
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
@@ -127,7 +148,7 @@ export default {
             json: [],
             checkout: [],
             nama: [],
-            nomor_hp: [],
+            nomor_wa: [],
             email: [],
             lokasi: [],
             catatan: [],
@@ -146,6 +167,10 @@ export default {
                 setTimeout(() => {
                     this.nama = response.data.data.nama
                     this.email = response.data.data.email
+                    this.nomor_wa = response.data.data.nomor_hp
+                    this.lokasi = response.data.data.lokasi
+                    this.catatan = response.data.data.catatan
+                    this.harga = response.data.data.harga
                 }, 1000);
             } catch (error) {
                 console.log(error);
