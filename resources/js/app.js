@@ -127,8 +127,7 @@ router.beforeEach((to, from, next) => {
     next()
 });
 
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
+axios.defaults.baseURL = "http://kumon.startsheep.my.id/api/"
 const apiData = localStorage.getItem("api_data");
 
 if (apiData == null) {
