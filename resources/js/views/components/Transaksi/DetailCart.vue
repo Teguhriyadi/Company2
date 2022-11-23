@@ -29,15 +29,15 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Nama Pemesan
                                         </label>
-                                        <h6 v-if="form.nama">{{ form.nama }}</h6>
+                                        <h6 v-if="nama">{{ nama }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Nomor WhatsApp
                                         </label>
-                                        <h6 v-if="form.nomor_hp">{{ form.nomor_hp }}</h6>
+                                        <h6 v-if="nomor_hp">{{ nomor_hp }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Email
                                         </label>
-                                        <h6 v-if="form.email">{{ form.email }}</h6>
+                                        <h6 v-if="email">{{ email }}</h6>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -64,8 +64,8 @@
                                         <label for="" class="form-label text-warning w-500">
                                             Lokasi Pemotretan
                                         </label>
-                                        <h6 v-if="form.lokasi">
-                                            {{ form.lokasi }}
+                                        <h6 v-if="lokasi">
+                                            {{ lokasi }}
                                         </h6>
                                         <h6 v-else>
                                             <strong>
@@ -76,11 +76,11 @@
                                             Catatan
                                             <span class="text-danger">*</span>
                                         </label>
-                                        <h6 v-if="form.catatan">{{ form.catatan }}</h6>
+                                        <h6 v-if="catatan">{{ catatan }}</h6>
                                         <label for="" class="form-label text-warning w-500">
                                             Total Pembayaran
                                         </label>
-                                        <h6 v-if="form.harga">Rp. {{ form.harga }}</h6>
+                                        <h6 v-if="harga">Rp. {{ harga }}</h6>
                                     </div>
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
@@ -126,14 +126,12 @@ export default {
             id_cart: [],
             json: [],
             checkout: [],
-            form: {
-                nama: [],
-                nomor_hp: [],
-                email: [],
-                lokasi: [],
-                catatan: [],
-                harga: []
-            }
+            nama: [],
+            nomor_hp: [],
+            email: [],
+            lokasi: [],
+            catatan: [],
+            harga: []
         }
     },
     created() {
@@ -146,7 +144,8 @@ export default {
             try {
                 const response = await axios.get("checkout/" + id_cart);
                 setTimeout(() => {
-                    this.form = response.data.data
+                    this.nama = response.data.data.nama
+                    this.email = response.data.data.email
                 }, 1000);
             } catch (error) {
                 console.log(error);
