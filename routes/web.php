@@ -177,5 +177,5 @@ if (Request::segment(1) == 'admin') {
 
     Route::any("/{any}", function() {
         return view("app");
-    })->where("any", "/admin/login");
+    })->where("any", "^(?!admin).*$");
 }
