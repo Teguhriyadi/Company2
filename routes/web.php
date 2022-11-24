@@ -172,6 +172,7 @@ Route::post("/payment", [PaymentController::class, "store"]);
         });
     });
 
+
 Route::any("/{any}", function() {
     return view("app");
 })->where("any", "^(?!admin).*$");
