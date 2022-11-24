@@ -29,11 +29,6 @@ import AllBlog from "@/views/components/artikel/AllArtikel.vue"
 
 const routes = [
     {
-        path: "/:catchAll(.*)",
-        component: NotFound
-    },
-
-    {
         path: "/",
         component: Home,
     },
