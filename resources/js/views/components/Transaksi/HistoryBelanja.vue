@@ -19,24 +19,24 @@
             <template v-if="dataKeranjang.length">
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-12" v-for="(history, index) in dataKeranjang" :key="index">
+                        <div class="col-lg-12" v-for="(history, index) in dataKeranjang" :key="index" style="padding-bottom: 20px;">
                             <div class="price-info">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <h4>History Pemesanan : Paket Outdoor</h4>
                                     </div>
-                                    <div class="col-6 text-end mb-0">
+                                    <div class="col-md-6 text-end mb-0">
                                         <h4>
                                             Status |
-                                            <span class="text-success">
-                                                Selesai
+                                            <span class="text-success" style="text-transform: uppercase; font-weight: bold;">
+                                                {{ history.order.status }}
                                             </span>
                                         </h4>
                                     </div>
                                     <hr>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="mb-1">
                                             <label for="" class="form-label text-warning w-500">
                                                 Nama Pemesan
@@ -49,10 +49,10 @@
                                             <label for="" class="form-label text-warning w-500">
                                                 Email
                                             </label>
-                                            <h6>rafliseptiann@gmail.com</h6>
+                                            <h6>{{ history.history_email }}</h6>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="mb-1">
                                             <label for="" class="form-label text-warning w-500">
                                                 Jasa yang dipesan
@@ -64,7 +64,7 @@
                                             <h6>{{ history.history_waktu }}</h6>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-md-4">
                                         <div class="mb-1">
                                             <label for="" class="form-label text-warning w-500">
                                                 Total Pembayaran
@@ -73,7 +73,7 @@
                                             <label for="" class="form-label text-warning w-500">
                                                 Metode Pembayaran
                                             </label>
-                                            <h6>Bank BCA</h6>
+                                            <h6>{{ history.order.payment_type }}</h6>
                                         </div>
                                     </div>
                                     <hr class="mt-3" style="border-top: dotted 3px;">
@@ -81,10 +81,6 @@
                                         <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal" class="mt-3 me-2 btn btn-sm btn-warning">
                                             <i class="fas fa-star"></i>
                                             Nilai
-                                        </a>
-                                        <a href="" class="mt-3 me-2 btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-arrow-alt-circle-up"></i>
-                                            Booking Lagi
                                         </a>
                                         <a href="" class="mt-3 me-2 btn btn-sm btn-success">
                                             <i class="fas fa-download"></i>
@@ -189,35 +185,37 @@ export default {
     name: "HistoryBelanja",
     data() {
         return {
+            loggedIn: localStorage.getItem("loggedIn"),
+            token: localStorage.getItem("token"),
             dataKeranjang: [],
             spinner: false,
-            output: false
+            output: false,
+            user: [],
+            counting: []
         }
     },
-    created() {
-        this.getKeranjang();
-    },
-    methods: {
-        async getKeranjang() {
-            this.spinner = true;
-            let idUser = this.$route.params.id_user;
-            try {
-                const response = await axios.get("history/"+idUser);
-                if (response.data == "Data Tidak Ada") {
-                    setTimeout(() => {
-                        this.output = true;
-                        this.spinner = false;
-                    }, 1000);
-                } else {
-                    setTimeout(() => {
-                        this.spinner = false;
-                        this.dataKeranjang = response.data;
-                    }, 1000);
-                }
-            } catch (error) {
-                console.log(error);
+    mounted() {
+        axios.get("/user", {
+            headers: {
+                'Authorization': 'Bearer ' + this.token
             }
-        }
+        }).then(response => {
+            axios.get("history/" + response.data.id)
+                .then(cetak => {
+                    this.spinner = true;
+                    if (cetak.data.data == []) {
+                        setTimeout(() => {
+                            this.output = true
+                            this.spinner = false
+                        }, 1000);
+                    } else {
+                        setTimeout(() => {
+                            this.spinner = false
+                            this.dataKeranjang = cetak.data.data
+                        }, 1000);
+                    }
+                });
+        });
     }
 }
 </script>

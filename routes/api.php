@@ -29,6 +29,7 @@ use App\Http\Controllers\API\Pengaturan\SyaratKetentuanController;
 use App\Http\Controllers\API\ServicesController;
 use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\API\Pengaturan\KebijakanPrivasiController;
+use App\Http\Controllers\API\PublicController;
 use App\Http\Controllers\API\Transaksi\HistoryPemesananController;
 use App\Http\Controllers\API\Transaksi\JasaTokenController;
 use App\Http\Controllers\API\Transaksi\KeranjangController;
@@ -52,6 +53,7 @@ Route::middleware("auth:sanctum")->get("/user", function(Request $request) {
     return $request->user();
 });
 
+Route::get("/counting/{id}", [PublicController::class, "counting"]);
 Route::get("data_api", [AppController::class, "index"]);
 
 Route::get("/generate", [AppController::class, "generate"]);

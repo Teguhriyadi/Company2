@@ -78,7 +78,8 @@
                         </ul>
                     </li>
                     <li v-if="loggedIn">
-                        <router-link :to="{name: 'history', params: {id_user: user.id} }">
+                        <router-link to="/history">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ jumlah }}</span>
                             <i class="fas fa-cart-flatbed" style="margin-right: 5px;"></i> History
                         </router-link>
                     </li>
@@ -99,7 +100,9 @@ export default {
             token: localStorage.getItem("token"),
             dataProfil: [],
             dataKategoriJasa: [],
-            user: []
+            user: [],
+            counting: [],
+            jumlah: []
         }
     },
     created() {
@@ -108,10 +111,13 @@ export default {
                 'Authorization': 'Bearer ' + this.token
             }
         }).then(response => {
+            this.counting = response.data.id
+            axios.get("counting/" + this.counting)
+                .then(cetak => {
+                    this.jumlah = cetak.data.jumlah
+                });
             this.user = response.data
         });
-
-
         this.getProfil();
         this.getKategoriJasa();
     },
@@ -132,6 +138,7 @@ export default {
                 }, 2000);
             })
         },
+
         async getProfil() {
             try {
                 const response = await axios.get("profil_perusahaan");

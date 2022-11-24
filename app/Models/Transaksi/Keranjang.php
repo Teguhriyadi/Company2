@@ -17,4 +17,9 @@ class Keranjang extends Model
     {
         return $this->belongsTo("App\Models\User", "user_id", "id");
     }
+
+    public function getOrders()
+    {
+        return $this->belongsTo("App\Models\Payment\Order", "id", "order_id");
+    }
 }

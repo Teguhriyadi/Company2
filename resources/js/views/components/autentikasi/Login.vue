@@ -111,7 +111,7 @@ export default {
         login() {
 
             if (this.user.email && this.user.password) {
-                axios.get("http://kumon.startsheep.my.id/sanctum/csrf-cookie")
+                axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie")
                 .then(response => {
                     axios.post("login", {
                         email: this.user.email,
