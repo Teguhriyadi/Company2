@@ -106,7 +106,7 @@
                                 </div>
                                 <hr class="mt-3" style="border-top: dotted 3px;">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <p class="mb-1">
                                             <b>Notes:</b>
                                         </p>
@@ -114,11 +114,11 @@
                                             Apabila Lokasi Jauh Dari Keberadaan Kami. Maka Anda Akan Dikenakan Biaya Tambahan Untuk Transportasi Kami.
                                         </p>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <div class="text-end" id="pay-button">
-                                            <a @click="buttonPay" style="font-size:12px ;" class="mt-3 btn btn-sm btn-warning w-25">
-                                                <i class="fas fa-dollar-sign"></i>
-                                                Lanjutkan Pembayaran
+                                            <a @click="buttonPay" style="font-size:12px ;" class="mt-3 p-2 btn btn-sm btn-warning ">
+                                                <i class="fas fa-dollar-sign"></i> Lanjutkan
+                                                Pembayaran
                                             </a>
                                         </div>
                                     </div>
