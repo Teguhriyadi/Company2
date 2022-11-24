@@ -47,7 +47,6 @@ use Illuminate\Support\Facades\Route;
 Route::get("/payment", [PaymentController::class, "index"]);
 Route::post("/payment", [PaymentController::class, "store"]);
 
-if (Request::segment(1) == 'admin') {
     Route::prefix("admin")->group(function () {
         Route::group(["middleware" => ["guest"]], function () {
             Route::get("/login", [LoginController::class, "login"]);
@@ -62,47 +61,47 @@ if (Request::segment(1) == 'admin') {
                 // Data Kategori
                 Route::get("/kategori/edit", [KategoriController::class, "edit"]);
                 Route::put("/kategori/simpan", [KategoriController::class, "update"]);
-                Route::resource("kategori", KategoriController::class);
+                Route::resource("kategori", KategoriController::class, ['as' => 'kategorii']);
                 // END
 
                 // Data Tag
                 Route::get("/tag/edit", [TagController::class, "edit"]);
                 Route::put("/tag/simpan", [TagController::class, "update"]);
-                Route::resource("tag", TagController::class);
+                Route::resource("tag", TagController::class, ['as' => 'tagg']);
                 // END
 
                 // Data Jasa
                 Route::get("/services/edit", [ServicesController::class, "edit"]);
                 Route::put("/services/simpan", [ServicesController::class, "update"]);
-                Route::resource("services", ServicesController::class);
+                Route::resource("services", ServicesController::class, ['as' => 'servicess']);
                 // END
 
                 // Data Carousel
                 Route::get("/carousel/edit", [CarouselController::class, "edit"]);
                 Route::put("/carousel/simpan", [CarouselController::class, "update"]);
-                Route::resource("carousel", CarouselController::class);
+                Route::resource("carousel", CarouselController::class, ['as' => 'carousell']);
                 // END
 
                 // Data Choose Us
                 Route::get("/choose_us/edit", [ChooseUsController::class, "edit"]);
                 Route::put("/choose_us/simpan", [ChooseUsController::class, "update"]);
-                Route::resource("choose_us", ChooseUsController::class);
+                Route::resource("choose_us", ChooseUsController::class, ['as' => 'choose_uss']);
                 // END
 
                 // Data Artikel
                 Route::get("/artikel/edit", [ArtikelController::class, "edit"]);
                 Route::put("/artikel/simpan", [ArtikelController::class, "update"]);
-                Route::resource("artikel", ArtikelController::class);
+                Route::resource("artikel", ArtikelController::class, ['as' => 'artikell']);
                 // END
 
                 // Data Artikel
                 Route::get("/question/edit", [QuestionController::class, "edit"]);
                 Route::put("/question/simpan", [QuestionController::class, "update"]);
-                Route::resource("question", QuestionController::class);
+                Route::resource("question", QuestionController::class, ['as' => 'questionn']);
                 // END
 
                 // Data Kategori Jasa
-                Route::resource("kategori_jasa", KategoriJasaController::class);
+                Route::resource("kategori_jasa", KategoriJasaController::class, ['as' => 'kategori_jasaa']);
                 // END
 
                 // Data Paket Kategori
@@ -117,18 +116,18 @@ if (Request::segment(1) == 'admin') {
                 Route::put("/client/simpan", [ClientController::class, "update"]);
                 Route::put("/client/non_aktifkan/{id}", [ClientController::class, "non_aktifkan"]);
                 Route::put("/client/aktifkan/{id}", [ClientController::class, "aktifkan"]);
-                Route::resource("client", ClientController::class);
+                Route::resource("client", ClientController::class, ['as' => 'clientt']);
 
                 // Data Portofolio
                 Route::get("/portfolio/edit", [PortfolioController::class, "edit"]);
-                Route::resource("portfolio", PortfolioController::class);
+                Route::resource("portfolio", PortfolioController::class, ['as' => 'postofolioo']);
                 // END
             });
 
             Route::prefix("production")->group(function() {
 
                 Route::resource("produk", ProdukController::class);
-                Route::resource("produk_paket", ProdukPaketController::class);
+                Route::resource("produk_paket", ProdukPaketController::class, ['as' => 'produk_pakett']);
                 Route::resource("benefit", BenefitProdukController::class);
                 Route::resource("portofolio", PortofolioController::class);
 
@@ -139,15 +138,15 @@ if (Request::segment(1) == 'admin') {
                 // Data Syarat Ketentuan
                 Route::get("/syarat_ketentuan/edit", [SyaratKetentuanController::class, "edit"]);
                 Route::put("/syarat_ketentuan/simpan", [SyaratKetentuanController::class, "update"]);
-                Route::resource("syarat_ketentuan", SyaratKetentuanController::class);
+                Route::resource("syarat_ketentuan", SyaratKetentuanController::class, ['as' => 'syarat_ketentuann']);
                 // END
 
-                Route::resource("tentang_kami", TentangKamiController::class);
-                Route::resource("profil_perusahaan", ProfilPerusahaanController::class);
+                Route::resource("tentang_kami", TentangKamiController::class, ['as' => 'tentang_kamii']);
+                Route::resource("profil_perusahaan", ProfilPerusahaanController::class, ['as' => 'profil_perusahaann']);
                 Route::post("/why_us/upload_gambar", [WhyUsController::class, "upload_gambar"]);
-                Route::resource("why_us", WhyUsController::class);
-                Route::resource("testimonial", TestimonialController::class);
-                Route::resource("pesan", PesanController::class);
+                Route::resource("why_us", WhyUsController::class, ['as' => 'why_uss']);
+                Route::resource("testimonial", TestimonialController::class, ['as' => 'tertimoniall']);
+                Route::resource("pesan", PesanController::class, ['as' => 'pesann']);
             });
 
             Route::prefix("aktivasi")->group(function() {
@@ -172,10 +171,7 @@ if (Request::segment(1) == 'admin') {
             Route::get("logout", [LoginController::class, "logout"]);
         });
     });
-} else {
-    Route::get('/', [AppController::class, "app"]);
 
-    Route::any("/{any}", function() {
-        return view("app");
-    })->where("any", "^(?!admin).*$");
-}
+Route::any("/{any}", function() {
+    return view("app");
+})->where("any", "^(?!admin).*$");
