@@ -78,8 +78,8 @@
                         </ul>
                     </li>
                     <li v-if="loggedIn">
-                        <router-link :to="{name: 'history', params : {id_user: user.id } }">
-                            <i class="fas fa-cart-flatbed" style="margin-right: 5px;"></i> Keranjang
+                        <router-link :to="{name: 'history', params: {id_user: user.id} }">
+                            <i class="fas fa-cart-flatbed" style="margin-right: 5px;"></i> History
                         </router-link>
                     </li>
                 </ul>
