@@ -79,7 +79,16 @@
                     </li>
                     <li v-if="loggedIn">
                         <router-link to="/history">
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ jumlah }}</span>
+                            <template v-if="jumlah">
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    0
+                                </span>
+                            </template>
+                            <template v-else>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ jumlah }}
+                                </span>
+                            </template>
                             <i class="fas fa-cart-flatbed" style="margin-right: 5px;"></i> History
                         </router-link>
                     </li>
