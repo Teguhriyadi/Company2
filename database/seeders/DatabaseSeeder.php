@@ -8,7 +8,6 @@ use Database\Seeders\blog\ArtikelSeeder;
 use Database\Seeders\blog\ArtikelTagSeeder;
 use Database\Seeders\blog\KategoriSeeder;
 use Database\Seeders\components\CarouselSeeder;
-use Database\Seeders\components\ChooseUsSeeder;
 use Database\Seeders\components\ProfilPerusahaanSeeder;
 use Database\Seeders\components\QuestionSeeder;
 use Database\Seeders\components\ServiceSeeder;

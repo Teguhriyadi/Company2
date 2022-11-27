@@ -57,13 +57,6 @@
                             </div>
                         </template>
                     </template>
-                    <v-pagination
-                    v-model="page"
-                    :pages="10"
-                    :range-size="1"
-                    active-color="#DCEDFF"
-                    @update:modelValue="updateHandler"
-                    />
                 </template>
                 <template v-else>
                     <div class="col-md-12">
@@ -74,11 +67,15 @@
                         </center>
                     </div>
                     <div class="col-md-12" v-if="output">
-                        <i>
-                            <strong style="color: white;">
-                                Benefit Belum Tersedia
-                            </strong>
-                        </i>
+                        <div class="alert alert-danger">
+                            <center>
+                                <i>
+                                    <strong>
+                                       " Oopss.. Sepertinya Data Portofolio Tidak Ada "
+                                    </strong>
+                                </i>
+                            </center>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -119,10 +116,10 @@ export default {
             let slug = this.$route.params.slug;
             try {
                 const response = await axios.get("portofolio/" + slug);
-                if (response.data.data == []) {
+                if (response.data.data.length == 0) {
                     setTimeout(() => {
                         this.output = true
-                        this.spinner = false;
+                        this.spinner = false
                     }, 1000);
                 } else {
                     setTimeout(() => {
