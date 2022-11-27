@@ -24,7 +24,6 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th class="text-center">Status</th>
-                                    <th class="text-center">Role</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -58,7 +57,6 @@
                                                 </form>
                                             @endif
                                         </td>
-                                        <td class="text-center">{{ $data->getRole->role_nama }}</td>
                                         <td class="text-center">
                                             <a href="{{ url('/admin/akun/users/'.$data->id.'/edit') }}" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-edit"></i> Edit

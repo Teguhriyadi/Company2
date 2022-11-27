@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AktivasiTokenController;
-use App\Http\Controllers\Akun\RoleController;
 use App\Http\Controllers\Akun\UserController;
 use App\Http\Controllers\Master\PortfolioController;
 use App\Http\Controllers\AppController;
@@ -160,10 +159,6 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 Route::put("/users/non_aktifkan/{id}", [UserController::class, "non_aktifkan"]);
                 Route::put("/users/aktifkan/{id}", [UserController::class, "aktifkan"]);
                 Route::resource("users", UserController::class);
-
-                Route::get("/role/edit", [RoleController::class, "edit"]);
-                Route::put("/edit/simpan", [RoleController::class, "update"]);
-                Route::resource("role", RoleController::class);
 
                 Route::get("informasi_login", [AppController::class, "informasi_login"]);
             });

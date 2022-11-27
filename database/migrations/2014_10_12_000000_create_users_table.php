@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('nama', 100)->nullable();
             $table->string("email", 100);
             $table->string("password");
-            $table->integer("id_role");
             $table->rememberToken();
             $table->integer("created_by");
             $table->string("foto");

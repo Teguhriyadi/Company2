@@ -30,7 +30,7 @@ class PaymentController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $cart->id,
+                'order_id' => rand(),
                 'gross_amount' => $harga,
             ),
             'customer_details' => array(

@@ -176,10 +176,6 @@
                     href="{{ url('/admin/akun/users') }}">
                     Users
                 </a>
-                <a class="collapse-item {{ Request::is('admin/akun/role') ? 'active' : '' }}"
-                    href="{{ url('/admin/akun/role') }}">
-                    Role
-                </a>
                 <a class="collapse-item {{ Request::is('admin/akun/informasi_login') ? 'active' : '' }}"
                     href="{{ url('/admin/akun/informasi_login') }}">
                     Informasi Login

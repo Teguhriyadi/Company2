@@ -19,12 +19,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="foto"> Foto </label>
-                            <center>
-                                <img src="{{ url('/gambar/upload-gambar.jpg') }}" class="img-fluid gambar-preview mb-3"
-                                    id="tampilGambar">
-                            </center>
-                            <input type="file" class="form-control" name="foto" id="foto"
-                                onchange="previewImage()">
+                            <input type="file" class="form-control" name="foto" id="foto">
                         </div>
                     </div>
                 </div>
@@ -38,29 +33,18 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="nama"> Nama </label>
-                            <input type="text" class="form-control" name="nama" id="nama"
-                                placeholder="Masukkan Nama">
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="email"> Email </label>
-                                    <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Masukkan Email">
+                            <div class="mb-3 row">
+                                <label for="nama" class="form-label col-sm-3 text-right"> Nama : </label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan Nama">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="id_role"> Role </label>
-                                    <select name="id_role" class="form-control" id="id_role">
-                                        <option value="">- Pilih -</option>
-                                        @foreach ($data_role as $data)
-                                            <option value="{{ $data->id }}">
-                                                {{ $data->role_nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="mb-3 row">
+                                <label for="email" class="form-label col-sm-3 text-right"> Email : </label>
+                                <div class="col-md-7">
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Masukkan Email">
                                 </div>
                             </div>
                         </div>
@@ -77,25 +61,5 @@
             </div>
         </div>
     </form>
-
-@endsection
-
-@section('js')
-
-    <script type="text/javascript">
-        function previewImage() {
-            const image = document.querySelector("#foto");
-            const imgPreview = document.querySelector(".gambar-preview");
-            imgPreview.style.display = "block";
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-            oFReader.onload = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-                $("#tampilGambar").addClass('mb-3');
-                $("#tampilGambar").width("100%");
-                $("#tampilGambar").height("300");
-            }
-        }
-    </script>
 
 @endsection

@@ -22,11 +22,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $data = [
-            "data_role" => Role::get()
-        ];
-
-        return view("pages.admin.akun.users.tambah", $data);
+        return view("pages.admin.akun.users.tambah");
     }
 
     public function store(Request $request)
@@ -49,10 +45,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $data = [
-            "data_role" => Role::get(),
-            "edit" => User::where("id", $id)->first()
-        ];
+        $data["edit"] = User::where("id", $id)->first();
 
         return view("pages.admin.akun.users.edit", $data);
     }
