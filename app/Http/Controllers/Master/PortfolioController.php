@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
+use App\Models\Jasa\KategoriJasa;
 use App\Models\Master\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,8 @@ class PortfolioController extends Controller
     public function index()
     {
         $data = [
-            "data_portfolio" => Portfolio::get()
+            "kategori_jasa" => KategoriJasa::orderBy("created_at", "ASC")->get(),
+            "data_portofolio" => Portfolio::orderBy("created_at", "DESC")->get()
         ];
 
         return view("pages.admin.master.portfolio.index", $data);
@@ -20,46 +22,18 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->file("portfolio_foto")) {
-            $data = $request->file("portfolio_foto")->store("portfolio");
-        }
-
-        Portfolio::create([
-            "portfolio_foto" => url("/storage/".$data),
-            "portfolio_nama" => $request->portfolio_nama,
-            "portfolio_deskripsi" => $request->portfolio_deskripsi
-        ]);
+        Portfolio::create($request->all());
 
         return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Tambahkan', 'success');</script>");
     }
 
-    public function edit(Request $request)
+    public function update(Request $request, $id)
     {
-        $data = [
-            "edit" => Portfolio::where("id", $request->id)->first()
-        ];
-
-        return view("pages.admin.master.portfolio.edit", $data);
-    }
-
-    public function update(Request $request)
-    {
-        if ($request->file("portfolio_foto")) {
-            if ($request->gambarLama) {
-                Storage::delete($request->gambarLama);
-            }
-
-            $nama_gambar = $request->file("portfolio_foto")->store("portfolio");
-
-            $data = url('/storage/' . $nama_gambar);
-        } else {
-            $data = url('') . "/storage/" . $request->gambarLama;
-        }
-
-        Portfolio::where("id", $request->id)->update([
-            "portfolio_foto" => $data,
-            "portfolio_nama" => $request->portfolio_nama,
-            "portfolio_deskripsi" => $request->portfolio_deskripsi
+        Portfolio::where("id", $id)->update([
+            "portofolio_url" => $request->portofolio_url,
+            "portofolio_nama" => $request->portofolio_nama,
+            "portofolio_deskripsi" => $request->portofolio_deskripsi,
+            "kategori_jasa_id" => $request->kategori_jasa_id
         ]);
 
         return back()->with("message", "<script>Swal.fire('Berhasil', 'Data Berhasil di Simpan', 'success');</script>");
@@ -67,15 +41,7 @@ class PortfolioController extends Controller
 
     public function destroy($id)
     {
-        $portfolio = Portfolio::where("id", $id)->first();
-
-        $hasil = trim($portfolio->portfolio_foto, url('/'));
-
-        $print = substr($hasil, 8);
-
-        Storage::delete($print);
-
-        $portfolio->delete();
+        Portfolio::where("id", $id)->delete();
 
         return back()->with(["message" => "<script>Swal.fire('Berhasil', 'Data Berhasil di Hapus', 'success');</script>"]);
     }

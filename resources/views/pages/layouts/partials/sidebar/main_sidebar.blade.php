@@ -81,10 +81,6 @@
                 <a class="collapse-item {{ Request::is('admin/master/paket_jasa') ? 'active' : '' }}" href="{{ url('/admin/master/paket_jasa') }}">
                     Paket Jasa
                 </a>
-                <a class="collapse-item {{ Request::is('admin/master/client') ? 'active' : '' }}"
-                    href="{{ url('/admin/master/client') }}">
-                    Client
-                </a>
                 <a class="collapse-item" {{ Request::is('admin/master/portfolio') ? 'active' : '' }}  href="{{ url('/admin/master/portfolio') }}">
                     Portfolio
                 </a>

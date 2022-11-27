@@ -8,7 +8,6 @@ use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Master\ArtikelController;
 use App\Http\Controllers\Master\CarouselController;
 use App\Http\Controllers\Master\ChooseUsController;
-use App\Http\Controllers\Master\ClientController;
 use App\Http\Controllers\Master\KategoriController;
 use App\Http\Controllers\Master\QuestionController;
 use App\Http\Controllers\Master\ServicesController;
@@ -111,14 +110,6 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 Route::resource("paket_jasa", PaketJasaController::class);
                 // END
 
-                Route::get("/client/edit", [ClientController::class, "edit"]);
-                Route::put("/client/simpan", [ClientController::class, "update"]);
-                Route::put("/client/non_aktifkan/{id}", [ClientController::class, "non_aktifkan"]);
-                Route::put("/client/aktifkan/{id}", [ClientController::class, "aktifkan"]);
-                Route::resource("client", ClientController::class, ['as' => 'clientt']);
-
-                // Data Portofolio
-                Route::get("/portfolio/edit", [PortfolioController::class, "edit"]);
                 Route::resource("portfolio", PortfolioController::class, ['as' => 'postofolioo']);
                 // END
             });
