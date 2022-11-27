@@ -71,7 +71,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/admin/master/portfolio') }}" method="POST">
+            <form action="{{ url('/admin/master/portofolio') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -125,7 +125,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/admin/master/portfolio/'.$edit->id) }}" method="POST">
+            <form action="{{ url('/admin/master/portofolio/'.$edit->id) }}" method="POST">
                 @method("PUT")
                 @csrf
                 <div class="modal-body">

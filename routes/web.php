@@ -110,7 +110,7 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 Route::resource("paket_jasa", PaketJasaController::class);
                 // END
 
-                Route::resource("portfolio", PortfolioController::class, ['as' => 'postofolioo']);
+                Route::resource("portofolio", PortfolioController::class, ['as' => 'postofolioo']);
                 // END
             });
 
