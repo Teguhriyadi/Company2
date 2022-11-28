@@ -79,7 +79,7 @@
                     </li>
                     <li v-if="loggedIn">
                         <router-link to="/history">
-                            <template v-if="jumlah">
+                            <template v-if="jumlah == 0">
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     0
                                 </span>
@@ -124,6 +124,7 @@ export default {
             axios.get("counting/" + this.counting)
                 .then(cetak => {
                     this.jumlah = cetak.data.jumlah
+                    console.log(this.jumlah)
                 });
             this.user = response.data
         });
