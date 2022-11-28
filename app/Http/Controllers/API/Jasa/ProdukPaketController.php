@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API\Jasa;
 
 use App\Http\Controllers\Controller;
 use App\Models\Jasa\ProdukPaket;
-use Illuminate\Http\Request;
 
 class ProdukPaketController extends Controller
 {
@@ -18,7 +17,8 @@ class ProdukPaketController extends Controller
             $data = [];
             foreach ($produk_paket as $d) {
                 $data[] = [
-                    "produk_paket_jasa_id" => $d->getProdukPaket->id,
+                    "kategori_jasa_id" => $d->kategori_jasa_id,
+                    "produk_paket_jasa_id" => (empty($d->getProdukPaket->id)) ? null : $d->getProdukPaket->id,
                     "produk_paket_nama" => $d->getProduk->produk_judul,
                     "produk_id" => $d->getProduk->id,
                     "produk_paket_slug" => $d->getProduk->produk_slug,
@@ -30,26 +30,5 @@ class ProdukPaketController extends Controller
             }
         }
         return response()->json($data, 200);
-    }
-
-    public function detail_produk_paket($slug)
-    {
-        $detail = ProdukPaket::where("produk_id", $slug)->first();
-
-        if (empty($detail)) {
-            return response()->json([["message" => "Data Tidak Ada"]]);
-        } else {
-            $data = [];
-            $data[] = [
-                "produk_id" => $detail->getProduk->id,
-                "produk_nama" => $detail->getProduk->produk_judul,
-                "produk_gambar" => $detail->getProduk->produk_image,
-                "produk_harga" => "Rp. " . number_format($detail->getProduk->produk_harga),
-                "harga" => $detail->getProduk->produk_harga,
-                "produk_deskripsi_singkat" => $detail->getProduk->produk_deskripsi_singkat,
-                "produk_deskripsi" => $detail->getProduk->produk_deskripsi
-            ];
-            return response()->json($data, 200);
-        }
     }
 }

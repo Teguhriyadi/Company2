@@ -48,7 +48,7 @@
                     <div class="row" data-aos="fade-left">
                         <template v-if="dataProdukPaket.length">
                             <template v-for="(produk, index) in dataProdukPaket" :key="index">
-                                <div v-if="idJasa == produk.produk_paket_jasa_id" class="col-lg-3 col-md-6 mb-3">
+                                <div v-if="idJasa == produk.kategori_jasa_id" class="col-lg-3 col-md-6 mb-3">
                                     <div class="box" data-aos="zoom-in" data-aos-delay="100">
                                         <h3>{{ produk.produk_paket_nama }}</h3>
                                         <h4>
@@ -121,11 +121,11 @@
                     <template v-if="dataJasa.length">
                         <div class="text-start mt-4 mb-4" v-for="(jasa, index) in dataJasa" :key="index">
                             <h5 style="color: rgb(0, 0, 63)">
-                                {{ jasa.paket_kategori_paket_nama }} {{ namaJasa }} {{ jasa.paket_kategori_jasa_id }}
+                                {{ jasa.paket_kategori_paket_nama }}
                             </h5>
                             <div class="row gy-5">
                                 <template v-for="(produk, index) in dataProdukPaket" :key="index">
-                                    <template v-if="jasa.paket_kategori_jasa_id == produk.produk_paket_jasa_id">
+                                    <template v-if="produk.produk_paket_jasa_id == jasa.kategori_paket_id">
                                         <div class="col-lg-4 menu-item text-center">
                                             <a href="/UI/img/hero-carousel/1.jpeg" class="glightbox">
                                                 <img :src="produk.produk_paket_gambar" class="menu-img img-fluid" alt=""/>
@@ -213,7 +213,7 @@ export default {
     name: "KategoriJasa",
     data() {
         return {
-            namaJasa: [],
+            namaJasa: "",
             dataJasa: [],
             dataKosong: [],
             dataProdukPaket: [],
@@ -226,14 +226,13 @@ export default {
             loggedIn: localStorage.getItem("loggedIn"),
             token: localStorage.getItem("token"),
             user: [],
-            load: false
+            load: false,
+            jasaId: ""
         }
     },
     created() {
         this.getSlug();
-        this.getData();
         this.getProdukPaket();
-        this.getProduk();
         this.getBenefit();
         axios.get("/user", {
             headers: {
@@ -242,6 +241,19 @@ export default {
         }).then(response => {
             this.user = response.data
         })
+    },
+    mounted() {
+        let slug = this.$route.params.slug;
+        if (slug == "jasa-fotografi") {
+            axios.get("kategori_jasa/" + slug)
+            .then(cetak => {
+                this.jasaId = cetak.data.data.jasa_id;
+                axios.get("paket_jasa/" + this.jasaId)
+                    .then(response => {
+                        this.dataJasa = response.data;
+                    });
+            });
+        }
     },
     methods: {
         async getSlug() {
@@ -255,21 +267,6 @@ export default {
             }
         },
 
-        async getData() {
-            let id = this.$route.params.id;
-            try {
-                const response = await axios.get("paket_jasa/"+id)
-                if (response.data == "Data Tidak Ada") {
-                    this.dataKosong
-                } else {
-                    this.dataJasa = response.data
-                }
-
-            } catch (error) {
-                console.log("Oopss.. Erorr");
-            }
-        },
-
         async getProdukPaket() {
             this.load = true;
             try {
@@ -278,16 +275,6 @@ export default {
                     this.dataProdukPaket = response.data;
                     this.load = false;
                 }, 500);
-            } catch (error) {
-                console.log("Oopss.. Error");
-            }
-        },
-
-        async getProduk() {
-            let id = this.$route.params.id;
-            try {
-                const response = await axios.get("produk/filter/"+id);
-                this.dataProduk = response.data;
             } catch (error) {
                 console.log("Oopss.. Error");
             }

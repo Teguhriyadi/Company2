@@ -18,7 +18,8 @@ class PaketJasaController extends Controller
             $data = [];
             foreach ($paket_jasa as $d) {
                 $data[] = [
-                    "paket_kategori_jasa_id" => $d->getKategoriPaket->id,
+                    "kategori_paket_id" => $d->getKategoriPaket->id,
+                    "kategori_jasa_id" => $d->kategori_jasa_id,
                     "paket_kategori_jasa_nama" => $d->getKategoriJasa->kategori_jasa_slug,
                     "paket_kategori_paket_nama" => $d->getKategoriPaket->kategori_paket_nama,
                 ];

@@ -119,7 +119,7 @@ const router = createRouter({
     linkExactActiveClass: "active"
 });
 
-axios.defaults.baseURL = "http://kumon.startsheep.my.id/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 const apiData = localStorage.getItem("api_data");
 
 if (apiData == null) {

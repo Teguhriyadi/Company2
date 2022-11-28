@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('produk_paket', function (Blueprint $table) {
             $table->id();
-            $table->integer("paket_jasa_id");
+            $table->integer("kategori_jasa_id")->nullable();
+            $table->integer("paket_jasa_id")->nullable();
             $table->integer("produk_id");
             $table->timestamps();
         });

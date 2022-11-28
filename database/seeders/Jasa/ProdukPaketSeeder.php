@@ -31,32 +31,32 @@ class ProdukPaketSeeder extends Seeder
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 1,
+            "kategori_jasa_id" => 1,
             "produk_id" => 4
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 1,
+            "kategori_jasa_id" => 1,
             "produk_id" => 5
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 3,
+            "kategori_jasa_id" => 3,
             "produk_id" => 6
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 3,
+            "kategori_jasa_id" => 3,
             "produk_id" => 7
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 3,
+            "kategori_jasa_id" => 3,
             "produk_id" => 8
         ]);
 
         ProdukPaket::create([
-            "paket_jasa_id" => 3,
+            "kategori_jasa_id" => 3,
             "produk_id" => 9
         ]);
     }
