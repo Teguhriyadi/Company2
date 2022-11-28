@@ -241,8 +241,6 @@ export default {
         }).then(response => {
             this.user = response.data
         })
-    },
-    mounted() {
         let slug = this.$route.params.slug;
         if (slug == "jasa-fotografi") {
             axios.get("kategori_jasa/" + slug)
