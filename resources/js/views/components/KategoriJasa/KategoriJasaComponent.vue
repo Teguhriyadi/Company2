@@ -234,6 +234,7 @@ export default {
         this.getSlug();
         this.getProdukPaket();
         this.getBenefit();
+        this.getPaketJasa();
         axios.get("/user", {
             headers: {
                 'Authorization': 'Bearer ' + this.token
@@ -241,17 +242,7 @@ export default {
         }).then(response => {
             this.user = response.data
         })
-        let slug = this.$route.params.slug;
-        if (slug == "jasa-fotografi") {
-            axios.get("kategori_jasa/" + slug)
-            .then(cetak => {
-                this.jasaId = cetak.data.data.jasa_id;
-                axios.get("paket_jasa/" + this.jasaId)
-                    .then(response => {
-                        this.dataJasa = response.data;
-                    });
-            });
-        }
+
     },
     methods: {
         async getSlug() {
@@ -260,6 +251,16 @@ export default {
                 const response = await axios.get("kategori_jasa/" + slug);
                 this.namaJasa = response.data.data.jasa_nama;
                 this.idJasa = response.data.data.jasa_id;
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        async getPaketJasa() {
+            let id = this.$route.params.id;
+            try {
+                const response = await axios.get("paket_jasa/" + id);
+                this.dataJasa = response.data;
             } catch (error) {
                 console.log(error);
             }

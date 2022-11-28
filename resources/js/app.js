@@ -48,7 +48,7 @@ const routes = [
         component: Kategori
     },
     {
-        path: "/jasa/:slug",
+        path: "/jasa/:id/:slug",
         name: "kategoriJasa",
         component: KategoriJasa
     },
