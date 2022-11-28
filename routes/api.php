@@ -102,6 +102,7 @@ Route::resource("kategori_jasa", KategoriJasaController::class);
 Route::get("paket_jasa/{slug}", [PaketJasaController::class, "index"]);
 Route::post("payment", [PaymentController::class, "handler"]);
 
+Route::get("/produk_paket/detail/{slug}", [ProdukPaketController::class, "detail"]);
 Route::resource("produk_paket", ProdukPaketController::class);
 
 Route::get("/benefit", [BenefitController::class, "index"]);

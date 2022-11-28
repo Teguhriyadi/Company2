@@ -234,6 +234,7 @@ export default {
 
             try {
                 const response = await axios.get("produk_paket/detail/"+produk_id);
+                console.log(response.data);
                 this.dataProduk = response.data;
                 this.harga = response.data[0].harga;
                 this.produkHarga = response.data[0].produk_harga
