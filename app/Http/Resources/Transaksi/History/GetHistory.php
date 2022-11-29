@@ -18,11 +18,12 @@ class GetHistory extends JsonResource
         return [
             "history_nama" => $this->nama,
             "history_email" => $this->email,
-            "history_harga" => "Rp. " . number_format($this->harga),
+            "history_harga" => "Rp. " . number_format($this->gross_amount),
             "history_lokasi" => $this->lokasi,
             "history_catatan" => $this->catatan,
             "history_waktu" => Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->isoFormat('dddd, D MMMM Y H:mm:s'),
-            "order" => $this->getOrders
+            "tipe_pembayaran" => $this->payment_type,
+            "status" => $this->status
         ];
     }
 }

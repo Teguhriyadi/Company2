@@ -29,7 +29,7 @@
                                         <h4>
                                             Status |
                                             <span class="text-success" style="text-transform: uppercase; font-weight: bold;">
-                                                {{ history.order.status }}
+                                                {{ history.status }}
                                             </span>
                                         </h4>
                                     </div>
@@ -73,7 +73,9 @@
                                             <label for="" class="form-label text-warning w-500">
                                                 Metode Pembayaran
                                             </label>
-                                            <h6>{{ history.order.payment_type }}</h6>
+                                            <h6>
+                                                {{ history.tipe_pembayaran }}
+                                            </h6>
                                         </div>
                                     </div>
                                     <hr class="mt-3" style="border-top: dotted 3px;">
@@ -202,6 +204,7 @@ export default {
         }).then(response => {
             axios.get("history/" + response.data.id)
                 .then(cetak => {
+                    console.log(cetak.data.data)
                     this.spinner = true;
                     if (cetak.data.data == []) {
                         setTimeout(() => {

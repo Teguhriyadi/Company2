@@ -132,6 +132,14 @@
     </main>
 
     <form id="submit" method="POST" @submit.prevent="kirimPesan">
+        <input type="hidden" name="user_id" id="user_id" :value="user_id">
+        <input type="hidden" id="nama" :value="nama">
+        <input type="hidden" id="email" :value="email">
+        <input type="hidden" id="tanggal_booking" :value="tanggal">
+        <input type="hidden" id="nomor_hp" :value="nomor_wa">
+        <input type="hidden" id="lokasi" :value="lokasi">
+        <input type="hidden" id="catatan" :value="catatan">
+        <input type="hidden" id="id_cart" :value="id_cart">
         <input type="hidden" name="json" id="json_callback">
     </form>
 </template>
@@ -150,9 +158,11 @@ export default {
             nama: [],
             nomor_wa: [],
             email: [],
+            tanggal: [],
             lokasi: [],
             catatan: [],
-            harga: []
+            harga: [],
+            user_id: []
         }
     },
     created() {
@@ -165,12 +175,15 @@ export default {
             try {
                 const response = await axios.get("checkout/" + id_cart);
                 setTimeout(() => {
+                    this.id_cart = id_cart;
+                    this.tanggal = response.data.data.tanggal;
                     this.nama = response.data.data.nama
                     this.email = response.data.data.email
                     this.nomor_wa = response.data.data.nomor_hp
                     this.lokasi = response.data.data.lokasi
                     this.catatan = response.data.data.catatan
                     this.harga = response.data.data.harga
+                    this.user_id = response.data.data.user_id.id
                 }, 1000);
             } catch (error) {
                 console.log(error);
@@ -181,7 +194,6 @@ export default {
             try {
                 const response = await axios.get("payment/"+id_cart)
                 this.pembayaran = response.data[0].snap_token
-                console.log(this.pembayaran)
             } catch (error) {
                 console.log(error);
             }
@@ -189,6 +201,7 @@ export default {
 
         send_response_callback(result) {
             document.getElementById("json_callback").value = JSON.stringify(result);
+            document.getElementById("user_id").value = JSON.stringify(result)
             $("#submit").submit();
         },
 
@@ -200,10 +213,36 @@ export default {
             window.snap.pay(this.pembayaran, {
                 onSuccess: function(result)
                 {
-                    alert("Sukses, Pembayaran Selesai")
+                    let nama = document.getElementById("nama").value;
+                    let email = document.getElementById("email").value;
+                    let tanggal_booking = document.getElementById("tanggal_booking").value;
+                    let nomor_hp = document.getElementById("nomor_hp").value;
+                    let lokasi = document.getElementById("lokasi").value;
+                    let catatan = document.getElementById("catatan").value;
+                    let id_cart = document.getElementById("id_cart").value;
                     let kirim = document.getElementById("json_callback").value = JSON.stringify(result);
-                    this.json = kirim;
+                    let idUser = document.getElementById("user_id").value
+
+                    this.user_id = idUser
+                    this.id_cart = id_cart
+                    this.nama = nama
+                    this.email = email
+                    this.tanggal_booking = tanggal_booking
+                    this.nomor_hp = nomor_hp
+                    this.lokasi = lokasi
+                    this.catatan = catatan
+                    this.json = kirim
+
+                    alert("Sukses, Pembayaran Selesai")
                     axios.post("payment", {
+                        user_id: this.user_id,
+                        id_cart: this.id_cart,
+                        nama: this.nama,
+                        email: this.email,
+                        tanggal_booking: this.tanggal_booking,
+                        nomor_hp: this.nomor_hp,
+                        lokasi: this.lokasi,
+                        catatan: this.catatan,
                         json: this.json
                     }).then(response => {
                         console.log(response)

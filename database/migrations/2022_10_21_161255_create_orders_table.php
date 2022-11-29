@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer("user_id");
             $table->string("status");
             $table->string("transaction_id");
             $table->string("order_id");
@@ -22,6 +23,12 @@ return new class extends Migration
             $table->string("payment_type");
             $table->string("payment_code")->nullable();
             $table->string("pdf_url")->nullable();
+            $table->string("nama", 100);
+            $table->string("email", 100);
+            $table->date("tanggal_booking");
+            $table->bigInteger("nomor_hp");
+            $table->string("lokasi", 100);
+            $table->text("catatan");
             $table->timestamps();
         });
     }

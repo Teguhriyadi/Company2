@@ -56,6 +56,7 @@ class PaymentController extends Controller
 
         $order = new Order();
 
+        $order["user_id"] = $request->user_id;
         $order["status"] = $json->transaction_status;
         $order["transaction_id"] = $json->transaction_id;
         $order["order_id"] = $json->order_id;
@@ -63,7 +64,15 @@ class PaymentController extends Controller
         $order["payment_type"] = $json->payment_type;
         $order["payment_code"] = isset($json->payment_code) ? $json->payment_code : null;
         $order["pdf_url"] = isset($json->pdf_url) ? $json->pdf_url : null;
+        $order["nama"] = $request->nama;
+        $order["email"] = $request->email;
+        $order["tanggal_booking"] = $request->tanggal_booking;
+        $order["nomor_hp"] = $request->nomor_hp;
+        $order["lokasi"] = $request->lokasi;
+        $order["catatan"] = $request->catatan;
         $order->save();
+
+        Keranjang::where("id", $request->id_cart)->delete();
 
         return response()->json([
             "success" => true,
