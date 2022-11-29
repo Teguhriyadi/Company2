@@ -238,7 +238,14 @@ export default {
                     let jasaNama = this.jasa;
                     let paketNama = this.paket;
 
-                    return this.$router.push({name: 'cart', params: {produk_id: idProduk, paket: jasaNama, jasa: paketNama} });
+                    return this.$router.push(
+                        {
+                            name: 'cart-fotografi',
+                            params: {
+                                produk_id: idProduk
+                            }
+                        });
+
                 }, 1000);
             }
         }

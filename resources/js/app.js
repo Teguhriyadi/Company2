@@ -53,7 +53,7 @@ const routes = [
         component: KategoriJasa
     },
     {
-        path: "/jasa/detail/:slug",
+        path: "/jasa/:id/:slug/detail",
         name: "detailPaketJasa",
         component: DetailKategoriJasa
     },
@@ -93,6 +93,11 @@ const routes = [
         component: Cart
     },
     {
+        path: "/cart/:produk_id/",
+        name: "cart-fotografi",
+        component: Cart
+    },
+    {
         path: "/checkout/:encrypt/:id_cart",
         name: "checkout",
         component: DetailCart
@@ -119,7 +124,7 @@ const router = createRouter({
     linkExactActiveClass: "active"
 });
 
-axios.defaults.baseURL = "https://kumon.startsheep.my.id/api/"
+axios.defaults.baseURL = "http://127.0.0.1:8000/api/"
 const apiData = localStorage.getItem("api_data");
 
 if (apiData == null) {

@@ -317,7 +317,11 @@ export default {
                     kode: kode
                 }).then(response => {
                     if (response.data == "Data Tidak Ada") {
-                        alert("Kode Yang Anda Masukkan Salah");
+                        this.$swal({
+                            title: "Error",
+                            text: "Kode Yang Anda Masukkan Salah",
+                            icon: "error"
+                        });
                     } else {
                         if (response.data[0].jasa_id == this.idJasa) {
                             if (response.data[0].status == 1) {
@@ -343,13 +347,25 @@ export default {
                                         }, 1000);
                                     }
                                 }).catch(error => {
-                                    alert(error);
+                                    this.$swal({
+                                        title: "Error",
+                                        text: error,
+                                        icon: "error"
+                                    });
                                 });
                             } else {
-                                alert("Kode Verifikasi Tidak Aktif");
+                                this.$swal({
+                                    title: "Error",
+                                    text: "Kode Verifikasi Tidak Aktif",
+                                    icon: "error"
+                                });
                             }
                         } else {
-                            alert("Token Hanya Dapat Digunakan Pada Jasa Yang Sesuai");
+                            this.$swal({
+                                title: "Error",
+                                text: "Token Hanya Dapat Digunakan Pada Jasa Yang Sesuai",
+                                icon: "error"
+                            });
                         }
                     }
                 }).catch(error => {
