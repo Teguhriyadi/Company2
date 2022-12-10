@@ -199,15 +199,24 @@ use App\Models\Payment\Order;
                 Grafik Transaksi
             </div>
             <div class="card-body">
+                @php
+                    $order = Order::whereYear("created_at", date("Y"))->count();
+                @endphp
+                @if (empty($order))
+                    <div class="alert alert-danger">
+                        <strong>
+                            <i>
+                                Oopss... Data Saat Ini Belum Ada
+                            </i>
+                        </strong>
+                    </div>
+                @else
                 <canvas id="myChart" style="width: 100%"></canvas>
+                @endif
             </div>
         </div>
     </div>
 </div>
-
-@foreach ($convert as $item)
-    {{ $item }}
-@endforeach
 
 @endsection
 
