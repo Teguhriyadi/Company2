@@ -27,7 +27,8 @@ class AppController extends Controller
             "count_artikel" => Artikel::count(),
             "count_pesan" => Pesan::count(),
             "convert" => ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-            "bulan" => ["","Januari", "Februari", "Maret", "April", "Mei" ,"Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"]
+            "bulan" => ["","Januari", "Februari", "Maret", "April", "Mei" ,"Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"],
+            "profil_perusahaan" => ProfilPerusahaan::first()
         ];
 
         return view("pages.admin.dashboard", $data);

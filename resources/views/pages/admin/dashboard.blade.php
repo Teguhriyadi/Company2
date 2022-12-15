@@ -16,7 +16,11 @@ use App\Models\Payment\Order;
     <div class="col-md-12">
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Selamat Datang <b>{{ Auth::user()->nama }}</b> !</h4>
-            <p>di <b>APLIKASI JASA LAYANAN DIGITAL WEBSITE</b></p>
+            <p>di
+                <b>
+                    Duo Bintang Studio
+                </b>
+            </p>
             <hr>
             <p class="mb-0">Silahkan Pilih Menu Untuk Memulai Program</p>
         </div>

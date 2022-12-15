@@ -154,6 +154,13 @@
         </a>
     </li>
 
+    <li class="nav-item {{ Request::is('admin/laporan/transaksi') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ url('/admin/laporan/transaksi') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Laporan</span>
+        </a>
+    </li>
+
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item {{ Request::segment(2) == 'akun' ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

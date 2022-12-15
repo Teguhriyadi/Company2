@@ -5,6 +5,7 @@ use App\Http\Controllers\Akun\UserController;
 use App\Http\Controllers\Master\PortfolioController;
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Autentikasi\LoginController;
+use App\Http\Controllers\Laporan\TransaksiController;
 use App\Http\Controllers\Master\ArtikelController;
 use App\Http\Controllers\Master\CarouselController;
 use App\Http\Controllers\Master\KategoriController;
@@ -134,6 +135,11 @@ Route::post("/payment", [PaymentController::class, "store"]);
 
             Route::prefix("aktivasi")->group(function() {
                 Route::resource("token", AktivasiTokenController::class);
+            });
+
+            Route::prefix("laporan")->group(function() {
+                Route::put("/transaksi", [TransaksiController::class, "cari_laporan"]);
+                Route::resource("transaksi", TransaksiController::class);
             });
 
             Route::prefix("akun")->group(function () {
