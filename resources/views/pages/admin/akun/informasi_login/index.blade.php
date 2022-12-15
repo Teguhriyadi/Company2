@@ -8,6 +8,19 @@ use Carbon\Carbon;
 
 @section('title_breadcrumb', 'Informasi Login')
 
+@section("breadcrumb")
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="pt-2">
+    <ol class="breadcrumb" style="background-color: transparent; padding:0px;">
+        <li class="breadcrumb-item">
+            <a href="{{ url('/admin/dashboard') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">@yield("title")</li>
+    </ol>
+</nav>
+
+@endsection
+
 @section('content')
 
     <div class="row">

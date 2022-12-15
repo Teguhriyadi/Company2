@@ -10,6 +10,18 @@ use App\Models\Payment\Order;
 
 @section('title_breadcrumb', 'Dashboard')
 
+@section("breadcrumb")
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb" style="background-color: transparent; padding:0px;">
+        <li class="breadcrumb-item active" aria-current="page">
+            Dashboard
+        </li>
+    </ol>
+</nav>
+
+@endsection
+
 @section('content')
 
 <div class="row">
@@ -204,16 +216,16 @@ use App\Models\Payment\Order;
             </div>
             <div class="card-body">
                 @php
-                    $order = Order::whereYear("created_at", date("Y"))->count();
+                $order = Order::whereYear("created_at", date("Y"))->count();
                 @endphp
                 @if (empty($order))
-                    <div class="alert alert-danger">
-                        <strong>
-                            <i>
-                                Oopss... Data Saat Ini Belum Ada
-                            </i>
-                        </strong>
-                    </div>
+                <div class="alert alert-danger">
+                    <strong>
+                        <i>
+                            Oopss... Data Saat Ini Belum Ada
+                        </i>
+                    </strong>
+                </div>
                 @else
                 <canvas id="myChart" style="width: 100%"></canvas>
                 @endif
@@ -234,19 +246,19 @@ use App\Models\Payment\Order;
         type: 'bar',
         data: {
             labels: [
-                @foreach ($bulan as $item)
-                ['  {{ $item }} ', ],
-                @endforeach
+            @foreach ($bulan as $item)
+            ['  {{ $item }} ', ],
+            @endforeach
             ],
             datasets: [{
                 label: 'Jumlah Transaksi',
                 data: [
-                    @foreach ($convert as $item)
-                        @php
-                            $order = Order::whereMonth("created_at", $item)->whereYear("created_at", date("Y"))->count();
-                        @endphp
-                        [' {{ $order }} '],
-                    @endforeach
+                @foreach ($convert as $item)
+                @php
+                $order = Order::whereMonth("created_at", $item)->whereYear("created_at", date("Y"))->count();
+                @endphp
+                [' {{ $order }} '],
+                @endforeach
                 ],
                 borderWidth: 1
             }]

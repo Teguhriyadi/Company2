@@ -23,12 +23,10 @@
         </a>
     </li>
 
-    <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Menu
     </div>
 
     <li class="nav-item {{ Request::segment(2) == 'master' ? 'active' : '' }}">
@@ -74,9 +72,6 @@
                 <a class="collapse-item {{ Request::is('admin/master/paket_jasa') ? 'active' : '' }}" href="{{ url('/admin/master/paket_jasa') }}">
                     Paket Jasa
                 </a>
-                <a class="collapse-item {{ Request::is('admin/master/portofolio') ? 'active' : '' }}" href="{{ url('/admin/master/portofolio') }}">
-                    Portofolio
-                </a>
             </div>
         </div>
     </li>
@@ -121,9 +116,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item {{ Request::is('admin/pengaturan/syarat_ketentuan') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/syarat_ketentuan') }}">
                     Syarat & Ketentuan
-                </a>
-                <a class="collapse-item {{ Request::is('admin/pengaturan/tentang_kami') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/tentang_kami') }}">
-                    Tentang Kami
                 </a>
                 <a class="collapse-item {{ Request::is('admin/pengaturan/why_us') ? 'active' : '' }} " href="{{ url('/admin/pengaturan/why_us') }}">
                     Why Us

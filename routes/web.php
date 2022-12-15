@@ -21,7 +21,6 @@ use App\Http\Controllers\Production\PortofolioController;
 use App\Http\Controllers\Production\Produk\BenefitProdukController;
 use App\Http\Controllers\Production\Produk\ProdukController;
 use App\Http\Controllers\Production\Produk\ProdukPaketController;
-use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Web\Jasa\KategoriJasaController;
 use App\Http\Controllers\Web\Jasa\PaketJasaController;
 use App\Http\Controllers\Web\Jasa\PaketKategoriController;
@@ -103,9 +102,6 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 // Data Paket Jasa
                 Route::resource("paket_jasa", PaketJasaController::class);
                 // END
-
-                Route::resource("portofolio", PortfolioController::class, ['as' => 'postofolioo']);
-                // END
             });
 
             Route::prefix("production")->group(function() {
@@ -113,7 +109,7 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 Route::resource("produk", ProdukController::class);
                 Route::resource("produk_paket", ProdukPaketController::class, ['as' => 'produk_pakett']);
                 Route::resource("benefit", BenefitProdukController::class);
-                Route::resource("portofolio", PortofolioController::class);
+                Route::resource("portofolio", PortofolioController::class, ['as' => 'postofolioo']);
 
             });
 
@@ -125,7 +121,6 @@ Route::post("/payment", [PaymentController::class, "store"]);
                 Route::resource("syarat_ketentuan", SyaratKetentuanController::class, ['as' => 'syarat_ketentuann']);
                 // END
 
-                Route::resource("tentang_kami", TentangKamiController::class, ['as' => 'tentang_kamii']);
                 Route::resource("profil_perusahaan", ProfilPerusahaanController::class, ['as' => 'profil_perusahaann']);
                 Route::post("/why_us/upload_gambar", [WhyUsController::class, "upload_gambar"]);
                 Route::resource("why_us", WhyUsController::class, ['as' => 'why_uss']);

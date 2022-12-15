@@ -12,7 +12,6 @@ use Database\Seeders\components\ProfilPerusahaanSeeder;
 use Database\Seeders\components\QuestionSeeder;
 use Database\Seeders\components\ServiceSeeder;
 use Database\Seeders\components\TagSeeder;
-use Database\Seeders\components\TentangKamiSeeder;
 use Database\Seeders\components\TestimonialSeeder;
 use Database\Seeders\Jasa\BenefitJasaSeeder;
 use Database\Seeders\Jasa\HasilJasaProdukSeeder;
@@ -37,7 +36,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(ServiceSeeder::class);
-        $this->call(TentangKamiSeeder::class);
         $this->call(ProfilPerusahaanSeeder::class);
         $this->call(KategoriSeeder::class);
         $this->call(UserSeeder::class);

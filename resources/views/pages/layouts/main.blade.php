@@ -18,7 +18,7 @@ $data = ProfilPerusahaan::first();
     </title>
     @if (empty($data))
     @else
-        <link rel="icon" type="image/png" href="{{ $data->profil_foto }}" />
+    <link rel="icon" type="image/png" href="{{ $data->profil_foto }}" />
     @endif
 
     <!-- Custom fonts for this template-->
@@ -29,7 +29,7 @@ $data = ProfilPerusahaan::first();
 </head>
 
 @php
-    use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 @endphp
 
 <body id="page-top">
@@ -47,6 +47,8 @@ $data = ProfilPerusahaan::first();
                         <h1 class="h3 mb-0 text-gray-800">
                             @yield('title_breadcrumb')
                         </h1>
+
+                        @yield("breadcrumb")
                     </div>
 
                     @yield('content')
@@ -65,46 +67,46 @@ $data = ProfilPerusahaan::first();
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Pilih Tombol Logout Untuk Mengakhiri Sesi
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{ url('/admin/logout') }}">Logout</a>
-                </div>
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Apakah Anda Yakin?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Pilih Tombol Logout Untuk Mengakhiri Sesi
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{{ url('/admin/logout') }}">Logout</a>
             </div>
         </div>
     </div>
+</div>
 
 
-    @include('pages.layouts.partials.js.style_js')
+@include('pages.layouts.partials.js.style_js')
 
-    @if (session('message'))
-        {!! session('message') !!}
-    @endif
+@if (session('message'))
+{!! session('message') !!}
+@endif
 
-    @yield('js')
+@yield('js')
 
-    <script>
-        window.setTimeout("waktu()", 1000);
+<script>
+    window.setTimeout("waktu()", 1000);
 
-        function waktu() {
-            var waktu = new Date();
-            setTimeout("waktu()", 1000);
-            document.getElementById("jam").innerHTML = waktu.getHours();
-            document.getElementById("menit").innerHTML = waktu.getMinutes();
-            document.getElementById("detik").innerHTML = waktu.getSeconds();
-        }
-    </script>
+    function waktu() {
+        var waktu = new Date();
+        setTimeout("waktu()", 1000);
+        document.getElementById("jam").innerHTML = waktu.getHours();
+        document.getElementById("menit").innerHTML = waktu.getMinutes();
+        document.getElementById("detik").innerHTML = waktu.getSeconds();
+    }
+</script>
 
 </body>
 
