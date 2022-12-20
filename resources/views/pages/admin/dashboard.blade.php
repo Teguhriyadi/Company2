@@ -26,7 +26,7 @@ use App\Models\Payment\Order;
 
 <div class="row">
     <div class="col-md-12">
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-warning" role="alert">
             <h4 class="alert-heading">Selamat Datang <b>{{ Auth::user()->nama }}</b> !</h4>
             <p>di
                 <b>
